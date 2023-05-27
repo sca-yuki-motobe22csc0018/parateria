@@ -15,6 +15,7 @@ public class PlaneScript : MonoBehaviour
     [SerializeField] int High = -5;
     public static float Timer = 0.0f;
     bool end = false;
+    private int stopcount=0;
 
     void Start()
     {
@@ -22,11 +23,15 @@ public class PlaneScript : MonoBehaviour
         {
             step[i] = Instantiate(Plane, new Vector3(4 * i, High, 0), Quaternion.identity);
         }
-        
+        end = false;
+        speed = 5.0f;
+        Timer = 0.0f;
     }
 
     void Update()
     {
+        
+
 
         for (int i = 0; i < step.Length; i++)
         {
@@ -40,7 +45,8 @@ public class PlaneScript : MonoBehaviour
 
         Timer += Time.time;
 
-
+        if (end == false)
+        {
             if (Timer % 60 == 0)
             {
                 if (speed >= 12)
@@ -49,13 +55,27 @@ public class PlaneScript : MonoBehaviour
                 }
                 speed += 0.25f;
             }
-        
+        }
 
-        if (player.transform.position.y < -10)
+        if (player.transform.position.y < -8)
         {
-            Timer=0.0f;
-            speed=5.0f;
-            SceneManager.LoadScene("SampleScene");
+            end = true;
+            if (Timer % 2 == 0)
+            {
+                if (speed > 0)
+                {
+                    speed -= 1.0f;
+                }
+                if (speed <= 0)
+                {
+                    speed=0;
+                    stopcount+=1;
+                    if(stopcount >= 120)
+                    {
+                        SceneManager.LoadScene("Title");
+                    }
+                }
+            }
         }
     }
     /*
