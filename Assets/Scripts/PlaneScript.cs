@@ -26,6 +26,7 @@ public class PlaneScript : MonoBehaviour
         end = false;
         speed = 5.0f;
         Timer = 0.0f;
+        stopcount=0;
     }
 
     void Update()
@@ -57,7 +58,7 @@ public class PlaneScript : MonoBehaviour
             }
         }
 
-        if (player.transform.position.y < -8)
+        if (player.transform.position.y < -6)
         {
             end = true;
             if (Timer % 2 == 0)
@@ -70,7 +71,7 @@ public class PlaneScript : MonoBehaviour
                 {
                     speed=0;
                     stopcount+=1;
-                    if(stopcount >= 120)
+                    if(stopcount >= 5)
                     {
                         SceneManager.LoadScene("Title");
                     }
