@@ -60,20 +60,26 @@ public class PlaneScript : MonoBehaviour
 
         if (player.transform.position.y < -6)
         {
+            
             end = true;
             if (Timer % 2 == 0)
             {
+                stopcount+=1;
                 if (speed > 0)
                 {
-                    speed -= 1.0f;
+                    speed -= 0.5f;
                 }
                 if (speed <= 0)
                 {
                     speed=0;
                     stopcount+=1;
-                    if(stopcount >= 5)
+                    if(stopcount >= 30)
                     {
-                        SceneManager.LoadScene("Title");
+                        end = false;
+                        speed = 5.0f;
+                        Timer = 0.0f;
+                        stopcount = 0;
+                        SceneManager.LoadScene("Title"); 
                     }
                 }
             }
