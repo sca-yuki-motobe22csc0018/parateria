@@ -9,7 +9,7 @@ public class PlaneScript : MonoBehaviour
     public GameObject PlaneImage;
     public GameObject player;
     GameObject[] step = new GameObject[7];
-    [SerializeField] public static float speed = 5.0f;
+    public static float speed = 5.0f;
     [SerializeField] float disappear = -10;
     [SerializeField] float respawn = 15;
     [SerializeField] int High = -5;

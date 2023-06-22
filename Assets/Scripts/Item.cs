@@ -15,10 +15,19 @@ public class Item : MonoBehaviour
     {
         num = Random.Range(0, 2);
 
-        speed += 1.2f * (Time.time / 5);
-        if (speed >= 20)
+        //
+        //speed += 1.2f * (Time.time / 5);
+        if (Timer % 60 == 0)
         {
-            speed = 20;
+            if (speed >= 12)
+            {
+                return;
+            }
+            speed += 0.25f;
+        }
+        if (speed >= 12)
+        {
+            speed = 12;
         }
     }
 
@@ -27,15 +36,17 @@ public class Item : MonoBehaviour
     {
         Timer += Time.deltaTime;
 
-        if (Timer >= 5)
+        if (Timer % 60 == 0)
         {
-            if (speed >= 21.2)
+            if (speed >= 12)
             {
-                speed = 21.2f;
                 return;
             }
-            speed += 1.2f;
-            Timer = 0.0f;
+            speed += 0.25f;
+        }
+        if (speed >= 12)
+        {
+            speed = 12;
         }
 
         posy = num;

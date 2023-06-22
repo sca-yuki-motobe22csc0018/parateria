@@ -51,16 +51,16 @@ public class DeathPlaneController : MonoBehaviour
         int x = (i) % 1; //(i+9)Ç10Ç≈äÑÇ¡ÇΩó]ÇËÇxÇ∆Ç∑ÇÈÅB
         if (step[x].transform.localScale.y <= 3)
         {
-            step[i].transform.localScale = step[x].transform.localScale + new Vector3(0, Random.Range(0, 2), 0);
+            step[i].transform.localScale = step[x].transform.localScale + new Vector3(0, Random.Range(0, 0), 0);
         }
         else
         if (step[x].transform.localScale.y >= 6)
         {
-            step[i].transform.localScale = step[x].transform.localScale + new Vector3(0, Random.Range(-2, -0), 0);
+            step[i].transform.localScale = step[x].transform.localScale + new Vector3(0, Random.Range(-0, -0), 0);
         }
         else
         {
-            step[i].transform.localScale = step[x].transform.localScale + new Vector3(0, Random.Range(-2, 2), 0);
+            step[i].transform.localScale = step[x].transform.localScale + new Vector3(0, Random.Range(-0, 0), 0);
         }
     }
 
