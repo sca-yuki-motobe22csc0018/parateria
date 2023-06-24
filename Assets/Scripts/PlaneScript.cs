@@ -44,45 +44,17 @@ public class PlaneScript : MonoBehaviour
             }
         }
 
-        Timer += Time.time;
+        Timer += Time.deltaTime;
 
-        if (end == false)
+        if (Timer > 1)
         {
-            if (Timer % 60 == 0)
+            if (speed >= 12)
             {
-                if (speed >= 12)
-                {
-                    return;
-                }
-                speed += 0.25f;
+                return;
+                Timer = 0;
             }
-        }
-
-        if (player.transform.position.y < -6)
-        {
-            
-            end = true;
-            if (Timer % 2 == 0)
-            {
-                stopcount+=1;
-                if (speed > 0)
-                {
-                    speed -= 0.5f;
-                }
-                if (speed <= 0)
-                {
-                    speed=0;
-                    stopcount+=1;
-                    if(stopcount >= 30)
-                    {
-                        end = false;
-                        speed = 5.0f;
-                        Timer = 0.0f;
-                        stopcount = 0;
-                        SceneManager.LoadScene("Title"); 
-                    }
-                }
-            }
+            speed += 0.25f;
+            Timer = 0;
         }
     }
     /*

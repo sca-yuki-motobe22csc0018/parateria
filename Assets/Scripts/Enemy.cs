@@ -13,18 +13,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         //speed += 1.2f * (Time.time / 5);
-        if (Timer % 60 == 0)
-        {
-            if (speed >= 12)
-            {
-                return;
-            }
-            speed += 0.25f;
-        }
-        if (speed >= 12)
-        {
-            speed = 12;
-        }
+        speed = 10.0f;
+        Timer = 0.0f;
     }
 
     // Update is called once per frame
@@ -32,17 +22,15 @@ public class Enemy : MonoBehaviour
     {
         Timer += Time.deltaTime;
 
-        if (Timer % 60 == 0)
+        if (Timer > 1)
         {
-            if (speed >= 12)
+            if (speed >= 24)
             {
                 return;
+                Timer = 0;
             }
-            speed += 0.25f;
-        }
-        if (speed >= 12)
-        {
-            speed = 12;
+            speed += 0.5f;
+            Timer = 0;
         }
 
         posy = transform.position.y;

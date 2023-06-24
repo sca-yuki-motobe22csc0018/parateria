@@ -15,19 +15,8 @@ public class Fire : MonoBehaviour
     {
         num = Random.Range(-2, 2);
 
-        //speed += 1.2f * (Time.time / 5);
-        if (Timer % 60 == 0)
-        {
-            if (speed >= 12)
-            {
-                return;
-            }
-            speed += 0.25f;
-        }
-        if (speed >= 12)
-        {
-            speed = 12;
-        }
+        speed = 12.0f;
+        Timer = 0.0f;
     }
 
     // Update is called once per frame
@@ -35,17 +24,15 @@ public class Fire : MonoBehaviour
     {
         Timer += Time.deltaTime;
 
-        if (Timer % 60 == 0)
+        if (Timer>1)
         {
-            if (speed >= 12)
+            if (speed >= 26)
             {
                 return;
+                Timer = 0;
             }
-            speed += 0.25f;
-        }
-        if (speed >= 12)
-        {
-            speed = 12;
+            speed += 0.5f;
+            Timer=0;
         }
 
         posy = num;

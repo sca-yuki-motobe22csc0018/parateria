@@ -14,21 +14,8 @@ public class Item : MonoBehaviour
     void Start()
     {
         num = Random.Range(0, 2);
-
-        //
-        //speed += 1.2f * (Time.time / 5);
-        if (Timer % 60 == 0)
-        {
-            if (speed >= 12)
-            {
-                return;
-            }
-            speed += 0.25f;
-        }
-        if (speed >= 12)
-        {
-            speed = 12;
-        }
+        speed = 5.0f;
+        Timer = 0.0f;
     }
 
     // Update is called once per frame
@@ -36,17 +23,15 @@ public class Item : MonoBehaviour
     {
         Timer += Time.deltaTime;
 
-        if (Timer % 60 == 0)
+        if (Timer > 1)
         {
-            if (speed >= 12)
+            if (speed >= 18)
             {
                 return;
+                Timer = 0;
             }
-            speed += 0.25f;
-        }
-        if (speed >= 12)
-        {
-            speed = 12;
+            speed += 0.5f;
+            Timer = 0;
         }
 
         posy = num;
