@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
             GameOver(timecount);
             if (Reset)
             {
+                if(Input.GetKey(KeyCode.Space))
                 SceneManager.LoadScene("Title");
             }
         }
