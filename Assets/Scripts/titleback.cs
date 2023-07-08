@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class BackGroundFade : MonoBehaviour
+public class titleback : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,6 +13,6 @@ public class BackGroundFade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 10);
+        
     }
 }

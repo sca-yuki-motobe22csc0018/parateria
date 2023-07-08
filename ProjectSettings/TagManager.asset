@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - Fire
   - Item
+  - Right
+  - Left
   layers:
   - Default
   - TransparentFX

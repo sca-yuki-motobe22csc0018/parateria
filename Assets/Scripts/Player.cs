@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
         //
         Vector3 pos = myTransform.position;
-        if (pos.x < -3 && Time.timeScale == 1)
+        if (pos.x < -6 && Time.timeScale == 1)
         {
             pos.x += 0.002f;
             myTransform.position = pos;
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
             {
                 this.rbody2D.AddForce(transform.up * 0);
             }
-            this.rbody2D.AddForce(transform.up * jumpForce);
+            this.rbody2D.AddForce(transform.up * jumpForce*1.5f);
             jumpCount++;
         }
 

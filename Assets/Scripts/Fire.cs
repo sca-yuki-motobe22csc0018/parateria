@@ -13,7 +13,7 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        num = Random.Range(-2, 2);
+        num = Random.Range(0, 6);
 
         speed = 12.0f;
         Timer = 0.0f;

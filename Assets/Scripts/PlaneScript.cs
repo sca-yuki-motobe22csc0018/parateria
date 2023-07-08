@@ -12,7 +12,7 @@ public class PlaneScript : MonoBehaviour
     public static float speed = 5.0f;
     [SerializeField] float disappear = -10;
     [SerializeField] float respawn = 15;
-    [SerializeField] int High = -5;
+    [SerializeField] float High = -5;
     public static float Timer = 0.0f;
     bool end = false;
     private int stopcount=0;
