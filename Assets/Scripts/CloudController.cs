@@ -13,7 +13,7 @@ public class CloudController : MonoBehaviour
     {
         if (this.gameObject.tag == "Right")
         {
-            x = 800;
+            x = 1920;
         }
         else if(this.gameObject.tag == "Left")
         {
@@ -27,10 +27,10 @@ public class CloudController : MonoBehaviour
     {
         x -= speed * Time.deltaTime;
         Cloud.anchoredPosition = new Vector2(x,0.0f);
-        if(x < -800)
+        if(x < -1920)
         {
-            x = 800.0f;
-            Cloud.anchoredPosition = new Vector2(800, 0);
+            x = 1920.0f;
+            Cloud.anchoredPosition = new Vector2(1920, 0);
         }
     }
 }
