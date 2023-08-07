@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewPlane : MonoBehaviour
+public class NewPlaneL : MonoBehaviour
 {
     public GameObject Plane;
     float x;
     [SerializeField] float speed;
     public float space=-15f;
-    public float spawn=20.7f;
+    public float spawn = 20.7f;
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 0.0f;
+        x = -11.9f;
     }
 
     // Update is called once per frame
