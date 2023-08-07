@@ -1905,8 +1905,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Plane: {fileID: 974333692}
   speed: 4
-  space: -15
-  spawn: 20.7
 --- !u!1 &1078654428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,8 +2353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Plane: {fileID: 1381795198}
   speed: 4
-  space: -15
-  spawn: 20.7
 --- !u!61 &1381795200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2728,8 +2724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Plane: {fileID: 1491515682}
   speed: 4
-  space: -15
-  spawn: 20.7
 --- !u!61 &1491515684
 BoxCollider2D:
   m_ObjectHideFlags: 0

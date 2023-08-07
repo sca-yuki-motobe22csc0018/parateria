@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public float speed = PlaneScript.speed;
+    [SerializeField] public float speed = NewPlane.speed;
     [SerializeField] float posy = -3.5f;
     [SerializeField] float posx = 35.0f;
-    float Timer = PlaneScript.Timer;
+    float Timer = NewPlane.Timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed += 1.2f * (Time.timeSinceLevelLoad / 5);
+        //speed += 1.2f * (Time.timeSinceLevelLoad / 5);
         if (speed >= 20)
         {
-            speed = 20;
+            //speed = 20;
         }
     }
 
@@ -25,14 +25,14 @@ public class Enemy : MonoBehaviour
         Timer += Time.deltaTime;
 
 
-        if (Timer >= 5)
+        if (Timer >= 1)
         {
-            if (speed >= 21.2)
-            {
-                speed = 21.2f;
-                return;
-            }
-            speed += 1.2f;
+            //if (speed >= 21.2)
+            //{
+           //     speed = 21.2f;
+            //    return;
+            //}
+            speed += 1.5f;
             Timer = 0.0f;
         }
 

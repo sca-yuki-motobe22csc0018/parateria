@@ -187,7 +187,9 @@ public class Player : MonoBehaviour
             if (lifePoint < 7)
             {
                 Heal();
+                
             }
+            jumpCount = 1;
             score += 150000;
             Destroy(m_item.gameObject);
         }

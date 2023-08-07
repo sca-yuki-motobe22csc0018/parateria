@@ -6,25 +6,39 @@ public class NewPlaneR : MonoBehaviour
 {
     public GameObject Plane;
     float x;
-    [SerializeField] float speed;
-    public float space = -15f;
-    public float spawn = 20.7f;
+    float y=-1.7f;
+    float yy;
+    [SerializeField] public float speed = NewPlane.speed;
+    float space = -15f;
+    float spawn = 23.7f;
+    float Timer = NewPlane.Timer;
 
     // Start is called before the first frame update
     void Start()
     {
-            x = 11.9f;
+        x = 11.9f;
+        y=-1.7f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        int rnd = Random.Range(1, 4);
+        if (rnd == 1)
+        {
+            yy=-2.2f;
+        }
+        else
+        {
+            yy=-1.7f;
+        }
         x -= speed * Time.deltaTime;
-        Plane.transform.position = new Vector2(x, -1.7f);
+        Plane.transform.position = new Vector2(x, y);
         if (x < space)
         {
             x = spawn;
-            Plane.transform.position = new Vector2(x, -1.7f);
+            y=yy;
+            Plane.transform.position = new Vector2(x, y);
         }
     }
 }
