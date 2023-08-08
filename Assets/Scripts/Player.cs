@@ -184,7 +184,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Item") && Time.timeScale == 1)
         {
-            if (lifePoint < 7)
+            if (lifePoint < 6)
             {
                 Heal();
                 

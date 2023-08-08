@@ -49,7 +49,7 @@ public class GameContoroller : MonoBehaviour
 
         Timer += Time.deltaTime;
 
-        if (Timer >= 5)
+        if (Timer >= 2)
         {
             num = Random.Range(1, 6);// ¦ 1`5‚Ì”ÍˆÍ‚Åƒ‰ƒ“ƒ_ƒ€‚È®”’l‚ª•Ô‚é
             switch (num)
