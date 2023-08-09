@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rbody2D;
+    private Rigidbody2D rb;
 
     [SerializeField] public float jumpForce = 400f;
 
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     bool EnemyHit;
 
     public GameObject[] lifeArray = new GameObject[6];
+    public GameObject[] selectCharacter = new GameObject[3];
     private int lifePoint;
 
     [SerializeField] GameObject m_enemy = null;
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        rbody2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         ScoreText.text = "";
         ResultScore.text = "";
         EnCount = true;
@@ -52,6 +53,21 @@ public class Player : MonoBehaviour
         ShadowResult.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         Fade = 0.0f;
         stop = false;
+        selectCharacter[0].SetActive(false);
+        selectCharacter[1].SetActive(false);
+        selectCharacter[2].SetActive(false);
+        if (CharaSelect.change == 1)
+        {
+            selectCharacter[0].SetActive(true);
+        }else
+        if(CharaSelect.change == 2)
+        {
+            selectCharacter[1].SetActive(true);
+        }else
+        if (CharaSelect.change == 3)
+        {
+            selectCharacter[2].SetActive(true);
+        }
     }
 
     void Update()
@@ -65,13 +81,10 @@ public class Player : MonoBehaviour
             myTransform.position = pos;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 2)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 3)
         {
-            if (jumpCount == 1)
-            {
-                this.rbody2D.AddForce(transform.up * 0);
-            }
-            this.rbody2D.AddForce(transform.up * jumpForce);
+            rb=transform.GetComponent<Rigidbody2D>();
+            rb.velocity=new Vector3(0,10,0);
             jumpCount++;
         }
 
