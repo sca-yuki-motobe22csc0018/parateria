@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewPlaneR : MonoBehaviour
+public class PlaneOne : MonoBehaviour
 {
     public GameObject Plane;
     float x;
-    float y=-1.7f;
+    float y = -1.7f;
     float yy;
-    [SerializeField] public float speed = NewPlane.speed;
+    public static float speed = 4.0f;
     float space = -15f;
     float spawn = 23.7f;
-    float Timer = NewPlane.Timer;
+    public static float Timer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 11.9f;
-        y=-1.7f;
+        x = 0.0f;
+        y = -1.7f - 1.652f;
     }
 
     // Update is called once per frame
@@ -26,19 +26,19 @@ public class NewPlaneR : MonoBehaviour
         int rnd = Random.Range(1, 4);
         if (rnd == 1)
         {
-            yy=-2.2f;
+            yy = -2.2f;
         }
         else
         {
-            yy=-1.7f;
+            yy = -1.7f;
         }
         x -= speed * Time.deltaTime;
-        Plane.transform.position = new Vector2(x, y);
+        Plane.transform.position = new Vector2(x, y - 1.652f);
         if (x < space)
         {
             x = spawn;
-            y=yy;
-            Plane.transform.position = new Vector2(x, y);
+            y = yy;
+            Plane.transform.position = new Vector2(x, y - 1.652f);
         }
     }
 }

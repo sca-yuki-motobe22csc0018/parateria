@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public float speed = NewPlane.speed;
+    [SerializeField] public float speed = PlaneA.speed;
     [SerializeField] float posy = -3.5f;
     [SerializeField] float posx = 35.0f;
-    float Timer = NewPlane.Timer;
+    float Timer = PlaneA.Timer;
 
     // Start is called before the first frame update
     void Start()

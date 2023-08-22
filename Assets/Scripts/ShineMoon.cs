@@ -6,7 +6,7 @@ public class ShineMoon : MonoBehaviour
 {
     void Start()
     {
-        
+        transform.position=new Vector3(0, -5.18f,0);
     }
 
     void Update()

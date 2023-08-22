@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: "\u30AD\u30E3\u30E9\uFF11 \u30B9\u30D1\u30A4\u30F3\u7528_SkeletonData"
+  m_Name: Tekichara_San_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: e1cb7512a870bef4d8ee117c44287aca, type: 2}
+  - {fileID: 11400000, guid: 11bc08807a9c183469759dd53277d2b2, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 4f4c3c98d487e534eb766a6948fceac1, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 9acdc234b64d9c34eb8f112be126e377, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0
