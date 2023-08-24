@@ -12,6 +12,7 @@ TagManager:
   - Item
   - Right
   - Left
+  - Wood
   layers:
   - Default
   - TransparentFX

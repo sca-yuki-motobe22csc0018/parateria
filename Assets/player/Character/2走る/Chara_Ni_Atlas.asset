@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: Chara_Ni_Atlas
+  m_EditorClassIdentifier: 
+  atlasFile: {fileID: 4900000, guid: 1889b12c9c2bbb647968a72b72772339, type: 3}
+  materials:
+  - {fileID: 2100000, guid: e14ee0487f043d544967ed80544e9a42, type: 2}
+  - {fileID: 2100000, guid: dd01474624dbe2c4f84af7126ac1e69d, type: 2}
+  - {fileID: 2100000, guid: 44a3fdbff72790d44bf6e5caff88e328, type: 2}
