@@ -1,0 +1,84 @@
+{ "skeleton": { "images": "//172.17.2.11/student/Oota_Tomomi/Igarasi_teacher/Chara_San/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "用紙", "bone": "root" },
+	{ "name": "頭", "bone": "root", "attachment": "頭" },
+	{ "name": "耳", "bone": "root", "attachment": "耳" },
+	{ "name": "目", "bone": "root", "attachment": "目" },
+	{ "name": "目2", "bone": "root" },
+	{ "name": "口", "bone": "root", "attachment": "口" },
+	{ "name": "口２", "bone": "root" },
+	{ "name": "マフラー", "bone": "root", "attachment": "マフラー" },
+	{ "name": "左肩", "bone": "root", "attachment": "左肩" },
+	{ "name": "左腕", "bone": "root", "attachment": "左腕" },
+	{ "name": "しっぽ", "bone": "root", "attachment": "しっぽ" },
+	{ "name": "鞄", "bone": "root", "attachment": "鞄" },
+	{ "name": "足", "bone": "root", "attachment": "足" },
+	{ "name": "体", "bone": "root", "attachment": "体" },
+	{ "name": "マフラー首", "bone": "root", "attachment": "マフラー首" },
+	{ "name": "右肩", "bone": "root", "attachment": "右肩" },
+	{ "name": "右腕", "bone": "root", "attachment": "右腕" },
+	{ "name": "右足", "bone": "root", "attachment": "右足" }
+],
+"skins": {
+	"default": {
+		"用紙": {
+			"用紙": { "x": -90, "y": 1426.5, "width": 2896, "height": 4095 }
+		},
+		"頭": {
+			"頭": { "x": 460.5, "y": 2074, "width": 1621, "height": 1250 }
+		},
+		"耳": {
+			"耳": { "x": 343.5, "y": 2731, "width": 513, "height": 656 }
+		},
+		"目": {
+			"目": { "x": 571.5, "y": 2005, "width": 293, "height": 282 }
+		},
+		"目2": {
+			"目2": { "x": 570.5, "y": 2020, "width": 221, "height": 138 }
+		},
+		"口": {
+			"口": { "x": 568, "y": 1702.5, "width": 110, "height": 25 }
+		},
+		"口２": {
+			"口２": { "x": 577, "y": 1720.5, "width": 162, "height": 61 }
+		},
+		"マフラー": {
+			"マフラー": { "x": -492.5, "y": 1097.5, "width": 941, "height": 1047 }
+		},
+		"左肩": {
+			"左肩": { "x": -93.9999999999995, "y": 1319, "width": 486, "height": 368 }
+		},
+		"左腕": {
+			"左腕": { "x": -118, "y": 928, "width": 530, "height": 718 }
+		},
+		"しっぽ": {
+			"しっぽ": { "x": -801.5, "y": 1203, "width": 1165, "height": 900 }
+		},
+		"鞄": {
+			"鞄": { "x": 201.000000000001, "y": 695, "width": 236, "height": 506 }
+		},
+		"足": {
+			"足": { "x": 110.5, "y": 455.5, "width": 829, "height": 891 }
+		},
+		"体": {
+			"体": { "x": -16.9999999999993, "y": 1088, "width": 746, "height": 1100 }
+		},
+		"マフラー首": {
+			"マフラー首": { "x": 243.500000000001, "y": 1604, "width": 655, "height": 502 }
+		},
+		"右肩": {
+			"右肩": { "x": 74.0000000000005, "y": 1315, "width": 326, "height": 530 }
+		},
+		"右腕": {
+			"右腕": { "x": 369.5, "y": 1247.5, "width": 721, "height": 519 }
+		},
+		"右足": {
+			"右足": { "x": -520.5, "y": 491.5, "width": 879, "height": 847 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

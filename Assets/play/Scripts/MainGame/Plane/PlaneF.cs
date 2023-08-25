@@ -20,7 +20,7 @@ public class PlaneF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        speed = PlaneA.speed;
         x -= speed * Time.deltaTime;
         Plane.transform.position = new Vector2(x, -1.3f);
         if (x < space)

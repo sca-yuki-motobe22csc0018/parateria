@@ -16,7 +16,7 @@ public class Ranking : MonoBehaviour
     string name;
     public Text[] RankText = new Text[10];
     int numScore;
-    float wait = 5.0f;
+    float wait = 2.0f;
     public Image fade;
     [SerializeField] float FadeTime;
     float count;

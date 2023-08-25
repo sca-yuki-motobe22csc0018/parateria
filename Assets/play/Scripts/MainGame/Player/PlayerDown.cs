@@ -6,9 +6,7 @@ public class PlayerDown : MonoBehaviour
 {
     private int jumpCount = 0;
     public GameObject player;
-    public GameObject playerRunIm;
-    public GameObject playerJumpIm;
-
+    public static bool jumpSet =false;
 
     void Start()
     {
@@ -24,8 +22,7 @@ public class PlayerDown : MonoBehaviour
         if (other.gameObject.CompareTag("ground"))
         {
             Player.jumpCount = 0;
-            playerJumpIm.SetActive(false);
-            playerRunIm.SetActive(true);
+            jumpSet=false;
         }
     }
 }

@@ -1,0 +1,76 @@
+{ "skeleton": { "images": "//172.17.2.11/student/Oota_Tomomi/Igarasi_teacher/Chara_Ni/images2/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "用紙", "bone": "root" },
+	{ "name": "レイヤー 5", "bone": "root" },
+	{ "name": "後頭部髪", "bone": "root", "attachment": "後頭部髪" },
+	{ "name": "横髪", "bone": "root", "attachment": "横髪" },
+	{ "name": "左腕", "bone": "root", "attachment": "左腕" },
+	{ "name": "左足", "bone": "root", "attachment": "左足" },
+	{ "name": "右足", "bone": "root", "attachment": "右足" },
+	{ "name": "体", "bone": "root", "attachment": "体" },
+	{ "name": "輪郭", "bone": "root", "attachment": "輪郭" },
+	{ "name": "目", "bone": "root" },
+	{ "name": "目2", "bone": "root", "attachment": "目2" },
+	{ "name": "横後ろ髪", "bone": "root", "attachment": "横後ろ髪" },
+	{ "name": "前髪", "bone": "root", "attachment": "前髪" },
+	{ "name": "口", "bone": "root" },
+	{ "name": "口2", "bone": "root", "attachment": "口2" },
+	{ "name": "右腕", "bone": "root", "attachment": "右腕" }
+],
+"skins": {
+	"default": {
+		"用紙": {
+			"用紙": { "x": -38, "y": 1971.5, "width": 2896, "height": 4095 }
+		},
+		"レイヤー 5": {
+			"レイヤー 5": { "x": -38, "y": 1971.5, "width": 2896, "height": 4095 }
+		},
+		"後頭部髪": {
+			"後頭部髪": { "x": -465, "y": 2698.5, "width": 1632, "height": 2055 }
+		},
+		"横髪": {
+			"横髪": { "x": 963.5, "y": 3032.5, "width": 437, "height": 1175 }
+		},
+		"左腕": {
+			"左腕": { "x": -218.5, "y": 1719, "width": 1147, "height": 1784 }
+		},
+		"左足": {
+			"左足": { "x": 189.000000000001, "y": 511.499999999999, "width": 658, "height": 1011 }
+		},
+		"右足": {
+			"右足": { "x": -757.5, "y": 680, "width": 897, "height": 1036 }
+		},
+		"体": {
+			"体": { "x": -272, "y": 1797.5, "width": 1270, "height": 1981 }
+		},
+		"輪郭": {
+			"輪郭": { "x": 484, "y": 3142.5, "width": 1186, "height": 1241 }
+		},
+		"目": {
+			"目": { "x": 609.5, "y": 3060.5, "width": 425, "height": 331 }
+		},
+		"目2": {
+			"目2": { "x": 599, "y": 3063, "width": 288, "height": 214 }
+		},
+		"横後ろ髪": {
+			"横後ろ髪": { "x": 242.500000000001, "y": 3357.5, "width": 1305, "height": 1149 }
+		},
+		"前髪": {
+			"前髪": { "x": 522, "y": 3264.5, "width": 1194, "height": 1135 }
+		},
+		"口": {
+			"口": { "x": 664, "y": 2657, "width": 162, "height": 40 }
+		},
+		"口2": {
+			"口2": { "x": 663.5, "y": 2676, "width": 143, "height": 56 }
+		},
+		"右腕": {
+			"右腕": { "x": 464, "y": 1687.5, "width": 1178, "height": 1921 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

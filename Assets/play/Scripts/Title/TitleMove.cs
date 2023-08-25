@@ -17,6 +17,6 @@ public class TitleMove : MonoBehaviour
     void Update()
     {
         y= 30 * Mathf.Sin(Time.time);
-        Title.anchoredPosition = new Vector2(0,y+175);
+        Title.anchoredPosition = new Vector2(0,y+100);
     }
 }

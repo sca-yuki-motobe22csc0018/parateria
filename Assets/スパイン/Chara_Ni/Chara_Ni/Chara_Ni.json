@@ -1,0 +1,68 @@
+{ "skeleton": { "images": "//172.17.2.11/student/Oota_Tomomi/Igarasi_teacher/Chara_Ni/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "用紙", "bone": "root" },
+	{ "name": "レイヤー 5", "bone": "root" },
+	{ "name": "後頭部髪", "bone": "root", "attachment": "後頭部髪" },
+	{ "name": "横髪", "bone": "root", "attachment": "横髪" },
+	{ "name": "左腕", "bone": "root", "attachment": "左腕" },
+	{ "name": "左足", "bone": "root", "attachment": "左足" },
+	{ "name": "右足", "bone": "root", "attachment": "右足" },
+	{ "name": "体", "bone": "root", "attachment": "体" },
+	{ "name": "輪郭", "bone": "root", "attachment": "輪郭" },
+	{ "name": "目", "bone": "root", "attachment": "目" },
+	{ "name": "横後ろ髪", "bone": "root", "attachment": "横後ろ髪" },
+	{ "name": "前髪", "bone": "root", "attachment": "前髪" },
+	{ "name": "口", "bone": "root", "attachment": "口" },
+	{ "name": "右腕", "bone": "root", "attachment": "右腕" }
+],
+"skins": {
+	"default": {
+		"用紙": {
+			"用紙": { "x": -30, "y": 1960.5, "width": 2896, "height": 4095 }
+		},
+		"レイヤー 5": {
+			"レイヤー 5": { "x": -30, "y": 1960.5, "width": 2896, "height": 4095 }
+		},
+		"後頭部髪": {
+			"後頭部髪": { "x": -457, "y": 2687.5, "width": 1632, "height": 2055 }
+		},
+		"横髪": {
+			"横髪": { "x": 971.5, "y": 3021.5, "width": 437, "height": 1175 }
+		},
+		"左腕": {
+			"左腕": { "x": -210.5, "y": 1708, "width": 1147, "height": 1784 }
+		},
+		"左足": {
+			"左足": { "x": 197.000000000001, "y": 500.499999999999, "width": 658, "height": 1011 }
+		},
+		"右足": {
+			"右足": { "x": -749.5, "y": 669, "width": 897, "height": 1036 }
+		},
+		"体": {
+			"体": { "x": -264, "y": 1786.5, "width": 1270, "height": 1981 }
+		},
+		"輪郭": {
+			"輪郭": { "x": 492, "y": 3131.5, "width": 1186, "height": 1241 }
+		},
+		"目": {
+			"目": { "x": 617.5, "y": 3049.5, "width": 425, "height": 331 }
+		},
+		"横後ろ髪": {
+			"横後ろ髪": { "x": 250.500000000001, "y": 3346.5, "width": 1305, "height": 1149 }
+		},
+		"前髪": {
+			"前髪": { "x": 530, "y": 3253.5, "width": 1194, "height": 1135 }
+		},
+		"口": {
+			"口": { "x": 672, "y": 2646, "width": 162, "height": 40 }
+		},
+		"右腕": {
+			"右腕": { "x": 472, "y": 1676.5, "width": 1178, "height": 1921 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

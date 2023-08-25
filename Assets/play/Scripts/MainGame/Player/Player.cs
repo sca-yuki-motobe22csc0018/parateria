@@ -8,57 +8,79 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    [SerializeField] public float jumpForce = 450f;
+    [SerializeField] public float jumpForce = 12f;
 
     [SerializeField] public static int jumpCount = 0;
 
     public Text ScoreText;
     public Text ResultScore;
+    public float count = 0.0f;
+    public GameObject result;
+    public Text Distance;
     public static int score = 0;
-    int i = 0;
     float timecount;
     bool EnCount;
     bool FiCount;
-    //bool Reset;
     bool EnemyHit;
 
     public GameObject[] lifeArray = new GameObject[6];
     public GameObject[] selectCharacter = new GameObject[3];
     private int lifePoint;
 
-    public GameObject playerJump;
-
     [SerializeField] GameObject m_enemy = null;
     [SerializeField] GameObject m_fire = null;
     [SerializeField] GameObject m_item = null;
 
-    public Image ShadowResult;
-    float Fade;
-    bool stop;
     [SerializeField] float StopTime;//死んでからステージ等が止まる時間
     [SerializeField] float WaitTime;//リザルト表示から待つ時間
     [SerializeField] int ChangeFrame;//表示後にフェードアウトするフレーム数
     [SerializeField] float ChangeColor;//ステージが止まるまでに変わるフェードの数値
+    [SerializeField] float PanelColor;//パネルの透明度調整
+
+    public Image PanelResult;
+    float Panel;
+    public Image FadeResult;
+    float Fade;
+    bool stop;
+
+    int frameCount = 0;
+    [SerializeField] int[] scoreFrame = new int[5];
+    [SerializeField] int[] scoreUp = new int[5];
+    [SerializeField] int[] itemScore = new int[4];
+    [SerializeField] int[] scoreDown = new int[5];
+
+    float walkDis;
+
+    public AudioClip drumRoll1;
+    public AudioClip drumRoll2;
+    public AudioClip drumRollEnd;
+
+    AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ScoreText.text = "";
         ResultScore.text = "";
+        Distance.text = "";
+        score = 0;
         EnCount = true;
         FiCount = true;
-        //Reset = false;
         EnemyHit = false;
         timecount = 0.0f;
         lifePoint = 5;
         lifeArray[lifePoint].SetActive(false);
-        ShadowResult.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        PanelResult.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        Panel = 0.0f;
         Fade = 0.0f;
         stop = false;
+        result.gameObject.SetActive(false);
+        walkDis = 0.0f;
+        audioSource = GetComponent<AudioSource>();
         selectCharacter[0].SetActive(false);
         selectCharacter[1].SetActive(false);
         selectCharacter[2].SetActive(false);
-        playerJump.SetActive(false);
         if (CharaSelect.change == 1)
         {
             selectCharacter[0].SetActive(true);
@@ -87,9 +109,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 3)
         {
             rb=transform.GetComponent<Rigidbody2D>();
-            rb.velocity=new Vector3(0,10,0);
+            rb.velocity=new Vector3(0,jumpForce,0);
             jumpCount++;
-            
+            PlayerDown.jumpSet=true;
         }
 
         if (!stop)
@@ -103,17 +125,15 @@ public class Player : MonoBehaviour
                 {
                     timecount = StopTime;
                 }
-                Fade = (timecount % StopTime) / StopTime * ChangeColor;
-                ShadowResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
+                Panel = (timecount % StopTime) / StopTime * PanelColor;
+                PanelResult.GetComponent<Image>().color = new Color(0, 0, 0, Panel);
                 if (Time.timeScale == 0)
                 {
                     if (timecount >= StopTime)
                     {
-                        Debug.Log("Change");
                         stop = true;
-                        Fade = ChangeColor;
-                        ResultScore.text = "SCORE: " + Mathf.Clamp(score, 0, 99999999).ToString();
-                        ShadowResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
+                        Panel = PanelColor;
+                        result.gameObject.SetActive(true);
                         StartCoroutine(ResultTime());
                     }
                 }
@@ -130,23 +150,40 @@ public class Player : MonoBehaviour
 
         if (Time.timeScale == 1)
         {
-            i++;
+            count += Time.deltaTime;
+            walkDis += Time.deltaTime * PlaneA.speed;
+            if (count > 1.0f / 60)
+            {
+                frameCount++;
+                count = 0.0f;
+            }
             ScoreText.text = Mathf.Clamp(score, 0, 99999999).ToString();
-        }
 
-        if (Time.timeSinceLevelLoad >= 50 && Time.timeScale == 1)
-        {
-            score += 51;
-        }
-        else if (Time.timeSinceLevelLoad >= 25 && i == 3 && Time.timeScale == 1)
-        {
-            score += 11;
-            i = 0;
-        }
-        else if (Time.timeScale == 1 && i == 100)
-        {
-            score++;
-            i = 0;
+            if (Time.timeSinceLevelLoad >= 180 && frameCount == scoreFrame[4])
+            {
+                score += scoreUp[4];
+                frameCount = 0;
+            }
+            else if (Time.timeSinceLevelLoad >= 120 && frameCount == scoreFrame[3])
+            {
+                score += scoreUp[3];
+                frameCount = 0;
+            }
+            else if (Time.timeSinceLevelLoad >= 50 && frameCount == scoreFrame[2])
+            {
+                score += scoreUp[2];
+                frameCount = 0;
+            }
+            else if (Time.timeSinceLevelLoad >= 25 && frameCount == scoreFrame[1])
+            {
+                score += scoreUp[1];
+                frameCount = 0;
+            }
+            else if (frameCount == scoreFrame[0])
+            {
+                score += scoreUp[0];
+                frameCount = 0;
+            }
         }
 
         if (m_enemy == null)
@@ -207,7 +244,22 @@ public class Player : MonoBehaviour
                 
             }
             jumpCount = 1;
-            score += 150000;
+            if (Time.timeSinceLevelLoad >= 180)
+            {
+                score += itemScore[3];
+            }
+            else if (Time.timeSinceLevelLoad >= 120)
+            {
+                score += itemScore[2];
+            }
+            else if (Time.timeSinceLevelLoad >= 60)
+            {
+                score += itemScore[1];
+            }
+            else
+            {
+                score += itemScore[0];
+            }
             Destroy(m_item.gameObject);
         }
 
@@ -237,19 +289,30 @@ public class Player : MonoBehaviour
 
     private void ScoreDown()
     {
-        if (Time.timeSinceLevelLoad >= 50)
+        if (Time.timeSinceLevelLoad >= 180)
         {
-            score -= 150000;
+            score -= scoreDown[4];
         }
-        if (Time.timeSinceLevelLoad >= 25)
+        else if (Time.timeSinceLevelLoad >= 120)
         {
-            score -= 100000;
+            score -= scoreDown[3];
         }
-        score -= 100;
+        else if (Time.timeSinceLevelLoad >= 50)
+        {
+            score -= scoreDown[2];
+        }
+        else if (Time.timeSinceLevelLoad >= 25)
+        {
+            score -= scoreDown[1];
+        }
+        else
+        {
+            score -= scoreDown[0];
+        }
 
         if (score < 0)
         {
-            score = 0;
+            score = 1;
         }
     }
 
@@ -277,15 +340,30 @@ public class Player : MonoBehaviour
                 if ((transform.position.y + 0.25) - (en.y + 0.5) < 1.25f &&
                     (transform.position.y + 0.25) - (en.y + 0.5) > 0)
                 {
-                    if (Time.timeSinceLevelLoad >= 50)
+                    if (score >= 10000000)
                     {
-                        score += 500000;
+                        score += 10000000;
                     }
-                    if (Time.timeSinceLevelLoad >= 25)
+                    else if (score >= 1000000)
+                    {
+                        score += 1000000;
+                    }
+                    else if (score >= 100000)
                     {
                         score += 100000;
                     }
-                    score += 1000;
+                    else if (score >= 10000)
+                    {
+                        score += 10000;
+                    }
+                    else if (score >= 1000)
+                    {
+                        score += 1000;
+                    }
+                    else
+                    {
+                        score += 100;
+                    }
                     EnCount = false;
                 }
             }
@@ -302,15 +380,30 @@ public class Player : MonoBehaviour
                 if ((fi.y - 0.25) - (transform.position.y + 0.25) < 1.25f &&
                     (fi.y - 0.25) - (transform.position.y + 0.25) > 0)
                 {
-                    if (Time.timeSinceLevelLoad >= 50)
+                    if (score >= 10000000)
+                    {
+                        score += 5000000;
+                    }
+                    else if (score >= 1000000)
                     {
                         score += 500000;
                     }
-                    if (Time.timeSinceLevelLoad >= 25)
+                    else if (score >= 100000)
                     {
                         score += 100000;
                     }
-                    score += 1000;
+                    else if (score >= 10000)
+                    {
+                        score += 10000;
+                    }
+                    else if (score >= 1000)
+                    {
+                        score += 1000;
+                    }
+                    else
+                    {
+                        score += 100;
+                    }
                     FiCount = false;
                 }
             }
@@ -319,18 +412,134 @@ public class Player : MonoBehaviour
 
     IEnumerator ResultTime()
     {
-        Debug.Log(Fade);
+        bool SL = false;
+        int rollScore = 0;
+        float walkdis = 0.0f;
+        float c = 0.0f;
+        ResultScore.text = Mathf.Clamp(rollScore, 0, 99999999).ToString();
+        Distance.text = Mathf.Clamp(walkdis / 1000, 0, 9999).ToString("f2") + "km";
+
+        int num = 0;
+        if (score >= 10000000)
+        {
+            num = 511111;
+        }
+        else if (score >= 1000000)
+        {
+            num = 51111;
+        }
+        else if (score >= 100000)
+        {
+            num = 5111;
+        }
+        else if (score >= 10000)
+        {
+            num = 511;
+        }
+        else if (score >= 1000)
+        {
+            num = 31;
+        }
+        else if (score >= 100)
+        {
+            num = 11;
+        }
+        else if (score >= 1)
+        {
+            num = 1;
+        }
+
+        if (!SL)
+        {
+            audioSource.PlayOneShot(drumRoll1);
+            audioSource.loop = !audioSource.loop;
+            SL = true;
+        }
+
+        while (rollScore < score)
+        {
+            if (SL)
+            {
+                audioSource.PlayOneShot(drumRoll2);
+                SL = false;
+            }
+            yield return null;
+            c += Time.unscaledDeltaTime;
+            Debug.Log(c);
+            if (c > 1.0f / 60)
+            {
+                Debug.Log(c);
+                rollScore += num;
+                if (rollScore > score)
+                {
+                    rollScore = score;
+                }
+                ResultScore.text = Mathf.Clamp(rollScore, 0, 99999999).ToString();
+                c = 0.0f;
+            }
+        }
+        c = 0.0f;
+        audioSource.loop = !audioSource.loop;
+        audioSource.PlayOneShot(drumRollEnd);
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        if (walkDis >= 100000)
+        {
+            num = 11111;
+        }
+        else if (walkDis >= 10000)
+        {
+            num = 1111;
+        }
+        else if (walkDis >= 10000)
+        {
+            num = 111;
+        }
+        else if (walkDis >= 1000)
+        {
+            num = 11;
+        }
+
+        if (!SL)
+        {
+            audioSource.PlayOneShot(drumRoll1);
+            audioSource.loop = !audioSource.loop;
+            SL = true;
+        }
+
+        while (walkdis < walkDis)
+        {
+            if (SL)
+            {
+                audioSource.PlayOneShot(drumRoll2);
+                SL = false;
+            }
+            yield return null;
+            c += Time.unscaledDeltaTime;
+            if (c > 1.0f / 60)
+            {
+                walkdis += num;
+                if (walkdis > walkDis)
+                {
+                    walkdis = walkDis;
+                }
+                Distance.text = Mathf.Clamp(walkdis / 1000, 0, 9999).ToString("f2") + "km";
+                c = 0.0f;
+            }
+        }
+        audioSource.loop = !audioSource.loop;
+        audioSource.PlayOneShot(drumRollEnd);
         yield return new WaitForSecondsRealtime(WaitTime);
+
         for (int i = 0; i < ChangeFrame; ++i)
         {
             yield return null;
-            Fade += (1 - ChangeColor) / ChangeFrame;
-            Debug.Log(Fade);
+            Fade += 1.0f / ChangeFrame;
             if (Fade > 1)
             {
                 Fade = 1;
             }
-            ShadowResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
+            FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }
         GameOver();
     }
