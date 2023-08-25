@@ -12,26 +12,12 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed=PlaneA.speed+3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Timer += Time.deltaTime;
-        
-
-        //if (Timer >= 1)
-        //{
-            //if (speed >= 21.2)
-            //{
-            //    speed = 21.2f;
-            //    return;
-            //}
-            //speed += 1.5f;
-            //Timer = 0.0f;
-        //}
-
         posy = transform.position.y;
         posx = transform.position.x;
 
