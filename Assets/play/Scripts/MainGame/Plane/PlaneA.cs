@@ -6,7 +6,7 @@ public class PlaneA : MonoBehaviour
 {
     public GameObject Plane;
     float x;
-    [SerializeField] public static float speed = 7.0f;
+    [SerializeField] public static float speed = 5.0f;
     float space = -17.7792f;
     float spawn = 188.7f;
     public static float Timer = 0.0f;
@@ -17,6 +17,7 @@ public class PlaneA : MonoBehaviour
     void Start()
     {
         x = -17.7792f;
+        speed=5.0f;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class PlaneA : MonoBehaviour
         speedTimer+=1;
         if (speed < 12)
         {
-            if (speedTimer >= 3000)
+            if (speedTimer >= 10000)
             {
                 speed+=speedPlus;
                 speedTimer=0;

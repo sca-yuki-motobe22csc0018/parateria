@@ -27,6 +27,11 @@ public class Ranking : MonoBehaviour
     float y, startY ,endY;
     float moveTime;
     float nowTime;
+    public AudioClip drumRoll1;
+    public AudioClip drumRoll2;
+    public AudioClip drumRollEnd;
+
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +40,9 @@ public class Ranking : MonoBehaviour
         change = false;
         count = 0.0f;
         RankingPanel.anchoredPosition = new Vector2(0, 0);
-        MoveStart(0, 1000, 3.0f);
+        MoveStart(0, 1000.0f, 3.0f);
         StartCoroutine(RankTime());
+        audioSource = GetComponent<AudioSource>();
     }
 
     IEnumerator RankTime()
@@ -52,14 +58,14 @@ public class Ranking : MonoBehaviour
         RankText[7].text = " " + nameRank[7] + "  " + scoreRank[7];
         RankText[8].text = " " + nameRank[8] + "  " + scoreRank[8];
         RankText[9].text = " " + nameRank[9] + "  " + scoreRank[9];
-        while (Fade > 0)
+        while (Fade > 0.0f)
         {
             yield return null;
             count += Time.deltaTime;
             num = (count % FadeTime) / FadeTime;
             Fade -= num;
             Debug.Log(Fade);
-            if (Fade < 0.0005)
+            if (Fade < 0.01f)
             {
                 Fade = 0.0f;
             }
@@ -74,9 +80,20 @@ public class Ranking : MonoBehaviour
         fade.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
 
         yield return new WaitForSecondsRealtime(wait);
-
-        while (y < 1000)
+        bool SL = false;
+        if (!SL)
         {
+            audioSource.PlayOneShot(drumRoll1);
+            audioSource.loop = !audioSource.loop;
+            SL = true;
+        }
+        while (y < 1000.0f)
+        {
+            if (SL)
+            {
+                audioSource.PlayOneShot(drumRoll2);
+                SL = false;
+            }
             yield return null;
             nowTime += Time.deltaTime;
             if (nowTime > moveTime)
@@ -84,19 +101,21 @@ public class Ranking : MonoBehaviour
                 nowTime = moveTime;
             }
             y = nowTime / moveTime * (endY - startY) + startY;
-            RankingPanel.anchoredPosition = new Vector2(0, y);
-        }
+            RankingPanel.anchoredPosition = new Vector2(0.0f, y);
 
+        }
+        audioSource.loop = !audioSource.loop;
+        audioSource.PlayOneShot(drumRollEnd);
         yield return new WaitForSecondsRealtime(3.0f);
 
-        while (Fade < 1)
+        while (Fade < 1.0f)
         {
             yield return null;
             count += Time.deltaTime;
             Fade = (count % FadeTime) / FadeTime;
-            if (Fade > 0.9995)
+            if (Fade > 0.99f)
             {
-                Fade = 1;
+                Fade = 1.0f;
             }
             fade.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }

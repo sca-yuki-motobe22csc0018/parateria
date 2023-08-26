@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = PlaneA.speed + 6;
     }
 
     // Update is called once per frame
@@ -21,12 +21,13 @@ public class Enemy : MonoBehaviour
         speed = PlaneA.speed+6;
         posy = transform.position.y;
         posx = transform.position.x;
+        posx= posx - (speed * Time.deltaTime);
 
         if (posx <= -10)
         {
             Destroy(this.gameObject);
         }
-        transform.position = new Vector3(posx - speed * Time.deltaTime, posy);
+        transform.position = new Vector3(posx, posy);
     }
 
     private void OnTriggerStay2D(Collider2D other)

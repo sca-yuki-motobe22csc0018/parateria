@@ -535,9 +535,9 @@ public class Player : MonoBehaviour
         {
             yield return null;
             Fade += 1.0f / ChangeFrame;
-            if (Fade > 1)
+            if (Fade > 1.0f)
             {
-                Fade = 1;
+                Fade = 1.0f;
             }
             FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }

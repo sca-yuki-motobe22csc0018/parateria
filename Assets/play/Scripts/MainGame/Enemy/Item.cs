@@ -15,6 +15,7 @@ public class Item : MonoBehaviour
     {
         num = Random.Range(0, 2);
         Timer = 0.0f;
+        speed = PlaneA.speed;
     }
 
     // Update is called once per frame
