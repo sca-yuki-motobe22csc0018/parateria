@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
         lifeArray[lifePoint].SetActive(false);
         PanelResult.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        FadeResult.enabled = false;
         Panel = 0.0f;
         Fade = 0.0f;
         stop = false;
@@ -100,11 +101,21 @@ public class Player : MonoBehaviour
         Transform myTransform = this.transform;
 
         Vector3 pos = myTransform.position;
-        if (pos.x < -6 && Time.timeScale == 1)
+        if (pos.x < -3 && Time.timeScale == 1)
         {
             pos.x += 0.002f;
+            if (pos.x>-3)
+            {
+                pos.x = -3;
+            }
             myTransform.position = pos;
         }
+        else
+        {
+            pos.x=-3;
+            myTransform.position = pos;
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 3)
         {
@@ -241,9 +252,7 @@ public class Player : MonoBehaviour
             if (lifePoint < 6)
             {
                 Heal();
-                
             }
-            jumpCount = 1;
             if (Time.timeSinceLevelLoad >= 180)
             {
                 score += itemScore[3];
@@ -260,7 +269,7 @@ public class Player : MonoBehaviour
             {
                 score += itemScore[0];
             }
-            Destroy(m_item.gameObject);
+            
         }
 
         if (other.gameObject.CompareTag("Fire") && Time.timeScale == 1)
@@ -417,7 +426,7 @@ public class Player : MonoBehaviour
         float walkdis = 0.0f;
         float c = 0.0f;
         ResultScore.text = Mathf.Clamp(rollScore, 0, 99999999).ToString();
-        Distance.text = Mathf.Clamp(walkdis / 1000, 0, 9999).ToString("f2") + "km";
+        Distance.text = Mathf.Clamp(walkdis, 0, 9999).ToString("f2") + "m";
 
         int num = 0;
         if (score >= 10000000)
@@ -523,13 +532,14 @@ public class Player : MonoBehaviour
                 {
                     walkdis = walkDis;
                 }
-                Distance.text = Mathf.Clamp(walkdis / 1000, 0, 9999).ToString("f2") + "km";
+                Distance.text = Mathf.Clamp(walkdis , 0, 9999).ToString("f2") + "m";
                 c = 0.0f;
             }
         }
         audioSource.loop = !audioSource.loop;
         audioSource.PlayOneShot(drumRollEnd);
         yield return new WaitForSecondsRealtime(WaitTime);
+        FadeResult.enabled = true;
 
         for (int i = 0; i < ChangeFrame; ++i)
         {
@@ -541,11 +551,27 @@ public class Player : MonoBehaviour
             }
             FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }
-        GameOver();
+        ChangeScene();
     }
 
+    public void ChangeScene()
+    {
+        if (score > Ranking.scoreRank[9])
+        {
+            RunkUp();
+        }
+        else
+        {
+            GameOver();
+        }
+    }
+    
     void GameOver()
     {
         SceneManager.LoadScene("Ranking");
+    }
+    void RunkUp()
+    {
+        SceneManager.LoadScene("NameSelect");
     }
 }

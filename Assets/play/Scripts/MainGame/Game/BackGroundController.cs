@@ -26,10 +26,14 @@ public class BackGroundController : MonoBehaviour
 
     void Update()
     {
-        if(nowTime < 60)
+        if(nowTime <= 60)
         {
             nowTime += Time.deltaTime;
             colorTime = (nowTime % Change) / Change;
+            if (nowTime > Change)
+            {
+                colorTime = 1.0f;
+            }
 
             switch (changeTime)
             {
@@ -52,7 +56,7 @@ public class BackGroundController : MonoBehaviour
                     backGround.backgroundColor = Color.Lerp(Night, Morning, Mathf.PingPong(colorTime, 1));
                     break;
             }
-            if(nowTime > Change)
+            if(nowTime >= Change)
             {
                 nowTime = 0.0f;
                 ++changeTime;

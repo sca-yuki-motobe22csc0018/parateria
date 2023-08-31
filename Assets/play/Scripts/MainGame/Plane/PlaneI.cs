@@ -8,7 +8,7 @@ public class PlaneI : MonoBehaviour
     float x;
     public static float speed = PlaneA.speed;
     float space = -17.7792f;
-    float spawn = 188.7f;
+    float spawn = PlaneA.spawn;
     public static float Timer = PlaneA.Timer;
 
     // Start is called before the first frame update

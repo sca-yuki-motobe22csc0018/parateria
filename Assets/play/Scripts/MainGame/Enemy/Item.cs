@@ -31,4 +31,12 @@ public class Item : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("player") && Time.timeScale == 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

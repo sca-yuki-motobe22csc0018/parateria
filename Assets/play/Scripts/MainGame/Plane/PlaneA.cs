@@ -8,7 +8,7 @@ public class PlaneA : MonoBehaviour
     float x;
     [SerializeField] public static float speed = 5.0f;
     float space = -17.7792f;
-    float spawn = 188.7f;
+    [SerializeField] public static float spawn = 180.7f;
     public static float Timer = 0.0f;
     private float speedPlus=0.35f;
     private float speedTimer=0f;

@@ -19,17 +19,18 @@ public class TitleController : MonoBehaviour
     {
         
     }
-
+    
     public void StartGame(int num)
     {
         audioSource.PlayOneShot(select);
         if (num == 1)
         {
-            SceneManager.LoadScene("NameSelect");
+            SceneManager.LoadScene("CharaSelect");
         }
         else if (num == 2)
         {
             SceneManager.LoadScene("Ranking");
         }
+        
     }
 }

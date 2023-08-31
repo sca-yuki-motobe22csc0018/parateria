@@ -39,10 +39,20 @@ public class Ranking : MonoBehaviour
         Time.timeScale = 1;
         change = false;
         count = 0.0f;
-        RankingPanel.anchoredPosition = new Vector2(0, 0);
-        MoveStart(0, 1000.0f, 3.0f);
+        y=1000;
+        RankingPanel.anchoredPosition = new Vector2(0, y);
+        MoveStart(0, 0.0f, 3.0f);
         StartCoroutine(RankTime());
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)){
+            y = 0;
+            RankingPanel.anchoredPosition = new Vector2(0, y);
+            Invoke("Title",0.5f);
+        }
     }
 
     IEnumerator RankTime()
@@ -87,7 +97,7 @@ public class Ranking : MonoBehaviour
             audioSource.loop = !audioSource.loop;
             SL = true;
         }
-        while (y < 1000.0f)
+        while (y > 0.0f)
         {
             if (SL)
             {
@@ -120,6 +130,11 @@ public class Ranking : MonoBehaviour
             fade.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }
         yield return new WaitForSecondsRealtime(1.0f);
+        Title();
+    }
+
+    void Title()
+    {
         SceneManager.LoadScene("Title");
     }
 

@@ -34,7 +34,7 @@ public class Name : MonoBehaviour
         if (num == 1)
         {
             nameKind.Add(inputField.text);
-            SceneManager.LoadScene("CharaSelect");
+            SceneManager.LoadScene("Ranking");
             Debug.Log(nameKind[count]);
         }
         else if (num == 2)

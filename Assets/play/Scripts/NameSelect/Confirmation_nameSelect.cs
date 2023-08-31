@@ -17,6 +17,14 @@ public class Confirmation_nameSelect : MonoBehaviour
         _name = GameObject.Find("Name").GetComponent<Name>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            _name.CF(1);
+        }
+    }
+
     void YesNo()
     {
         _name.CF(Select);

@@ -141,6 +141,14 @@ public class GameContoroller : MonoBehaviour
         color.a = Mathf.Sin(textTime);
         return color;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("ground") && Time.timeScale == 1)
+        {
+            Debug.Log("hit");
+        }
+    }
 }
 
 
