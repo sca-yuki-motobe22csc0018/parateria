@@ -49,7 +49,7 @@ public class GameContoroller : MonoBehaviour
 
         Timer += Time.deltaTime;
 
-        if (Timer >= 2)
+        /*if (Timer >= 2)
         {
             num = Random.Range(1, 6);// ※ 1～5の範囲でランダムな整数値が返る
             switch (num)
@@ -71,7 +71,7 @@ public class GameContoroller : MonoBehaviour
                     break;
             }
             Timer = 0.0f;
-        }
+        }*/
     }
 
     void SpawnDraw1()
@@ -144,9 +144,30 @@ public class GameContoroller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("ground") && Time.timeScale == 1)
+        string objName = other.gameObject.name;
+        if ((objName == "地面1-1" || objName == "地面2-1" || objName == "地面3-1"
+            || objName == "地面4-1" || objName == "地面5-1") && Time.timeScale == 1)
         {
-            Debug.Log("hit");
+            Debug.Log(objName);
+            num = Random.Range(1, 6);// ※ 1～5の範囲でランダムな整数値が返る
+            switch (num)
+            {
+                case 1:
+                    SpawnDraw1();
+                    break;
+                case 2:
+                    SpawnDraw2();
+                    break;
+                case 3:
+                    SpawnDraw3();
+                    break;
+                case 4:
+                    SpawnDraw4();
+                    break;
+                case 5:
+                    SpawnDraw5();
+                    break;
+            }
         }
     }
 }
