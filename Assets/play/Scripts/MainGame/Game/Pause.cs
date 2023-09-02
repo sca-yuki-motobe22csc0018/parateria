@@ -17,10 +17,13 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (GameContoroller.start == true)
         {
-            Time.timeScale = 0;
-            PauseScreen.gameObject.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Time.timeScale = 0;
+                PauseScreen.gameObject.SetActive(true);
+            }
         }
     }
 

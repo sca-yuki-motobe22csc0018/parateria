@@ -5,15 +5,15 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     [SerializeField] public static float speed = PlaneA.speed;
-    [SerializeField] float posy = -2.0f;
-    [SerializeField] float posx = 30.0f;
+    
+    [SerializeField] float posx;
     float Timer = PlaneA.Timer;
-    float num = 0;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        num = Random.Range(-2, 2);
+        
         Timer = 0.0f;
         speed = PlaneA.speed+8;
     }
@@ -22,11 +22,11 @@ public class Fire : MonoBehaviour
     void Update()
     {
         speed = PlaneA.speed + 8;
-        posy = num;
+        
         posx = transform.position.x;
-        transform.position = new Vector3(posx - speed * Time.deltaTime, posy);
+        transform.position = new Vector3(posx - speed * Time.deltaTime,transform.position.y);
 
-        if (posx <= -10)
+        if (posx <= -17)
         {
             Destroy(this.gameObject);
         }

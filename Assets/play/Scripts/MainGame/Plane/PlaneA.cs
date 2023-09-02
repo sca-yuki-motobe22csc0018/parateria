@@ -10,7 +10,8 @@ public class PlaneA : MonoBehaviour
     float space = -17.7792f;
     [SerializeField] public static float spawn = 180.7f;
     public static float Timer = 0.0f;
-    private float speedPlus=0.35f;
+    //private float speedPlus=2.0f;
+    public static float speedPlus = 2.0f;
     private float speedTimer=0f;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class PlaneA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         speedTimer+=1;
         if (speed < 12)
         {
@@ -32,6 +34,7 @@ public class PlaneA : MonoBehaviour
                 speedTimer=0;
             }
         }
+        */
         x -= speed * Time.deltaTime;
         Plane.transform.position = new Vector2(x,-1.7f);
         if (x < space)

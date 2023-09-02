@@ -29,6 +29,7 @@ public class TitleController : MonoBehaviour
         }
         else if (num == 2)
         {
+            Name._rank = false;
             SceneManager.LoadScene("Ranking");
         }
         

@@ -51,13 +51,20 @@ public class Ranking : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)){
             y = 0;
             RankingPanel.anchoredPosition = new Vector2(0, y);
+            audioSource.Stop();
+            audioSource.PlayOneShot(drumRollEnd);
             Invoke("Title",0.5f);
         }
     }
 
     IEnumerator RankTime()
     {
-        RankChange(Player.score);
+        if (Name._rank == true)
+        {
+            RankChange(Player.score);
+        }
+
+        
         RankText[0].text = " " + nameRank[0] + "  " + scoreRank[0];
         RankText[1].text = " " + nameRank[1] + "  " + scoreRank[1];
         RankText[2].text = " " + nameRank[2] + "  " + scoreRank[2];
@@ -74,7 +81,6 @@ public class Ranking : MonoBehaviour
             count += Time.deltaTime;
             num = (count % FadeTime) / FadeTime;
             Fade -= num;
-            Debug.Log(Fade);
             if (Fade < 0.01f)
             {
                 Fade = 0.0f;
@@ -101,7 +107,7 @@ public class Ranking : MonoBehaviour
         {
             if (SL)
             {
-                audioSource.PlayOneShot(drumRoll2);
+                audioSource.Play();
                 SL = false;
             }
             yield return null;

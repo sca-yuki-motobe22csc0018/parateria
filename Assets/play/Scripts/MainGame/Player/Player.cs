@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public Image FadeResult;
     float Fade;
     bool stop;
+    bool res=false;
 
     int frameCount = 0;
     [SerializeField] int[] scoreFrame = new int[5];
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
         ResultScore.text = "";
         Distance.text = "";
         score = 0;
+        res=false;
         EnCount = true;
         FiCount = true;
         EnemyHit = false;
@@ -105,12 +107,13 @@ public class Player : MonoBehaviour
         {
             pos.x += 0.002f;
             if (pos.x>-3)
-            {
+            { 
                 pos.x = -3;
             }
             myTransform.position = pos;
         }
         else
+        if(pos.x>-3)
         {
             pos.x=-3;
             myTransform.position = pos;
@@ -127,7 +130,7 @@ public class Player : MonoBehaviour
 
         if (!stop)
         {
-            if (transform.position.y < -10 || lifePoint == 0)
+            if (transform.position.y < -10 || lifePoint == 0 || transform.position.x < -12)
             {
                 PlaneA.speed = 8.0f;
                 ScoreText.text = "";
@@ -231,6 +234,13 @@ public class Player : MonoBehaviour
         if (m_fire != null && FiCount)
         {
             Matrix_Fire();
+        }
+        if (res == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ChangeScene();
+            }
         }
     }
 
@@ -421,10 +431,12 @@ public class Player : MonoBehaviour
 
     IEnumerator ResultTime()
     {
+        
         bool SL = false;
         int rollScore = 0;
         float walkdis = 0.0f;
         float c = 0.0f;
+        res=true;
         ResultScore.text = Mathf.Clamp(rollScore, 0, 99999999).ToString();
         Distance.text = Mathf.Clamp(walkdis, 0, 9999).ToString("f2") + "m";
 
@@ -469,15 +481,13 @@ public class Player : MonoBehaviour
         {
             if (SL)
             {
-                audioSource.PlayOneShot(drumRoll2);
+                audioSource.Play();
                 SL = false;
             }
             yield return null;
             c += Time.unscaledDeltaTime;
-            Debug.Log(c);
             if (c > 1.0f / 60)
             {
-                Debug.Log(c);
                 rollScore += num;
                 if (rollScore > score)
                 {
@@ -520,7 +530,7 @@ public class Player : MonoBehaviour
         {
             if (SL)
             {
-                audioSource.PlayOneShot(drumRoll2);
+                audioSource.Play();
                 SL = false;
             }
             yield return null;
@@ -552,6 +562,7 @@ public class Player : MonoBehaviour
             FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }
         ChangeScene();
+        
     }
 
     public void ChangeScene()

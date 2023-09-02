@@ -11,6 +11,7 @@ public class Name : MonoBehaviour
     public GameObject cf;
     public Text NameText;
     public static int count = -1;
+    public static bool _rank = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,8 @@ public class Name : MonoBehaviour
         cf.gameObject.SetActive(false);
         NameText.text = "";
         count++;
-}
+        inputField.text="";
+    }
 
     public void SetName()
     {
@@ -27,7 +29,6 @@ public class Name : MonoBehaviour
             cf.gameObject.SetActive(true);
             NameText.text = inputField.text;
         }
-        
     }
     public void CF(int num)
     {
@@ -35,7 +36,7 @@ public class Name : MonoBehaviour
         {
             nameKind.Add(inputField.text);
             SceneManager.LoadScene("Ranking");
-            Debug.Log(nameKind[count]);
+            _rank = true;
         }
         else if (num == 2)
         {
