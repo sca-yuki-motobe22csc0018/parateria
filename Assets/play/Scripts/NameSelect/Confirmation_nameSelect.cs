@@ -19,9 +19,12 @@ public class Confirmation_nameSelect : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (this.gameObject.tag == "OK")
         {
-            _name.CF(1);
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                _name.CF(1);
+            }
         }
     }
 

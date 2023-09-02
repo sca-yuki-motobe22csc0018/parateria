@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: Chara_Ni_Sibouyou_Atlas
+  m_EditorClassIdentifier: 
+  atlasFile: {fileID: 4900000, guid: fbeef91dff48a1146bae668539c5d62f, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 3528c71ecb698ce40946ae2289946bdf, type: 2}
+  - {fileID: 2100000, guid: 8afe868d308b34e458c02c8f5d51b85a, type: 2}
+  - {fileID: 2100000, guid: 9d1b21e48bcb4ce44aade402bea41212, type: 2}

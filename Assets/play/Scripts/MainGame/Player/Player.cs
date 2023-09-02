@@ -261,7 +261,18 @@ public class Player : MonoBehaviour
         {
             if (lifePoint < 6)
             {
-                Heal();
+                if (CharaSelect.change == 2)
+                {
+                    Heal();
+                    if (lifePoint < 6)
+                    {
+                        Heal();
+                    }
+                }
+                else
+                {
+                    Heal();
+                }
             }
             if (Time.timeSinceLevelLoad >= 180)
             {
@@ -292,6 +303,18 @@ public class Player : MonoBehaviour
             Damage();
             EnemyHit = true;
         }
+        if (other.gameObject.CompareTag("mushroom") && Time.timeScale == 1 && !EnemyHit)
+        {
+            if (CharaSelect.change == 3)
+            {
+                return;
+            }
+            else
+            {
+                Damage();
+                EnemyHit = true;
+            }
+        }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -303,6 +326,17 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && Time.timeScale == 1)
         {
             ScoreDown();
+        }
+        if (other.gameObject.CompareTag("mushroom") && Time.timeScale == 1)
+        {
+            if (CharaSelect.change == 3)
+            {
+                return;
+            }
+            else
+            {
+                ScoreDown();
+            }
         }
     }
 
@@ -359,29 +393,13 @@ public class Player : MonoBehaviour
                 if ((transform.position.y + 0.25) - (en.y + 0.5) < 1.25f &&
                     (transform.position.y + 0.25) - (en.y + 0.5) > 0)
                 {
-                    if (score >= 10000000)
+                    if(CharaSelect.change == 1)
                     {
-                        score += 10000000;
-                    }
-                    else if (score >= 1000000)
-                    {
-                        score += 1000000;
-                    }
-                    else if (score >= 100000)
-                    {
-                        score += 100000;
-                    }
-                    else if (score >= 10000)
-                    {
-                        score += 10000;
-                    }
-                    else if (score >= 1000)
-                    {
-                        score += 1000;
+                        Matrix_Score(2);
                     }
                     else
                     {
-                        score += 100;
+                        Matrix_Score(1);
                     }
                     EnCount = false;
                 }
@@ -399,33 +417,45 @@ public class Player : MonoBehaviour
                 if ((fi.y - 0.25) - (transform.position.y + 0.25) < 1.25f &&
                     (fi.y - 0.25) - (transform.position.y + 0.25) > 0)
                 {
-                    if (score >= 10000000)
+                    if (CharaSelect.change == 1)
                     {
-                        score += 5000000;
-                    }
-                    else if (score >= 1000000)
-                    {
-                        score += 500000;
-                    }
-                    else if (score >= 100000)
-                    {
-                        score += 100000;
-                    }
-                    else if (score >= 10000)
-                    {
-                        score += 10000;
-                    }
-                    else if (score >= 1000)
-                    {
-                        score += 1000;
+                        Matrix_Score(2);
                     }
                     else
                     {
-                        score += 100;
+                        Matrix_Score(1);
                     }
                     FiCount = false;
                 }
             }
+        }
+    }
+
+    void Matrix_Score(int dif)
+    {
+        if (score >= 10000000)
+        {
+            score += 5000000 * dif;
+        }
+        else if (score >= 1000000)
+        {
+            score += 500000 * dif;
+        }
+        else if (score >= 100000)
+        {
+            score += 100000 * dif;
+        }
+        else if (score >= 10000)
+        {
+            score += 10000 * dif;
+        }
+        else if (score >= 1000)
+        {
+            score += 1000 * dif;
+        }
+        else
+        {
+            score += 100 * dif;
         }
     }
 

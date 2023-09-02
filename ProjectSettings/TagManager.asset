@@ -13,6 +13,8 @@ TagManager:
   - Right
   - Left
   - Wood
+  - OK
+  - mushroom
   layers:
   - Default
   - TransparentFX

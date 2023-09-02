@@ -15,6 +15,7 @@ public class Ranking : MonoBehaviour
     string newName;
     string name;
     public Text[] RankText = new Text[10];
+    public Text[] ScoreText = new Text[10];
     int numScore;
     float wait = 2.0f;
     public Image fade;
@@ -22,6 +23,7 @@ public class Ranking : MonoBehaviour
     float count;
     float num = 0.0f;
     float Fade = 1.0f;
+    bool Default=false;
 
     public RectTransform RankingPanel;
     float y, startY ,endY;
@@ -36,6 +38,18 @@ public class Ranking : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!Default)
+        {
+            for (int i = 0; i < 10; ++i)
+            {
+                nameRank[i] = "Guest";
+            }
+            for (int i = 0; i < 10; ++i)
+            {
+                scoreRank[i] = 100000;
+            }
+            Default = true;
+        }
         Time.timeScale = 1;
         change = false;
         count = 0.0f;
@@ -64,17 +78,29 @@ public class Ranking : MonoBehaviour
             RankChange(Player.score);
         }
 
-        
-        RankText[0].text = " " + nameRank[0] + "  " + scoreRank[0];
-        RankText[1].text = " " + nameRank[1] + "  " + scoreRank[1];
-        RankText[2].text = " " + nameRank[2] + "  " + scoreRank[2];
-        RankText[3].text = " " + nameRank[3] + "  " + scoreRank[3];
-        RankText[4].text = " " + nameRank[4] + "  " + scoreRank[4];
-        RankText[5].text = " " + nameRank[5] + "  " + scoreRank[5];
-        RankText[6].text = " " + nameRank[6] + "  " + scoreRank[6];
-        RankText[7].text = " " + nameRank[7] + "  " + scoreRank[7];
-        RankText[8].text = " " + nameRank[8] + "  " + scoreRank[8];
-        RankText[9].text = " " + nameRank[9] + "  " + scoreRank[9];
+
+        RankText[0].text = nameRank[0];
+        RankText[1].text = nameRank[1];
+        RankText[2].text = nameRank[2];
+        RankText[3].text = nameRank[3];
+        RankText[4].text = nameRank[4];
+        RankText[5].text = nameRank[5];
+        RankText[6].text = nameRank[6];
+        RankText[7].text = nameRank[7];
+        RankText[8].text = nameRank[8];
+        RankText[9].text = nameRank[9];
+
+        ScoreText[0].text = scoreRank[0].ToString();
+        ScoreText[1].text = scoreRank[1].ToString();
+        ScoreText[2].text = scoreRank[2].ToString();
+        ScoreText[3].text = scoreRank[3].ToString();
+        ScoreText[4].text = scoreRank[4].ToString();
+        ScoreText[5].text = scoreRank[5].ToString();
+        ScoreText[6].text = scoreRank[6].ToString();
+        ScoreText[7].text = scoreRank[7].ToString();
+        ScoreText[8].text = scoreRank[8].ToString();
+        ScoreText[9].text = scoreRank[9].ToString();
+
         while (Fade > 0.0f)
         {
             yield return null;
