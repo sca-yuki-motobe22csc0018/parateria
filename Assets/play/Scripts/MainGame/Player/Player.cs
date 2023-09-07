@@ -40,9 +40,10 @@ public class Player : MonoBehaviour
     public Image PanelResult;
     float Panel;
     public Image FadeResult;
+    public GameObject[] justJump = new GameObject[4];
     float Fade;
     bool stop;
-    bool res=false;
+    bool res = false;
 
     int frameCount = 0;
     [SerializeField] int[] scoreFrame = new int[5];
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
         ResultScore.text = "";
         Distance.text = "";
         score = 0;
-        res=false;
+        res = false;
         EnCount = true;
         FiCount = true;
         EnemyHit = false;
@@ -81,17 +82,27 @@ public class Player : MonoBehaviour
         result.gameObject.SetActive(false);
         walkDis = 0.0f;
         audioSource = GetComponent<AudioSource>();
-        selectCharacter[0].SetActive(false);
-        selectCharacter[1].SetActive(false);
-        selectCharacter[2].SetActive(false);
+
+        for (int i = 0; i < 3; ++i)
+        {
+            selectCharacter[i].SetActive(false);
+        }
+
+        for (int i = 0; i < 4; ++i)
+        {
+            justJump[i].SetActive(false);
+        }
+
         if (CharaSelect.change == 1)
         {
             selectCharacter[0].SetActive(true);
-        }else
-        if(CharaSelect.change == 2)
+        }
+        else
+        if (CharaSelect.change == 2)
         {
             selectCharacter[1].SetActive(true);
-        }else
+        }
+        else
         if (CharaSelect.change == 3)
         {
             selectCharacter[2].SetActive(true);
@@ -106,26 +117,34 @@ public class Player : MonoBehaviour
         if (pos.x < -3 && Time.timeScale == 1)
         {
             pos.x += 0.002f;
-            if (pos.x>-3)
-            { 
+            if (pos.x > -3)
+            {
                 pos.x = -3;
             }
             myTransform.position = pos;
         }
         else
-        if(pos.x>-3)
+        if (pos.x > -3)
         {
-            pos.x=-3;
+            pos.x = -3;
             myTransform.position = pos;
         }
-        
+
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 3)
         {
-            rb=transform.GetComponent<Rigidbody2D>();
-            rb.velocity=new Vector3(0,jumpForce,0);
+            rb = transform.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector3(0, jumpForce, 0);
             jumpCount++;
-            PlayerDown.jumpSet=true;
+            PlayerDown.jumpSet = true;
+            if (m_enemy != null && EnCount)
+            {
+                Matrix_Enemy();
+            }
+            if (m_fire != null && FiCount)
+            {
+                Matrix_Fire();
+            }
         }
 
         if (!stop)
@@ -171,7 +190,7 @@ public class Player : MonoBehaviour
                 frameCount++;
                 count = 0.0f;
             }
-            ScoreText.text = Mathf.Clamp(score, 0, 99999999).ToString();
+            ScoreText.text = Mathf.Clamp(score, 0, 99999999).ToString().PadLeft(8,'0');
 
             if (Time.timeSinceLevelLoad >= 180 && frameCount == scoreFrame[4])
             {
@@ -227,14 +246,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (m_enemy != null && EnCount)
-        {
-            Matrix_Enemy();
-        }
-        if (m_fire != null && FiCount)
-        {
-            Matrix_Fire();
-        }
         if (res == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -251,9 +262,13 @@ public class Player : MonoBehaviour
             EnCount = true;
             FiCount = true;
             EnemyHit = false;
+            for (int i = 0; i < 4; ++i)
+            {
+                justJump[i].SetActive(false);
+            }
         }
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -290,7 +305,7 @@ public class Player : MonoBehaviour
             {
                 score += itemScore[0];
             }
-            
+
         }
 
         if (other.gameObject.CompareTag("Fire") && Time.timeScale == 1)
@@ -384,25 +399,40 @@ public class Player : MonoBehaviour
 
     private void Matrix_Enemy()
     {
-        if (jumpCount > 0)
+        Vector3 en = m_enemy.transform.position;
+        if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (en.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
         {
-            Vector3 en = m_enemy.transform.position;
-            if ((en.x - 0.5) - (transform.position.x + 0.25) < 0.35f &&
-                (en.x - 0.5) - (transform.position.x + 0.25) > 0)
+            if (transform.position.y - en.y <= 0.75f ||
+                (transform.position.y - en.y >= -0.75f))
             {
-                if ((transform.position.y + 0.25) - (en.y + 0.5) < 1.25f &&
-                    (transform.position.y + 0.25) - (en.y + 0.5) > 0)
+                Debug.Log("Hit");
+                if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (en.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                 {
-                    if(CharaSelect.change == 1)
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(2);
+                        Matrix_Score(2.0f);
                     }
                     else
                     {
-                        Matrix_Score(1);
+                        Matrix_Score(1.0f);
                     }
-                    EnCount = false;
                 }
+                else
+                {
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.5f);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f);
+                    }
+                }
+                EnCount = false;
             }
         }
     }
@@ -411,19 +441,36 @@ public class Player : MonoBehaviour
         if (jumpCount > 0)
         {
             Vector3 fi = m_fire.transform.position;
-            if ((fi.x - 1) - (transform.position.x + 0.25) < 0.35f &&
-                (fi.x - 1) - (transform.position.x + 0.25) > 0)
+            if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (fi.x - 1.5f) - (transform.position.x + 0.5f) >= 0)
             {
-                if ((fi.y - 0.25) - (transform.position.y + 0.25) < 1.25f &&
-                    (fi.y - 0.25) - (transform.position.y + 0.25) > 0)
+                if (transform.position.y - fi.y <= 0.75f ||
+                (transform.position.y - fi.y >= -0.75f))
                 {
-                    if (CharaSelect.change == 1)
+                    Debug.Log("Hit");
+                    if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+                     (fi.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                     {
-                        Matrix_Score(2);
+                        justJump[0].SetActive(true);
+                        if (CharaSelect.change == 1)
+                        {
+                            Matrix_Score(2.0f);
+                        }
+                        else
+                        {
+                            Matrix_Score(1.0f);
+                        }
                     }
                     else
                     {
-                        Matrix_Score(1);
+                        if (CharaSelect.change == 1)
+                        {
+                            Matrix_Score(1.5f);
+                        }
+                        else
+                        {
+                            Matrix_Score(0.5f);
+                        }
                     }
                     FiCount = false;
                 }
@@ -431,42 +478,42 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Matrix_Score(int dif)
+    void Matrix_Score(float dif)
     {
         if (score >= 10000000)
         {
-            score += 5000000 * dif;
+            score += (int)(5000000 * dif);
         }
         else if (score >= 1000000)
         {
-            score += 500000 * dif;
+            score += (int)(500000 * dif);
         }
         else if (score >= 100000)
         {
-            score += 100000 * dif;
+            score += (int)(100000 * dif);
         }
         else if (score >= 10000)
         {
-            score += 10000 * dif;
+            score += (int)(10000 * dif);
         }
         else if (score >= 1000)
         {
-            score += 1000 * dif;
+            score += (int)(1000 * dif);
         }
         else
         {
-            score += 100 * dif;
+            score += (int)(100 * dif);
         }
     }
 
     IEnumerator ResultTime()
     {
-        
+
         bool SL = false;
         int rollScore = 0;
         float walkdis = 0.0f;
         float c = 0.0f;
-        res=true;
+        res = true;
         ResultScore.text = Mathf.Clamp(rollScore, 0, 99999999).ToString();
         Distance.text = Mathf.Clamp(walkdis, 0, 9999).ToString("f2") + "m";
 
@@ -572,7 +619,7 @@ public class Player : MonoBehaviour
                 {
                     walkdis = walkDis;
                 }
-                Distance.text = Mathf.Clamp(walkdis , 0, 9999).ToString("f2") + "m";
+                Distance.text = Mathf.Clamp(walkdis, 0, 9999).ToString("f2") + "m";
                 c = 0.0f;
             }
         }
@@ -592,7 +639,7 @@ public class Player : MonoBehaviour
             FadeResult.GetComponent<Image>().color = new Color(0, 0, 0, Fade);
         }
         ChangeScene();
-        
+
     }
 
     public void ChangeScene()
@@ -606,7 +653,7 @@ public class Player : MonoBehaviour
             GameOver();
         }
     }
-    
+
     void GameOver()
     {
         SceneManager.LoadScene("Ranking");

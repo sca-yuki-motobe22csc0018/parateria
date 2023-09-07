@@ -11,7 +11,7 @@ public class PlaneA : MonoBehaviour
     [SerializeField] public static float spawn = 180.7f;
     public static float Timer = 0.0f;
     //private float speedPlus=2.0f;
-    public static float speedPlus = 2.0f;
+    public static float speedPlus = 0.8f;
     private float speedTimer=0f;
 
     // Start is called before the first frame update
@@ -24,17 +24,20 @@ public class PlaneA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        speedTimer+=1;
-        if (speed < 12)
+        if (speed < 20)
         {
-            if (speedTimer >= 10000)
+            speedTimer += Time.deltaTime;
+            if (speedTimer >= 5)
             {
-                speed+=speedPlus;
-                speedTimer=0;
+                speed += speedPlus;
+                if (speed > 20)
+                {
+                    speed = 20;
+                }
+                speedTimer = 0;
             }
         }
-        */
+
         x -= speed * Time.deltaTime;
         Plane.transform.position = new Vector2(x,-1.7f);
         if (x < space)

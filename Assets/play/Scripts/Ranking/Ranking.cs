@@ -40,11 +40,11 @@ public class Ranking : MonoBehaviour
     {
         if (!Default)
         {
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < 9; ++i)
             {
                 nameRank[i] = "Guest";
             }
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < 9; ++i)
             {
                 scoreRank[i] = 100000;
             }
@@ -63,11 +63,7 @@ public class Ranking : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)){
-            y = 0;
-            RankingPanel.anchoredPosition = new Vector2(0, y);
-            audioSource.Stop();
-            audioSource.PlayOneShot(drumRollEnd);
-            Invoke("Title",0.5f);
+            Skip();
         }
     }
 
@@ -79,27 +75,14 @@ public class Ranking : MonoBehaviour
         }
 
 
-        RankText[0].text = nameRank[0];
-        RankText[1].text = nameRank[1];
-        RankText[2].text = nameRank[2];
-        RankText[3].text = nameRank[3];
-        RankText[4].text = nameRank[4];
-        RankText[5].text = nameRank[5];
-        RankText[6].text = nameRank[6];
-        RankText[7].text = nameRank[7];
-        RankText[8].text = nameRank[8];
-        RankText[9].text = nameRank[9];
-
-        ScoreText[0].text = scoreRank[0].ToString();
-        ScoreText[1].text = scoreRank[1].ToString();
-        ScoreText[2].text = scoreRank[2].ToString();
-        ScoreText[3].text = scoreRank[3].ToString();
-        ScoreText[4].text = scoreRank[4].ToString();
-        ScoreText[5].text = scoreRank[5].ToString();
-        ScoreText[6].text = scoreRank[6].ToString();
-        ScoreText[7].text = scoreRank[7].ToString();
-        ScoreText[8].text = scoreRank[8].ToString();
-        ScoreText[9].text = scoreRank[9].ToString();
+        for (int i = 0; i < 10; ++i)
+        {
+            RankText[i].text = nameRank[i];
+        }
+        for (int i = 0; i < 10; ++i)
+        {
+            ScoreText[i].text = scoreRank[i].ToString();
+        }
 
         while (Fade > 0.0f)
         {
@@ -214,5 +197,14 @@ public class Ranking : MonoBehaviour
         moveTime = time;
         nowTime = 0.0f;
         return;
+    }
+
+    public void Skip()
+    {
+        y = 0;
+        RankingPanel.anchoredPosition = new Vector2(0, y);
+        audioSource.Stop();
+        audioSource.PlayOneShot(drumRollEnd);
+        Invoke("Title", 0.5f);
     }
 }

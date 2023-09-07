@@ -52,48 +52,58 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw1()
     {
-        ObjectEnemy(25,-1);
+        ObjectItem(17, 0);
+        ObjectEnemy(25, -1);
         Debug.Log("1");
         return;
     }
 
     void SpawnDraw2()
     {
-        ObjectFire(25,0);
+        ObjectFire(25, 0);
         Debug.Log("2");
         return;
     }
 
     void SpawnDraw3()
     {
-        ObjectEnemy(25,-1);
-        ObjectEnemy(17,-1);
+        ObjectEnemy(25, -1);
+        ObjectItem(21, 0);
+        ObjectEnemy(17, -1);
         Debug.Log("3");
         return;
     }
 
     void SpawnDraw4()
     {
-        ObjectEnemy(17,-1);
-        ObjectFire(25,0);
+        ObjectEnemy(17, -1);
+        ObjectItem(21, 0.5f);
+        ObjectFire(25, 0);
         Debug.Log("4");
         return;
     }
 
     void SpawnDraw5()
     {
-        int num = Random.Range(0,2);
-        if (num == 0)
-        {
-            ObjectWater(30, 2);
-        }else
-        if (num == 1)
-        {
-            ObjectWater(30, -1);
-        }
-
+        ObjectWater(30, -1);
         Debug.Log("5");
         return;
+    }
+
+    void SpawnDraw6()
+    {
+        ObjectWater(30, 2);
+    }
+
+    void SpawnDraw7()
+    {
+        ObjectWaterSlashDown(30, -1);
+        return;
+    }
+
+    void SpawnDraw8()
+    {
+        ObjectWaterSlashUp(30, 2);
     }
 
     private void ObjectEnemy(float x,float y)
@@ -123,6 +133,20 @@ public class GameContoroller : MonoBehaviour
         return;
     }
 
+    private void ObjectWaterSlashUp(float x, float y)
+    {
+        GameObject Water_prefab = Resources.Load<GameObject>("WaterSlashUp");
+        GameObject Water = Instantiate(Water_prefab, new Vector3(x, y, 0), Quaternion.identity);
+        return;
+    }
+
+    private void ObjectWaterSlashDown(float x, float y)
+    {
+        GameObject Water_prefab = Resources.Load<GameObject>("WaterSlashDown");
+        GameObject Water = Instantiate(Water_prefab, new Vector3(x, y, 0), Quaternion.identity);
+        return;
+    }
+
     Color GetAlphaColor(Color color)
     {
         textTime += Time.unscaledDeltaTime * 5.0f * speed;
@@ -137,24 +161,38 @@ public class GameContoroller : MonoBehaviour
             || objName == "地面4-1" || objName == "地面5-1") && Time.timeScale == 1)
         {
             Debug.Log(objName);
-            num = Random.Range(1, 6);// ※ 1～5の範囲でランダムな整数値が返る
-            switch (num)
+            num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
+            if (num < 41)
             {
-                case 1:
-                    SpawnDraw1();
-                    break;
-                case 2:
-                    SpawnDraw2();
-                    break;
-                case 3:
-                    SpawnDraw3();
-                    break;
-                case 4:
-                    SpawnDraw4();
-                    break;
-                case 5:
-                    SpawnDraw5();
-                    break;
+                SpawnDraw1();
+            }
+            else if (num < 61)
+            {
+                SpawnDraw2();
+            }
+            else if (num < 76)
+            {
+                SpawnDraw3();
+            }
+            else if (num < 89)
+            {
+                SpawnDraw4();
+            }
+            else if (num < 90)
+            {
+                SpawnDraw5();
+            }
+            else if (num < 91)
+            {
+                SpawnDraw6();
+            }
+            else if (num < 96)
+            {
+                SpawnDraw7();
+            }
+            else if (num < 101)
+            {
+                SpawnDraw8();
             }
         }
     }
