@@ -15,6 +15,7 @@ public class CharaNumber : MonoBehaviour
     private Vector2 _sizeEnter = new Vector2(420, 600);
 
     private RectTransform _rT;
+    public GameObject dif;
 
     void Start()
     {
@@ -22,18 +23,21 @@ public class CharaNumber : MonoBehaviour
         button.onClick.AddListener(SelectNum);
         charaSelect = GameObject.Find("CharaSelect").GetComponent<CharaSelect>();
         _rT = GetComponent<RectTransform>();
+        dif.SetActive(false);
     }
 
     public void Enter()
     {
         _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _sizeEnter.x);
         _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _sizeEnter.y);
+        dif.SetActive(true);
     }
 
     public void Exit()
     {
         _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _sizeExit.x);
         _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _sizeExit.y);
+        dif.SetActive(false);
     }
 
     void SelectNum()

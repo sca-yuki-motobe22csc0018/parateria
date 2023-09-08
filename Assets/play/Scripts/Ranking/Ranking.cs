@@ -42,11 +42,41 @@ public class Ranking : MonoBehaviour
         {
             for (int i = 0; i < 9; ++i)
             {
-                nameRank[i] = "Guest";
+                if (i == 0)
+                {
+                    nameRank[i] = "Guest";
+                }
+                else if (i == 1)
+                {
+                    nameRank[i] = "Guest";
+                }
+                else if (i == 2)
+                {
+                    nameRank[i] = "Guest";
+                }
+                else
+                {
+                    nameRank[i] = "Guest";
+                }
             }
             for (int i = 0; i < 9; ++i)
             {
-                scoreRank[i] = 100000;
+                if (i == 0)
+                {
+                    scoreRank[i] = 100000;
+                }
+                else if (i == 1)
+                {
+                    scoreRank[i] = 100000;
+                }
+                else if (i == 2)
+                {
+                    scoreRank[i] = 100000;
+                }
+                else
+                {
+                    scoreRank[i] = 100000;
+                }
             }
             Default = true;
         }
@@ -62,7 +92,8 @@ public class Ranking : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Return))
+        {
             Skip();
         }
     }

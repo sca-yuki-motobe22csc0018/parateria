@@ -12,6 +12,10 @@ public class GameContoroller : MonoBehaviour
     private float textTime;
     private float countTime;
     public static bool start = false;
+    private BigShark _SharkUp;
+    private BigShark _SharkDown;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,8 @@ public class GameContoroller : MonoBehaviour
         StartText.text = "";
         Time.timeScale = 0;
         countTime = 4.0f;
+        _SharkUp = GameObject.Find("BigSharkUP").GetComponent<BigShark>();
+        _SharkDown = GameObject.Find("BigSharkDown").GetComponent<BigShark>();
     }
 
     // Update is called once per frame
@@ -38,7 +44,7 @@ public class GameContoroller : MonoBehaviour
             {
                 StartText.text = "GO!!!";
                 StartText.color = GetAlphaColor(StartText.color);
-                
+
             }
             else
             {
@@ -67,16 +73,16 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw3()
     {
-        ObjectEnemy(25, -1);
+        ObjectEnemy(25, -2.5f);
         ObjectItem(21, 0);
-        ObjectEnemy(17, -1);
+        ObjectEnemy(17, -2.5f);
         Debug.Log("3");
         return;
     }
 
     void SpawnDraw4()
     {
-        ObjectEnemy(17, -1);
+        ObjectEnemy(17, -2.5f);
         ObjectItem(21, 0.5f);
         ObjectFire(25, 0);
         Debug.Log("4");
@@ -85,6 +91,7 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw5()
     {
+        _SharkDown.cf();
         ObjectWater(30, -1);
         Debug.Log("5");
         return;
@@ -92,21 +99,24 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw6()
     {
+        _SharkUp.cf();
         ObjectWater(30, 2);
     }
 
     void SpawnDraw7()
     {
+        _SharkDown.cf();
         ObjectWaterSlashDown(30, -1);
         return;
     }
 
     void SpawnDraw8()
     {
+        _SharkUp.cf();
         ObjectWaterSlashUp(30, 2);
     }
 
-    private void ObjectEnemy(float x,float y)
+    private void ObjectEnemy(float x, float y)
     {
         GameObject Enemy_prefab = Resources.Load<GameObject>("Enemy");
         GameObject Enemy = Instantiate(Enemy_prefab, new Vector3(x, y, 0), Quaternion.identity);
@@ -200,7 +210,7 @@ public class GameContoroller : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         string objName = other.gameObject.name;
-        if ((objName == "’n–Ê5-3")&& Time.timeScale == 1)
+        if ((objName == "’n–Ê5-3") && Time.timeScale == 1)
         {
             PlaneA.speed += PlaneA.speedPlus;
         }

@@ -1,0 +1,56 @@
+{ "skeleton": { "images": "D:/課題/チーム１/敵/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "用紙", "bone": "root" },
+	{ "name": "胴体", "bone": "root", "attachment": "胴体" },
+	{ "name": "胴ひれ", "bone": "root", "attachment": "胴ひれ" },
+	{ "name": "白目", "bone": "root", "attachment": "白目" },
+	{ "name": "瞳孔左", "bone": "root", "attachment": "瞳孔左" },
+	{ "name": "瞳孔右", "bone": "root", "attachment": "瞳孔右" },
+	{ "name": "瞳孔真ん中", "bone": "root", "attachment": "瞳孔真ん中" },
+	{ "name": "目の淵", "bone": "root", "attachment": "目の淵" },
+	{ "name": "エフェクト１", "bone": "root" },
+	{ "name": "エフェクト２", "bone": "root" },
+	{ "name": "エフェクト３", "bone": "root" }
+],
+"skins": {
+	"default": {
+		"用紙": {
+			"用紙": { "x": 2046.5, "y": -1447, "width": 4095, "height": 2896 }
+		},
+		"胴体": {
+			"胴体": { "x": 2311.5, "y": -1273.5, "width": 2721, "height": 1351 }
+		},
+		"胴ひれ": {
+			"胴ひれ": { "x": 2550, "y": -1701, "width": 494, "height": 472 }
+		},
+		"白目": {
+			"白目": { "x": 1715.5, "y": -1283, "width": 327, "height": 184 }
+		},
+		"瞳孔左": {
+			"瞳孔左": { "x": 1569.5, "y": -1350, "width": 27, "height": 26 }
+		},
+		"瞳孔右": {
+			"瞳孔右": { "x": 1818, "y": -1229, "width": 38, "height": 34 }
+		},
+		"瞳孔真ん中": {
+			"瞳孔真ん中": { "x": 1675.5, "y": -1296, "width": 61, "height": 60 }
+		},
+		"目の淵": {
+			"目の淵": { "x": 1716.5, "y": -1277, "width": 367, "height": 222 }
+		},
+		"エフェクト１": {
+			"エフェクト１": { "x": 2103, "y": -1270.5, "width": 3812, "height": 2345 }
+		},
+		"エフェクト２": {
+			"エフェクト２": { "x": 2422, "y": -1314, "width": 2908, "height": 2256 }
+		},
+		"エフェクト３": {
+			"エフェクト３": { "x": 1371, "y": -1475.5, "width": 1650, "height": 1379 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

@@ -1,0 +1,60 @@
+{ "skeleton": { "images": "D:/課題/チーム１/敵/images/2/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "用紙", "bone": "root" },
+	{ "name": "前右足", "bone": "root", "attachment": "前右足" },
+	{ "name": "後ろ右足", "bone": "root", "attachment": "後ろ右足" },
+	{ "name": "胴体", "bone": "root", "attachment": "胴体" },
+	{ "name": "後ろ左足", "bone": "root", "attachment": "後ろ左足" },
+	{ "name": "しっぽ", "bone": "root", "attachment": "しっぽ" },
+	{ "name": "前左足", "bone": "root", "attachment": "前左足" },
+	{ "name": "頭", "bone": "root", "attachment": "頭" },
+	{ "name": "瞳孔", "bone": "root", "attachment": "瞳孔" },
+	{ "name": "レイヤー 3 のコピー", "bone": "root" },
+	{ "name": "レイヤー 4 のコピー", "bone": "root" },
+	{ "name": "レイヤー 1 のコピー", "bone": "root" }
+],
+"skins": {
+	"default": {
+		"用紙": {
+			"用紙": { "x": -55.5, "y": 811, "width": 4095, "height": 2896 }
+		},
+		"前右足": {
+			"前右足": { "x": -1148, "y": 264, "width": 1240, "height": 1096 }
+		},
+		"後ろ右足": {
+			"後ろ右足": { "x": 299.5, "y": 638.5, "width": 807, "height": 985 }
+		},
+		"胴体": {
+			"胴体": { "x": -48, "y": 1009.5, "width": 2516, "height": 1509 }
+		},
+		"後ろ左足": {
+			"後ろ左足": { "x": 749.5, "y": 504, "width": 927, "height": 1160 }
+		},
+		"しっぽ": {
+			"しっぽ": { "x": 1076, "y": 1554, "width": 1426, "height": 872 }
+		},
+		"前左足": {
+			"前左足": { "x": -410.5, "y": 235, "width": 905, "height": 1066 }
+		},
+		"頭": {
+			"頭": { "x": -812, "y": 1561, "width": 976, "height": 1026 }
+		},
+		"瞳孔": {
+			"瞳孔": { "x": -928.5, "y": 1666.5, "width": 29, "height": 41 }
+		},
+		"レイヤー 3 のコピー": {
+			"レイヤー 3 のコピー": { "x": -342.5, "y": 832.5, "width": 2991, "height": 1399 }
+		},
+		"レイヤー 4 のコピー": {
+			"レイヤー 4 のコピー": { "x": 34.5, "y": 896.5, "width": 2999, "height": 2239 }
+		},
+		"レイヤー 1 のコピー": {
+			"レイヤー 1 のコピー": { "x": -1078.5, "y": 820.5, "width": 1799, "height": 2695 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

@@ -13,6 +13,15 @@ public class CharaSpineMove : MonoBehaviour
 	[SerializeField]
 	private string charaJumpAnimation;
 
+	[SerializeField]
+	private string charaDieAnimation;
+
+	[SerializeField]
+	private string charaTaikiAnimation;
+
+	private int a;
+	private int b;
+
 	/// <summary> ゲームオブジェクトに設定されているSkeletonAnimation </summary>
 	private SkeletonAnimation skeletonAnimation = default;
 
@@ -26,20 +35,33 @@ public class CharaSpineMove : MonoBehaviour
 
 		// SkeletonAnimationからAnimationStateを取得
 		spineAnimationState = skeletonAnimation.AnimationState;
+
+		a=0;
+		b=1;
 	}
 
 	private void Update()
-	{/*
-        if (Player.Jump == true)
-        {
+	{
+		if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && Player.jumpCount < 4&&Player.lifePoint!=0)
+		{
 			PlayJumpAnimation();
+			b = 0;
+		}
+
+        if (Player.lifePoint == a)
+        {
+			PlayDieAnimation();
+			a=1;
+			
         }
+
 		// Aキーの入力でアニメーションを切り替えるテスト
-		if (Player.OnGround==true)
+		if (Player.OnGround==true&&b==0&&Player.lifePoint!=0)
 		{
 			PlayRunAnimation();
+			b=1;
 		}
-		*/
+		
 	}
 
 	/// <summary>
@@ -48,14 +70,16 @@ public class CharaSpineMove : MonoBehaviour
 	/// </summary>
 	private void PlayRunAnimation()
 	{
-		// アニメーション「testAnimationName」を再生
 		spineAnimationState.SetAnimation(0, charaRunAnimation, true);
 	}
 
 	private void PlayJumpAnimation()
 	{
-		// アニメーション「testAnimationName」を再生
-		spineAnimationState.SetAnimation(0, charaJumpAnimation, true);
+		spineAnimationState.SetAnimation(0, charaJumpAnimation, false);
 	}
 
+	private void PlayDieAnimation()
+	{
+		spineAnimationState.SetAnimation(0, charaDieAnimation, false);
+	}
 }

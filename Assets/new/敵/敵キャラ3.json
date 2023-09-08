@@ -1,0 +1,48 @@
+{ "skeleton": { "images": "D:/課題/チーム１/敵/images/3/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "用紙", "bone": "root" },
+	{ "name": "右足", "bone": "root", "attachment": "右足" },
+	{ "name": "右手", "bone": "root", "attachment": "右手" },
+	{ "name": "体", "bone": "root", "attachment": "体" },
+	{ "name": "左手", "bone": "root", "attachment": "左手" },
+	{ "name": "頭", "bone": "root", "attachment": "頭" },
+	{ "name": "左足", "bone": "root", "attachment": "左足" },
+	{ "name": "レイヤー 8 のコピー", "bone": "root" },
+	{ "name": "レイヤー 6 のコピー", "bone": "root" }
+],
+"skins": {
+	"default": {
+		"用紙": {
+			"用紙": { "x": 120.5, "y": 471, "width": 4095, "height": 2896 }
+		},
+		"右足": {
+			"右足": { "x": 330, "y": 123, "width": 838, "height": 1216 }
+		},
+		"右手": {
+			"右手": { "x": -691.5, "y": 419.5, "width": 905, "height": 943 }
+		},
+		"体": {
+			"体": { "x": 461.5, "y": 759.5, "width": 2699, "height": 925 }
+		},
+		"左手": {
+			"左手": { "x": -691, "y": 416.5, "width": 906, "height": 937 }
+		},
+		"頭": {
+			"頭": { "x": -927, "y": 1299.5, "width": 772, "height": 861 }
+		},
+		"左足": {
+			"左足": { "x": 681, "y": 108.5, "width": 920, "height": 1363 }
+		},
+		"レイヤー 8 のコピー": {
+			"レイヤー 8 のコピー": { "x": -145, "y": 861, "width": 1530, "height": 1798 }
+		},
+		"レイヤー 6 のコピー": {
+			"レイヤー 6 のコピー": { "x": -113.5, "y": 751, "width": 1377, "height": 1132 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

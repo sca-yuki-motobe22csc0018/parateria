@@ -5,15 +5,15 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] public static float speed = PlaneA.speed;
-    
+
     [SerializeField] float posx;
     float Timer = PlaneA.Timer;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         Timer = 0.0f;
         speed = PlaneA.speed;
     }
@@ -22,7 +22,7 @@ public class Item : MonoBehaviour
     void Update()
     {
         speed = PlaneA.speed;
-        
+
         posx = transform.position.x;
         transform.position = new Vector3(posx - speed * Time.deltaTime, transform.position.y);
 
@@ -36,7 +36,12 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.CompareTag("player") && Time.timeScale == 1)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(num());
         }
+    }
+    IEnumerator num()
+    {
+        yield return new WaitForSeconds(0.05f);
+        Destroy(this.gameObject);
     }
 }

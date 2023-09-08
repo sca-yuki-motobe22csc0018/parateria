@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Spine.Unity;
+using Spine;
+
 
 public class Player : MonoBehaviour
 {
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
 
     public GameObject[] lifeArray = new GameObject[6];
     public GameObject[] selectCharacter = new GameObject[3];
-    private int lifePoint;
+    public static int lifePoint;
 
     [SerializeField] GameObject m_enemy = null;
     [SerializeField] GameObject m_fire = null;
@@ -44,12 +47,15 @@ public class Player : MonoBehaviour
     float Fade;
     bool stop;
     bool res = false;
+    public static bool OnGround;
 
     int frameCount = 0;
     [SerializeField] int[] scoreFrame = new int[5];
     [SerializeField] int[] scoreUp = new int[5];
     [SerializeField] int[] itemScore = new int[4];
     [SerializeField] int[] scoreDown = new int[5];
+    [SerializeField] Text jumpScore;
+    [SerializeField] GameObject Ribbon;
 
     float walkDis;
 
@@ -65,6 +71,8 @@ public class Player : MonoBehaviour
         ScoreText.text = "";
         ResultScore.text = "";
         Distance.text = "";
+        jumpScore.text = "";
+        Ribbon.SetActive(false);
         score = 0;
         res = false;
         EnCount = true;
@@ -134,8 +142,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 3)
         {
             rb = transform.GetComponent<Rigidbody2D>();
+            OnGround=false;
             rb.velocity = new Vector3(0, jumpForce, 0);
-            jumpCount++;
+            
             PlayerDown.jumpSet = true;
             if (m_enemy != null && EnCount)
             {
@@ -145,6 +154,10 @@ public class Player : MonoBehaviour
             {
                 Matrix_Fire();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpCount++;
         }
 
         if (!stop)
@@ -257,11 +270,13 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        OnGround=true;
         if (other.gameObject.CompareTag("ground"))
         {
             EnCount = true;
             FiCount = true;
             EnemyHit = false;
+            Ribbon.SetActive(false);
             for (int i = 0; i < 4; ++i)
             {
                 justJump[i].SetActive(false);
@@ -279,6 +294,8 @@ public class Player : MonoBehaviour
                 if (CharaSelect.change == 2)
                 {
                     Heal();
+                    HealScore();
+                    HealScore();
                     if (lifePoint < 6)
                     {
                         Heal();
@@ -287,25 +304,9 @@ public class Player : MonoBehaviour
                 else
                 {
                     Heal();
+                    HealScore();
                 }
             }
-            if (Time.timeSinceLevelLoad >= 180)
-            {
-                score += itemScore[3];
-            }
-            else if (Time.timeSinceLevelLoad >= 120)
-            {
-                score += itemScore[2];
-            }
-            else if (Time.timeSinceLevelLoad >= 60)
-            {
-                score += itemScore[1];
-            }
-            else
-            {
-                score += itemScore[0];
-            }
-
         }
 
         if (other.gameObject.CompareTag("Fire") && Time.timeScale == 1)
@@ -388,6 +389,41 @@ public class Player : MonoBehaviour
     {
         lifeArray[lifePoint - 1].SetActive(false);
         lifePoint--;
+        if (!lifeArray[3].activeSelf)
+        {
+            StartCoroutine(ColorBlinking());
+        }
+    }
+
+    IEnumerator ColorBlinking()
+    {
+        bool stop = false;
+        Color begin = new Color32(225, 0, 0, 113);
+        Color end = new Color32(225, 0, 0, 0);
+        PanelResult.GetComponent<Image>().color = begin;
+        float nowTime = 0.0f;
+        float colorTime = 0.0f;
+        float Change = 1.0f;
+        yield return null;
+        while (!stop)
+        {
+            yield return null;
+            nowTime += Time.deltaTime;
+            colorTime = (nowTime % Change) / Change;
+            if (nowTime > Change)
+            {
+                colorTime = 1.0f;
+            }
+            if (colorTime == 1.0f)
+            {
+                stop = true;
+                PanelResult.GetComponent<Image>().color = new Color(1.0f, 0, 0, 0);
+            }
+            else
+            {
+                PanelResult.GetComponent<Image>().color = Color.Lerp(begin, end, Mathf.PingPong(colorTime, 1));
+            }
+        }
     }
 
     private void Heal()
@@ -395,6 +431,26 @@ public class Player : MonoBehaviour
         lifePoint++;
         jumpCount--;
         lifeArray[lifePoint - 1].SetActive(true);
+    }
+
+    private void HealScore()
+    {
+        if (Time.timeSinceLevelLoad >= 180)
+        {
+            score += itemScore[3];
+        }
+        else if (Time.timeSinceLevelLoad >= 120)
+        {
+            score += itemScore[2];
+        }
+        else if (Time.timeSinceLevelLoad >= 60)
+        {
+            score += itemScore[1];
+        }
+        else
+        {
+            score += itemScore[0];
+        }
     }
 
     private void Matrix_Enemy()
@@ -480,30 +536,34 @@ public class Player : MonoBehaviour
 
     void Matrix_Score(float dif)
     {
+        int numScore;
         if (score >= 10000000)
         {
-            score += (int)(5000000 * dif);
+            numScore = (int)(5000000 * dif);
         }
         else if (score >= 1000000)
         {
-            score += (int)(500000 * dif);
+            numScore = (int)(500000 * dif);
         }
         else if (score >= 100000)
         {
-            score += (int)(100000 * dif);
+            numScore = (int)(100000 * dif);
         }
         else if (score >= 10000)
         {
-            score += (int)(10000 * dif);
+            numScore = (int)(10000 * dif);
         }
         else if (score >= 1000)
         {
-            score += (int)(1000 * dif);
+            numScore = (int)(1000 * dif);
         }
         else
         {
-            score += (int)(100 * dif);
+            numScore = (int)(100 * dif);
         }
+        Ribbon.SetActive(true);
+        jumpScore.text = Mathf.Clamp(numScore, 0, 99999999).ToString();
+        score += numScore;
     }
 
     IEnumerator ResultTime()
@@ -579,19 +639,19 @@ public class Player : MonoBehaviour
         audioSource.PlayOneShot(drumRollEnd);
         yield return new WaitForSecondsRealtime(1.0f);
 
-        if (walkDis >= 100000)
+        if (walkDis >= 50000)
         {
-            num = 11111;
+            num = 31111;
         }
         else if (walkDis >= 10000)
         {
             num = 1111;
         }
-        else if (walkDis >= 10000)
+        else if (walkDis >= 1000)
         {
             num = 111;
         }
-        else if (walkDis >= 1000)
+        else if (walkDis >= 100)
         {
             num = 11;
         }
