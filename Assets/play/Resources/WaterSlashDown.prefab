@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 5879268374637917133}
   - component: {fileID: 5426528289897018421}
   - component: {fileID: 1346956421304453865}
+  - component: {fileID: 2040493134691752472}
   m_Layer: 0
   m_Name: effect kyara1 (5)
   m_TagString: Untagged
@@ -436,6 +437,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2040493134691752472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564172640607362622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3018252342462076211
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +461,7 @@ GameObject:
   - component: {fileID: 5562022515774642778}
   - component: {fileID: 142001194449512329}
   - component: {fileID: 9005681159980809422}
+  - component: {fileID: 9075796335061223332}
   m_Layer: 0
   m_Name: effect kyara1 (3)
   m_TagString: Untagged
@@ -566,6 +580,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9075796335061223332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018252342462076211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4773458297264105506
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +808,7 @@ GameObject:
   - component: {fileID: 8147286305883834494}
   - component: {fileID: 3761879021988487177}
   - component: {fileID: 2576138349490054036}
+  - component: {fileID: 819265865405510039}
   m_Layer: 0
   m_Name: effect kyara1 (4)
   m_TagString: Untagged
@@ -900,6 +927,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &819265865405510039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855238232140209045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6190849420708576227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1080,7 @@ GameObject:
   - component: {fileID: 7201938689710706030}
   - component: {fileID: 8478094565726877909}
   - component: {fileID: 1946001719203303732}
+  - component: {fileID: 2770828048444257355}
   m_Layer: 0
   m_Name: effect kyara1 (2)
   m_TagString: Untagged
@@ -1159,6 +1199,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2770828048444257355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675580782808152654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7903115166155311229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1223,7 @@ GameObject:
   - component: {fileID: 1869927200212762818}
   - component: {fileID: 4003859786897111832}
   - component: {fileID: 7163356183596728050}
+  - component: {fileID: 4241888041466051224}
   m_Layer: 0
   m_Name: effect kyara1 (1)
   m_TagString: Untagged
@@ -1289,6 +1342,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4241888041466051224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903115166155311229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8354743539270395523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1366,7 @@ GameObject:
   - component: {fileID: 7002525381181362851}
   - component: {fileID: 5057375673196144144}
   - component: {fileID: 5052289225729067063}
+  - component: {fileID: 9222323397090617121}
   m_Layer: 0
   m_Name: effect kyara1
   m_TagString: Untagged
@@ -1419,6 +1485,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9222323397090617121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354743539270395523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8645852289751945440
 GameObject:
   m_ObjectHideFlags: 0

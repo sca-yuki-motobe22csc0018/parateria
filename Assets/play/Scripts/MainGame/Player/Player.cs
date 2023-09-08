@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     float timecount;
     bool EnCount;
     bool FiCount;
+    bool MaCount;
     bool EnemyHit;
 
     public GameObject[] lifeArray = new GameObject[6];
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject m_enemy = null;
     [SerializeField] GameObject m_fire = null;
     [SerializeField] GameObject m_item = null;
+    [SerializeField] GameObject m_mash = null;
 
     [SerializeField] float StopTime;//死んでからステージ等が止まる時間
     [SerializeField] float WaitTime;//リザルト表示から待つ時間
@@ -62,6 +64,11 @@ public class Player : MonoBehaviour
     public AudioClip drumRoll1;
     public AudioClip drumRoll2;
     public AudioClip drumRollEnd;
+    public AudioClip itemGet;
+    public AudioClip damage;
+    public AudioClip jump;
+    public AudioClip giriJump;
+    public AudioClip tyakuti;
 
     AudioSource audioSource;
 
@@ -141,6 +148,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && jumpCount < 3)
         {
+            audioSource.PlayOneShot(jump);
             rb = transform.GetComponent<Rigidbody2D>();
             OnGround=false;
             rb.velocity = new Vector3(0, jumpForce, 0);
@@ -153,6 +161,10 @@ public class Player : MonoBehaviour
             if (m_fire != null && FiCount)
             {
                 Matrix_Fire();
+            }
+            if (m_mash != null && MaCount)
+            {
+                Matrix_Mash();
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -250,6 +262,15 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (m_mash == null)
+        {
+            var mash = GameObject.FindGameObjectWithTag("mashroom");
+            if (mash != null)
+            {
+                m_mash = mash;
+            }
+        }
+
         if (m_item == null)
         {
             var item = GameObject.FindObjectOfType<Item>();
@@ -271,8 +292,10 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         OnGround=true;
+
         if (other.gameObject.CompareTag("ground"))
         {
+            //audioSource.PlayOneShot(tyakuti);
             EnCount = true;
             FiCount = true;
             EnemyHit = false;
@@ -289,6 +312,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Item") && Time.timeScale == 1)
         {
+            audioSource.PlayOneShot(itemGet);
             if (lifePoint < 6)
             {
                 if (CharaSelect.change == 2)
@@ -336,6 +360,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fire") && Time.timeScale == 1)
         {
+            
             ScoreDown();
         }
 
@@ -343,6 +368,7 @@ public class Player : MonoBehaviour
         {
             ScoreDown();
         }
+
         if (other.gameObject.CompareTag("mushroom") && Time.timeScale == 1)
         {
             if (CharaSelect.change == 3)
@@ -387,6 +413,7 @@ public class Player : MonoBehaviour
 
     private void Damage()
     {
+        audioSource.PlayOneShot(damage);
         lifeArray[lifePoint - 1].SetActive(false);
         lifePoint--;
         if (!lifeArray[3].activeSelf)
@@ -466,10 +493,11 @@ public class Player : MonoBehaviour
                 if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
             (en.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                 {
+                    audioSource.PlayOneShot(giriJump);
                     justJump[0].SetActive(true);
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(2.0f);
+                        Matrix_Score(2.5f);
                     }
                     else
                     {
@@ -478,10 +506,11 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    audioSource.PlayOneShot(itemGet);
                     justJump[CharaSelect.change].SetActive(true);
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(1.5f);
+                        Matrix_Score(1.0f);
                     }
                     else
                     {
@@ -492,6 +521,48 @@ public class Player : MonoBehaviour
             }
         }
     }
+    private void Matrix_Mash()
+    {
+        Vector3 ma = m_mash.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f ||
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f);
+                    }
+                }
+                else
+                {
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f);
+                    }
+                }
+                EnCount = false;
+            }
+        }
+    }
+
     private void Matrix_Fire()
     {
         if (jumpCount > 0)
@@ -503,6 +574,7 @@ public class Player : MonoBehaviour
                 if (transform.position.y - fi.y <= 0.75f ||
                 (transform.position.y - fi.y >= -0.75f))
                 {
+                    audioSource.PlayOneShot(giriJump);
                     Debug.Log("Hit");
                     if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
                      (fi.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
@@ -510,7 +582,7 @@ public class Player : MonoBehaviour
                         justJump[0].SetActive(true);
                         if (CharaSelect.change == 1)
                         {
-                            Matrix_Score(2.0f);
+                            Matrix_Score(2.5f);
                         }
                         else
                         {
@@ -519,9 +591,11 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
+                        audioSource.PlayOneShot(itemGet);
+                        justJump[CharaSelect.change].SetActive(true);
                         if (CharaSelect.change == 1)
                         {
-                            Matrix_Score(1.5f);
+                            Matrix_Score(1.0f);
                         }
                         else
                         {

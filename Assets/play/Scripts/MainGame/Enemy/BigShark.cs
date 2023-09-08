@@ -83,6 +83,6 @@ public class BigShark : MonoBehaviour
 
     private void SharkAnimation()
     {
-        spineAnimationState.SetAnimation(0, sharkAnimation, true);
+        spineAnimationState.SetAnimation(0, sharkAnimation, false);
     }
 }

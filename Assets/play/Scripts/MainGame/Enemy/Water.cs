@@ -9,11 +9,9 @@ public class Water : MonoBehaviour
     [SerializeField] float posx;
     float Timer = PlaneA.Timer;
 
-
     // Start is called before the first frame update
     void Start()
     {
-
         Timer = 0.0f;
         speed = PlaneA.speed + 12;
     }
@@ -21,6 +19,7 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         speed = PlaneA.speed + 12;
 
         posx = transform.position.x;

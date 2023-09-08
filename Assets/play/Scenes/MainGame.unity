@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 40904482}
   m_Layer: 0
   m_Name: "\u82B12-1"
-  m_TagString: mushroom
+  m_TagString: mashroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 86693547}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B33-3-3"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -876,6 +876,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105607133}
   m_CullTransparentMesh: 1
+--- !u!1 &121798388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121798393}
+  - component: {fileID: 121798392}
+  - component: {fileID: 121798391}
+  - component: {fileID: 121798390}
+  - component: {fileID: 121798389}
+  m_Layer: 0
+  m_Name: BigFox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &121798389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121798388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87211c821c8051a4492450e6dd861652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shark: 0
+  sharkAnimation: animation
+--- !u!114 &121798390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121798388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 11400000, guid: 438ab87c02c573e438d4be33ea1c1934, type: 2}
+  initialSkinName: 
+  fixPrefabOverrideViaMeshFilter: 2
+  initialFlipX: 0
+  initialFlipY: 0
+  updateWhenInvisible: 3
+  separatorSlotNames: []
+  zSpacing: 0
+  useClipping: 1
+  immutableTriangles: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  tintBlack: 0
+  singleSubmesh: 0
+  fixDrawOrder: 0
+  addNormals: 0
+  calculateTangents: 0
+  maskInteraction: 0
+  maskMaterials:
+    materialsMaskDisabled: []
+    materialsInsideMask: []
+    materialsOutsideMask: []
+  disableRenderingOnOverride: 1
+  updateTiming: 1
+  unscaledTime: 0
+  _animationName: animation
+  loop: 0
+  timeScale: 1.25
+--- !u!23 &121798391
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121798388}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e0af23458360e524b9ba9a0391c65106, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &121798392
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121798388}
+  m_Mesh: {fileID: 0}
+--- !u!4 &121798393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121798388}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
+  m_LocalPosition: {x: 13, y: -4.99, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
 --- !u!1 &122019796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2792,7 @@ GameObject:
   - component: {fileID: 495926741}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B34-2-2"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3028,7 +3165,7 @@ GameObject:
   - component: {fileID: 561764110}
   m_Layer: 0
   m_Name: "\u82B12-2"
-  m_TagString: mushroom
+  m_TagString: mashroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3775,7 +3912,7 @@ GameObject:
   - component: {fileID: 860376000}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B33-1-1"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4643,7 +4780,7 @@ GameObject:
   - component: {fileID: 986517762}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B33-3-1"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5342,7 +5479,7 @@ GameObject:
   - component: {fileID: 1187675556}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B35-3-3"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5657,7 +5794,7 @@ GameObject:
   - component: {fileID: 1339502538}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B34-2-1"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6367,7 +6504,7 @@ GameObject:
   - component: {fileID: 1493696236}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B35-3-2"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6532,7 +6669,7 @@ GameObject:
   - component: {fileID: 1534659039}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B33-1-2"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7662,6 +7799,7 @@ MonoBehaviour:
   m_enemy: {fileID: 0}
   m_fire: {fileID: 0}
   m_item: {fileID: 0}
+  m_mash: {fileID: 0}
   StopTime: 1.5
   WaitTime: 2.5
   ChangeFrame: 300
@@ -7683,6 +7821,11 @@ MonoBehaviour:
   drumRoll1: {fileID: 8300000, guid: b3092274647c4624caefa079c825b6ab, type: 3}
   drumRoll2: {fileID: 8300000, guid: 9a5e18f831334cf42bc5f53333cf3c42, type: 3}
   drumRollEnd: {fileID: 8300000, guid: 4cd2fbde10880f1458dd9e7d08d32c6f, type: 3}
+  itemGet: {fileID: 8300000, guid: a73da9d2900d23c4798edec278bdf7d4, type: 3}
+  damage: {fileID: 8300000, guid: 0dc12fd15a616fa4385711764ade32b0, type: 3}
+  jump: {fileID: 8300000, guid: dacdc2812259adc4cbf65c7d2aa6aeac, type: 3}
+  giriJump: {fileID: 8300000, guid: 88117e266c7006240962e3dd8515d8e6, type: 3}
+  tyakuti: {fileID: 8300000, guid: f248ac50f952332428b5abf33bdc320d, type: 3}
 --- !u!82 &1710094692
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8422,7 +8565,7 @@ GameObject:
   - component: {fileID: 2055382827}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B34-2-3"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8587,7 +8730,7 @@ GameObject:
   - component: {fileID: 2066574205}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B33-3-2"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8752,7 +8895,7 @@ GameObject:
   - component: {fileID: 2080946953}
   m_Layer: 0
   m_Name: "\u30AD\u30CE\u30B35-3-1"
-  m_TagString: mushroom
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,8 +14,9 @@ public class GameContoroller : MonoBehaviour
     public static bool start = false;
     private BigShark _SharkUp;
     private BigShark _SharkDown;
+    private BigShark _Fox;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class GameContoroller : MonoBehaviour
         countTime = 4.0f;
         _SharkUp = GameObject.Find("BigSharkUP").GetComponent<BigShark>();
         _SharkDown = GameObject.Find("BigSharkDown").GetComponent<BigShark>();
+        _Fox = GameObject.Find("BigFox").GetComponent<BigShark>();
     }
 
     // Update is called once per frame
@@ -58,8 +60,9 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw1()
     {
+        _Fox.cf();
         ObjectItem(17, 0);
-        ObjectEnemy(25, -1);
+        ObjectEnemy(25, -2.5f);
         Debug.Log("1");
         return;
     }
@@ -73,15 +76,17 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw3()
     {
+        _Fox.cf();
         ObjectEnemy(25, -2.5f);
         ObjectItem(21, 0);
-        ObjectEnemy(17, -2.5f);
+        ObjectTiger(17, -1.5f);
         Debug.Log("3");
         return;
     }
 
     void SpawnDraw4()
     {
+        _Fox.cf();
         ObjectEnemy(17, -2.5f);
         ObjectItem(21, 0.5f);
         ObjectFire(25, 0);
@@ -119,6 +124,13 @@ public class GameContoroller : MonoBehaviour
     private void ObjectEnemy(float x, float y)
     {
         GameObject Enemy_prefab = Resources.Load<GameObject>("Enemy");
+        GameObject Enemy = Instantiate(Enemy_prefab, new Vector3(x, y, 0), Quaternion.identity);
+        return;
+    }
+
+    private void ObjectTiger(float x, float y)
+    {
+        GameObject Enemy_prefab = Resources.Load<GameObject>("Tiger");
         GameObject Enemy = Instantiate(Enemy_prefab, new Vector3(x, y, 0), Quaternion.identity);
         return;
     }
