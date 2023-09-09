@@ -34,7 +34,19 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject m_enemy = null;
     [SerializeField] GameObject m_fire = null;
     [SerializeField] GameObject m_item = null;
-    [SerializeField] GameObject m_mash = null;
+    [SerializeField] GameObject m_mash_a = null;
+    [SerializeField] GameObject m_mash_b = null;
+    [SerializeField] GameObject m_mash_c = null;
+    [SerializeField] GameObject m_mash_d = null;
+    [SerializeField] GameObject m_mash_e = null;
+    [SerializeField] GameObject m_mash_f = null;
+    [SerializeField] GameObject m_mash_g = null;
+    [SerializeField] GameObject m_mash_h = null;
+    [SerializeField] GameObject m_mash_i = null;
+    [SerializeField] GameObject m_mash_j = null;
+    [SerializeField] GameObject m_mash_k = null;
+    [SerializeField] GameObject m_mash_l = null;
+    [SerializeField] GameObject m_mash_m = null;
 
     [SerializeField] float StopTime;//死んでからステージ等が止まる時間
     [SerializeField] float WaitTime;//リザルト表示から待つ時間
@@ -162,9 +174,57 @@ public class Player : MonoBehaviour
             {
                 Matrix_Fire();
             }
-            if (m_mash != null && MaCount)
+            if (m_mash_a != null && MaCount)
             {
-                Matrix_Mash();
+                Matrix_MashA();
+            }
+            if (m_mash_b != null && MaCount)
+            {
+                Matrix_MashB();
+            }
+            if (m_mash_c != null && MaCount)
+            {
+                Matrix_MashC();
+            }
+            if (m_mash_d != null && MaCount)
+            {
+                Matrix_MashD();
+            }
+            if (m_mash_e != null && MaCount)
+            {
+                Matrix_MashE();
+            }
+            if (m_mash_f != null && MaCount)
+            {
+                Matrix_MashF();
+            }
+            if (m_mash_g != null && MaCount)
+            {
+                Matrix_MashG();
+            }
+            if (m_mash_h != null && MaCount)
+            {
+                Matrix_MashH();
+            }
+            if (m_mash_i != null && MaCount)
+            {
+                Matrix_MashI();
+            }
+            if (m_mash_j != null && MaCount)
+            {
+                Matrix_MashJ();
+            }
+            if (m_mash_k != null && MaCount)
+            {
+                Matrix_MashK();
+            }
+            if (m_mash_l != null && MaCount)
+            {
+                Matrix_MashL();
+            }
+            if (m_mash_m != null && MaCount)
+            {
+                Matrix_MashM();
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -216,7 +276,10 @@ public class Player : MonoBehaviour
                 count = 0.0f;
             }
             ScoreText.text = Mathf.Clamp(score, 0, 99999999).ToString().PadLeft(8,'0');
-
+            if (score > 99999999)
+            {
+                score=99999999;
+            }
             if (Time.timeSinceLevelLoad >= 180 && frameCount == scoreFrame[4])
             {
                 score += scoreUp[4];
@@ -242,6 +305,10 @@ public class Player : MonoBehaviour
                 score += scoreUp[0];
                 frameCount = 0;
             }
+            if (score > 99999999)
+            {
+                score = 99999999;
+            }
         }
 
         if (m_enemy == null)
@@ -259,15 +326,6 @@ public class Player : MonoBehaviour
             if (fire != null)
             {
                 m_fire = fire.gameObject;
-            }
-        }
-
-        if (m_mash == null)
-        {
-            var mash = GameObject.FindGameObjectWithTag("mashroom");
-            if (mash != null)
-            {
-                m_mash = mash;
             }
         }
 
@@ -298,6 +356,7 @@ public class Player : MonoBehaviour
             //audioSource.PlayOneShot(tyakuti);
             EnCount = true;
             FiCount = true;
+            MaCount = true;
             EnemyHit = false;
             Ribbon.SetActive(false);
             for (int i = 0; i < 4; ++i)
@@ -345,15 +404,8 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("mushroom") && Time.timeScale == 1 && !EnemyHit)
         {
-            if (CharaSelect.change == 3)
-            {
-                return;
-            }
-            else
-            {
-                Damage();
-                EnemyHit = true;
-            }
+            Damage();
+            EnemyHit = true;
         }
     }
     private void OnTriggerStay2D(Collider2D other)
@@ -416,10 +468,9 @@ public class Player : MonoBehaviour
         audioSource.PlayOneShot(damage);
         lifeArray[lifePoint - 1].SetActive(false);
         lifePoint--;
-        if (!lifeArray[3].activeSelf)
-        {
-            StartCoroutine(ColorBlinking());
-        }
+
+        StartCoroutine(ColorBlinking());
+
     }
 
     IEnumerator ColorBlinking()
@@ -482,12 +533,16 @@ public class Player : MonoBehaviour
 
     private void Matrix_Enemy()
     {
+        float xa = 1.5f;
+        float xb = 0.5f;
+        float xc = 2.0f;
+        float ya = 0.75f;
         Vector3 en = m_enemy.transform.position;
-        if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
-            (en.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        if ((en.x - xa) - (transform.position.x + xb) <= xc &&
+            (en.x - xa) - (transform.position.x + xb) >= 0.0f)
         {
-            if (transform.position.y - en.y <= 0.75f ||
-                (transform.position.y - en.y >= -0.75f))
+            if (transform.position.y - en.y <= ya &&
+                (transform.position.y - en.y >= -ya))
             {
                 Debug.Log("Hit");
                 if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
@@ -507,6 +562,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     audioSource.PlayOneShot(itemGet);
+                    justJump[0].SetActive(false);
                     justJump[CharaSelect.change].SetActive(true);
                     if (CharaSelect.change == 1)
                     {
@@ -521,13 +577,13 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private void Matrix_Mash()
+    private void Matrix_MashA()
     {
-        Vector3 ma = m_mash.transform.position;
+        Vector3 ma = m_mash_a.transform.position;
         if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
             (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
         {
-            if (transform.position.y - ma.y <= 0.75f ||
+            if (transform.position.y - ma.y <= 0.75f &&
                 (transform.position.y - ma.y >= -0.75f))
             {
                 Debug.Log("Hit");
@@ -538,31 +594,535 @@ public class Player : MonoBehaviour
                     justJump[0].SetActive(true);
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(2.5f);
+                        Matrix_Score(0.25f);
                     }
                     else
                     {
-                        Matrix_Score(1.0f);
+                        Matrix_Score(0.10f);
                     }
                 }
                 else
                 {
+                    justJump[0].SetActive(false);
                     audioSource.PlayOneShot(itemGet);
                     justJump[CharaSelect.change].SetActive(true);
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(1.0f);
+                        Matrix_Score(0.1f);
                     }
                     else
                     {
-                        Matrix_Score(0.5f);
+                        Matrix_Score(0.05f);
                     }
                 }
-                EnCount = false;
+                MaCount = false;
             }
         }
     }
-
+    private void Matrix_MashB()
+    {
+        Vector3 ma = m_mash_b.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f/10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashC()
+    {
+        Vector3 ma = m_mash_c.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashD()
+    {
+        Vector3 ma = m_mash_d.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashE()
+    {
+        Vector3 ma = m_mash_e.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashF()
+    {
+        Vector3 ma = m_mash_f.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashG()
+    {
+        Vector3 ma = m_mash_g.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashH()
+    {
+        Vector3 ma = m_mash_h.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashI()
+    {
+        Vector3 ma = m_mash_i.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashJ()
+    {
+        Vector3 ma = m_mash_j.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashK()
+    {
+        Vector3 ma = m_mash_k.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashL()
+    {
+        Vector3 ma = m_mash_l.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
+    private void Matrix_MashM()
+    {
+        Vector3 ma = m_mash_m.transform.position;
+        if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+        {
+            if (transform.position.y - ma.y <= 0.75f &&
+                (transform.position.y - ma.y >= -0.75f))
+            {
+                Debug.Log("Hit");
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= 1.0f &&
+            (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
+                {
+                    audioSource.PlayOneShot(giriJump);
+                    justJump[0].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(2.5f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                }
+                else
+                {
+                    justJump[0].SetActive(false);
+                    audioSource.PlayOneShot(itemGet);
+                    justJump[CharaSelect.change].SetActive(true);
+                    if (CharaSelect.change == 1)
+                    {
+                        Matrix_Score(1.0f / 10);
+                    }
+                    else
+                    {
+                        Matrix_Score(0.5f / 10);
+                    }
+                }
+                MaCount = false;
+            }
+        }
+    }
     private void Matrix_Fire()
     {
         if (jumpCount > 0)
@@ -571,7 +1131,7 @@ public class Player : MonoBehaviour
             if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= 2.0f &&
             (fi.x - 1.5f) - (transform.position.x + 0.5f) >= 0)
             {
-                if (transform.position.y - fi.y <= 0.75f ||
+                if (transform.position.y - fi.y <= 0.75f &&
                 (transform.position.y - fi.y >= -0.75f))
                 {
                     audioSource.PlayOneShot(giriJump);
@@ -591,6 +1151,7 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
+                        justJump[0].SetActive(false);
                         audioSource.PlayOneShot(itemGet);
                         justJump[CharaSelect.change].SetActive(true);
                         if (CharaSelect.change == 1)
@@ -636,7 +1197,7 @@ public class Player : MonoBehaviour
             numScore = (int)(100 * dif);
         }
         Ribbon.SetActive(true);
-        jumpScore.text = Mathf.Clamp(numScore, 0, 99999999).ToString();
+        jumpScore.text = "+" + Mathf.Clamp(numScore, 0, 99999999).ToString();
         score += numScore;
     }
 

@@ -23,7 +23,7 @@ public class Ranking : MonoBehaviour
     float count;
     float num = 0.0f;
     float Fade = 1.0f;
-    bool Default=false;
+    public static bool Default=false;
 
     public RectTransform RankingPanel;
     float y, startY ,endY;
@@ -44,15 +44,15 @@ public class Ranking : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    nameRank[i] = "Guest";
+                    nameRank[i] = "Pikuru";
                 }
                 else if (i == 1)
                 {
-                    nameRank[i] = "Guest";
+                    nameRank[i] = "Iroa";
                 }
                 else if (i == 2)
                 {
-                    nameRank[i] = "Guest";
+                    nameRank[i] = "Bisuke";
                 }
                 else
                 {
@@ -63,15 +63,15 @@ public class Ranking : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    scoreRank[i] = 100000;
+                    scoreRank[i] = 9980760;
                 }
                 else if (i == 1)
                 {
-                    scoreRank[i] = 100000;
+                    scoreRank[i] = 4097818;
                 }
                 else if (i == 2)
                 {
-                    scoreRank[i] = 100000;
+                    scoreRank[i] = 3730061;
                 }
                 else
                 {
@@ -121,7 +121,7 @@ public class Ranking : MonoBehaviour
             count += Time.deltaTime;
             num = (count % FadeTime) / FadeTime;
             Fade -= num;
-            if (Fade < 0.01f)
+            if (Fade < 0.1f)
             {
                 Fade = 0.0f;
             }
@@ -169,7 +169,7 @@ public class Ranking : MonoBehaviour
             yield return null;
             count += Time.deltaTime;
             Fade = (count % FadeTime) / FadeTime;
-            if (Fade > 0.99f)
+            if (Fade > 0.9f)
             {
                 Fade = 1.0f;
             }
