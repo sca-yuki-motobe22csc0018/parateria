@@ -275,11 +275,8 @@ public class Player : MonoBehaviour
                 frameCount++;
                 count = 0.0f;
             }
-            ScoreText.text = Mathf.Clamp(score, 0, 99999999).ToString().PadLeft(8,'0');
-            if (score > 99999999)
-            {
-                score=99999999;
-            }
+            ScoreText.text = Mathf.Clamp(score, 0, 999999999).ToString().PadLeft(9,'0');
+
             if (Time.timeSinceLevelLoad >= 180 && frameCount == scoreFrame[4])
             {
                 score += scoreUp[4];
@@ -305,9 +302,9 @@ public class Player : MonoBehaviour
                 score += scoreUp[0];
                 frameCount = 0;
             }
-            if (score > 99999999)
+            if (score > 999999999)
             {
-                score = 99999999;
+                score = 999999999;
             }
         }
 
@@ -1172,7 +1169,11 @@ public class Player : MonoBehaviour
     void Matrix_Score(float dif)
     {
         int numScore;
-        if (score >= 10000000)
+        if (score >= 100000000)
+        {
+            numScore = (int)(50000000 * dif);
+        }
+        else if (score >= 10000000)
         {
             numScore = (int)(5000000 * dif);
         }
@@ -1213,7 +1214,11 @@ public class Player : MonoBehaviour
         Distance.text = Mathf.Clamp(walkdis, 0, 9999).ToString("f2") + "m";
 
         int num = 0;
-        if (score >= 10000000)
+        if (score >= 100000000)
+        {
+            num = 5111111;
+        }
+        else if (score >= 10000000)
         {
             num = 511111;
         }
@@ -1265,7 +1270,7 @@ public class Player : MonoBehaviour
                 {
                     rollScore = score;
                 }
-                ResultScore.text = Mathf.Clamp(rollScore, 0, 99999999).ToString();
+                ResultScore.text = Mathf.Clamp(rollScore, 0, 999999999).ToString();
                 c = 0.0f;
             }
         }
@@ -1314,7 +1319,7 @@ public class Player : MonoBehaviour
                 {
                     walkdis = walkDis;
                 }
-                Distance.text = Mathf.Clamp(walkdis, 0, 9999).ToString("f2") + "m";
+                Distance.text = Mathf.Clamp(walkdis, 0, 99999).ToString("f2") + "m";
                 c = 0.0f;
             }
         }

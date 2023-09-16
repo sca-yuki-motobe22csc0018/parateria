@@ -63,5 +63,9 @@ public class CharaSelect : MonoBehaviour
                 cf3.gameObject.SetActive(false);
             }
         }
+        if (num == 3)
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 }

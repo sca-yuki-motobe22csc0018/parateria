@@ -56,6 +56,14 @@ public class asobikata : MonoBehaviour
         }
         else if (num == 3)
         {
+            change = 0;
+            button[0].SetActive(false);
+            button[1].SetActive(true);
+            window[change].enabled = true;
+            for (int i = 1; i < 5; ++i)
+            {
+                window[i].enabled = false;
+            }
             gameObject.SetActive(false);
         }
     }

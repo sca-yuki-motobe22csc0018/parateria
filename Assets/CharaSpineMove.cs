@@ -21,6 +21,10 @@ public class CharaSpineMove : MonoBehaviour
 
 	private int a;
 	private int b;
+	private int timer=0;
+	bool set;
+
+	private SkeletonAnimation  _skeletonAnimation;
 
 	/// <summary> ゲームオブジェクトに設定されているSkeletonAnimation </summary>
 	private SkeletonAnimation skeletonAnimation = default;
@@ -36,7 +40,9 @@ public class CharaSpineMove : MonoBehaviour
 		// SkeletonAnimationからAnimationStateを取得
 		spineAnimationState = skeletonAnimation.AnimationState;
 
-		a=0;
+		_skeletonAnimation = GetComponent<SkeletonAnimation>();
+
+		a =0;
 		b=1;
 	}
 
@@ -61,7 +67,27 @@ public class CharaSpineMove : MonoBehaviour
 			PlayRunAnimation();
 			b=1;
 		}
+
+		//_skeletonAnimation.skeleton.R = Mathf.PerlinNoise(Time.time*4, 0);
+		//_skeletonAnimation.skeleton.G = Mathf.PerlinNoise(Time.time * 4, 0);
+		///_skeletonAnimation.skeleton.B = Mathf.PerlinNoise(Time.time * 4, 0);
 		
+		timer+=1;
+        if (timer > 100)
+        {
+            if (set == true)
+            {
+				_skeletonAnimation.skeleton.A = 0f;
+				set=false;
+				timer=0;
+			}else
+            if (set == false)
+            {
+				_skeletonAnimation.skeleton.A = 1f;
+				set = true;
+				timer = 0;
+			}
+        }
 	}
 
 	/// <summary>
