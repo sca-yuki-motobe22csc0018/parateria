@@ -16,6 +16,8 @@ TagManager:
   - OK
   - mushroom
   - mashroom
+  - GroundBig
+  - GroundSmall
   layers:
   - Default
   - TransparentFX

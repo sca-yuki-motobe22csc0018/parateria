@@ -32,30 +32,31 @@ public class GameContoroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countTime > 0.0f)
+        if (!start)
         {
-            countTime -= Time.unscaledDeltaTime;
-            if (countTime <= 0.0f)
+            if (countTime > 0.0f)
             {
-                countTime = 0.0f;
-                Time.timeScale = 1;
-                StartText.text = "";
-                start = true;
-            }
-            else if (countTime <= 0.9f)
-            {
-                StartText.text = "GO!!!";
-                StartText.color = GetAlphaColor(StartText.color);
+                countTime -= Time.unscaledDeltaTime;
+                if (countTime <= 0.0f)
+                {
+                    countTime = 0.0f;
+                    StartText.text = "";
+                    start = true;
+                }
+                else if (countTime <= 0.9f)
+                {
+                    StartText.text = "GO!!!";
+                    StartText.color = GetAlphaColor(StartText.color);
 
-            }
-            else
-            {
-                int num = (int)countTime;
-                StartText.text = Mathf.Clamp(num, 0, 100).ToString();
-                StartText.color = GetAlphaColor(StartText.color);
+                }
+                else
+                {
+                    int num = (int)countTime;
+                    StartText.text = Mathf.Clamp(num, 0, 100).ToString();
+                    StartText.color = GetAlphaColor(StartText.color);
+                }
             }
         }
-        Timer += Time.deltaTime;
     }
 
     void SpawnDraw1()
@@ -178,53 +179,47 @@ public class GameContoroller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        string objName = other.gameObject.name;
-        if ((objName == "地面1-1" || objName == "地面2-1" || objName == "地面3-1"
-            || objName == "地面4-1" || objName == "地面5-1") && Time.timeScale == 1)
+        if (start)
         {
-            Debug.Log(objName);
-            num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
-            if (num < 41)
+            string objName = other.gameObject.name;
+            if ((objName == "地面1-1" || objName == "地面2-1" || objName == "地面3-1"
+                || objName == "地面4-1" || objName == "地面5-1") && Time.timeScale >= 1)
             {
-                SpawnDraw1();
+                Debug.Log(objName);
+                num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
+                if (num < 41)
+                {
+                    SpawnDraw1();
+                }
+                else if (num < 61)
+                {
+                    SpawnDraw2();
+                }
+                else if (num < 76)
+                {
+                    SpawnDraw3();
+                }
+                else if (num < 89)
+                {
+                    SpawnDraw4();
+                }
+                else if (num < 90)
+                {
+                    SpawnDraw5();
+                }
+                else if (num < 91)
+                {
+                    SpawnDraw6();
+                }
+                else if (num < 96)
+                {
+                    SpawnDraw7();
+                }
+                else if (num < 101)
+                {
+                    SpawnDraw8();
+                }
             }
-            else if (num < 61)
-            {
-                SpawnDraw2();
-            }
-            else if (num < 76)
-            {
-                SpawnDraw3();
-            }
-            else if (num < 89)
-            {
-                SpawnDraw4();
-            }
-            else if (num < 90)
-            {
-                SpawnDraw5();
-            }
-            else if (num < 91)
-            {
-                SpawnDraw6();
-            }
-            else if (num < 96)
-            {
-                SpawnDraw7();
-            }
-            else if (num < 101)
-            {
-                SpawnDraw8();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        string objName = other.gameObject.name;
-        if ((objName == "地面5-3") && Time.timeScale == 1)
-        {
-            PlaneA.speed += PlaneA.speedPlus;
         }
     }
 }

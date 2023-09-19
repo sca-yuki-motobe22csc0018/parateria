@@ -19,7 +19,19 @@ public class Name : MonoBehaviour
         cf.gameObject.SetActive(false);
         NameText.text = "";
         count++;
-        inputField.text="";
+        if (CharaSelect.change == 1)
+        {
+            inputField.text = "ピクル";
+        }
+        if (CharaSelect.change == 2)
+        {
+            inputField.text = "イロア";
+        }
+        if (CharaSelect.change == 3)
+        {
+            inputField.text = "ビスケ";
+        }
+
     }
 
     public void SetName()
