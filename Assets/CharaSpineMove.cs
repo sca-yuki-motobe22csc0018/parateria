@@ -68,26 +68,27 @@ public class CharaSpineMove : MonoBehaviour
 			b=1;
 		}
 
-		//_skeletonAnimation.skeleton.R = Mathf.PerlinNoise(Time.time*4, 0);
-		//_skeletonAnimation.skeleton.G = Mathf.PerlinNoise(Time.time * 4, 0);
-		///_skeletonAnimation.skeleton.B = Mathf.PerlinNoise(Time.time * 4, 0);
-		
-		//timer+=1;
-        if (timer > 100)
-        {
-            if (set == true)
-            {
-				_skeletonAnimation.skeleton.A = 0f;
-				set=false;
-				timer=0;
-			}else
-            if (set == false)
-            {
-				_skeletonAnimation.skeleton.A = 1f;
-				set = true;
-				timer = 0;
+        //_skeletonAnimation.skeleton.R = Mathf.PerlinNoise(Time.time*4, 0);
+        //_skeletonAnimation.skeleton.G = Mathf.PerlinNoise(Time.time * 4, 0);
+        ///_skeletonAnimation.skeleton.B = Mathf.PerlinNoise(Time.time * 4, 0);
+        if(Player.blink == true) {
+			timer += 1;
+			if(timer > 20) {
+				if(set == true) {
+					_skeletonAnimation.skeleton.A = 0f;
+					set = false;
+					timer = 0;
+				} else
+				if(set == false) {
+					_skeletonAnimation.skeleton.A = 1f;
+					set = true;
+					timer = 0;
+				}
 			}
-        }
+		}else if(Player.blink==false) {
+			_skeletonAnimation.skeleton.A = 1f;
+		}
+		
 	}
 
 	/// <summary>

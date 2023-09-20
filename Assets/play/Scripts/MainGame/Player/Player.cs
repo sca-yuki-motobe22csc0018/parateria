@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     bool FiCount;
     bool MaCount;
     bool EnemyHit;
-    
+    public static bool blink=false;
+    int blinktime=0;
 
     public GameObject[] lifeArray = new GameObject[6];
     public GameObject[] selectCharacter = new GameObject[3];
@@ -104,6 +105,8 @@ public class Player : MonoBehaviour
         EnCount = true;
         FiCount = true;
         EnemyHit = false;
+        blink=false;
+        blinktime=0;
         timecount = 0.0f;
         lifePoint = 5;
         lifeArray[lifePoint].SetActive(false);
@@ -352,6 +355,14 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        if(blink == true) 
+        {
+            blinktime+=1;
+            if(blinktime > 200) {
+                blink=false;
+                blinktime=0;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -426,8 +437,11 @@ public class Player : MonoBehaviour
         lifePoint--;
 
         StartCoroutine(ColorBlinking());
+        blink=true;
+        
 
     }
+
 
     IEnumerator ColorBlinking()
     {

@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class GameContoroller : MonoBehaviour
 {
-    float Timer = PlaneA.Timer;
+    float Timer = NewPlaneA.Timer;
     int num = 0;
     [SerializeField] float speed;
+    [SerializeField] public static float stageSpeed;
     public Text StartText;
     private float textTime;
     private float countTime;
@@ -222,4 +223,6 @@ public class GameContoroller : MonoBehaviour
             }
         }
     }
+
+
 }
