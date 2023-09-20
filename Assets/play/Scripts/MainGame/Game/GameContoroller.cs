@@ -19,10 +19,10 @@ public class GameContoroller : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Start() 
     {
+        start = false;
         StartText.text = "";
-        Time.timeScale = 0;
         countTime = 4.0f;
         _SharkUp = GameObject.Find("BigSharkUP").GetComponent<BigShark>();
         _SharkDown = GameObject.Find("BigSharkDown").GetComponent<BigShark>();

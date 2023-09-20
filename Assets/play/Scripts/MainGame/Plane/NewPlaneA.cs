@@ -11,7 +11,10 @@ public class NewPlaneA : MonoBehaviour
     [SerializeField] public static float spawn;
     public static float Timer = 0.0f;
     public static float speedPlus = 0.4f;
+    [SerializeField] float maxSpeed = 18.0f;
+    [SerializeField] float changeTime = 4.0f;
     private float speedTimer = 0f;
+    bool play;
     private bool size;
 
     // Start is called before the first frame update

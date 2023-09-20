@@ -72,7 +72,7 @@ public class CharaSpineMove : MonoBehaviour
 		//_skeletonAnimation.skeleton.G = Mathf.PerlinNoise(Time.time * 4, 0);
 		///_skeletonAnimation.skeleton.B = Mathf.PerlinNoise(Time.time * 4, 0);
 		
-		timer+=1;
+		//timer+=1;
         if (timer > 100)
         {
             if (set == true)

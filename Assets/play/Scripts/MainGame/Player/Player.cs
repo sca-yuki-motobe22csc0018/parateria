@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     bool FiCount;
     bool MaCount;
     bool EnemyHit;
+    
 
     public GameObject[] lifeArray = new GameObject[6];
     public GameObject[] selectCharacter = new GameObject[3];
