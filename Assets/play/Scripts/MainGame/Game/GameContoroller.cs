@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class GameContoroller : MonoBehaviour
 {
-    float Timer = NewPlaneA.Timer;
     int num = 0;
-    [SerializeField] float speed;
-    [SerializeField] public static float stageSpeed;
+    int stagenum;
     public Text StartText;
     private float textTime;
     private float countTime;
@@ -17,6 +15,13 @@ public class GameContoroller : MonoBehaviour
     private BigShark _SharkDown;
     private BigShark _Fox;
 
+    [SerializeField] public static float speed = 7.0f;
+    public static float speedPlus = 0.4f;
+    [SerializeField] float maxSpeed = 18.0f;
+    [SerializeField] float changeTime = 4.0f;
+    private float speedTimer = 0f;
+    bool play;
+    [SerializeField] public float speedmater=0;
 
 
     // Start is called before the first frame update
@@ -28,13 +33,16 @@ public class GameContoroller : MonoBehaviour
         _SharkUp = GameObject.Find("BigSharkUP").GetComponent<BigShark>();
         _SharkDown = GameObject.Find("BigSharkDown").GetComponent<BigShark>();
         _Fox = GameObject.Find("BigFox").GetComponent<BigShark>();
+        play = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        speedmater=speed;
         if (!start)
         {
+            speed = 0.0f;
             if (countTime > 0.0f)
             {
                 countTime -= Time.unscaledDeltaTime;
@@ -55,6 +63,24 @@ public class GameContoroller : MonoBehaviour
                     int num = (int)countTime;
                     StartText.text = Mathf.Clamp(num, 0, 100).ToString();
                     StartText.color = GetAlphaColor(StartText.color);
+                }
+            }
+        }else {
+            if(!play) {
+                speed = 7.0f;
+                play = true;
+            }
+
+            if(speed < maxSpeed) {
+                speedTimer += Time.deltaTime;
+                if(speedTimer >= changeTime) {
+                    speed += speedPlus;
+                    Player.xc = 2.0f + 1 / (maxSpeed - speed);
+                    if(speed > maxSpeed) {
+                        speed = maxSpeed;
+                        Player.xc = 3.0f;
+                    }
+                    speedTimer = 0;
                 }
             }
         }
@@ -183,11 +209,13 @@ public class GameContoroller : MonoBehaviour
         if (start)
         {
             string objName = other.gameObject.name;
-            if ((objName == "地面1-1" || objName == "地面2-1" || objName == "地面3-1"
-                || objName == "地面4-1" || objName == "地面5-1") && Time.timeScale >= 1)
+            if  (( objName == "Stage_1" || objName == "Stage_2" || objName == "Stage_3"
+                || objName == "Stage_4" || objName == "Stage_5" || objName == "Stage_6" 
+                || objName == "Stage_7" || objName == "Stage_8" || objName == "Collider")&& Time.timeScale >= 1)
             {
                 Debug.Log(objName);
                 num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
+                
                 if (num < 41)
                 {
                     SpawnDraw1();
@@ -220,9 +248,126 @@ public class GameContoroller : MonoBehaviour
                 {
                     SpawnDraw8();
                 }
+                stagenum = Random.Range(1, 10);
+                if(stagenum == 1) {
+                    SpawnDrawStage1();
+                }
+                if(stagenum == 2) {
+                    SpawnDrawStage2();
+                }
+                if(stagenum == 3) {
+                    SpawnDrawStage3();
+                }
+                if(stagenum == 4) {
+                    SpawnDrawStage4();
+                }
+                if(stagenum == 5) {
+                    SpawnDrawStage5();
+                }
+                if(stagenum == 6) {
+                    SpawnDrawStage6();
+                }
+                if(stagenum == 7) {
+                    SpawnDrawStage7();
+                }
+                if(stagenum == 8) {
+                    SpawnDrawStage1();
+                }
+                if(stagenum == 9) {
+                    SpawnDrawStage9();
+                }
             }
         }
     }
 
-
+    private void Stage1() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_1");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage2() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_2");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage3() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_3");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage4() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_4");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage5() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_5");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage6() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_6");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage7() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_7");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage8() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_8");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    private void Stage9() {
+        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_9");
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        return;
+    }
+    void SpawnDrawStage1() {
+        Stage1();
+        Debug.Log("Stage_1");
+        return;
+    }
+    void SpawnDrawStage2() {
+        Stage2();
+        Debug.Log("Stage_2");
+        return;
+    }
+    void SpawnDrawStage3() {
+        Stage3();
+        Debug.Log("Stage_3");
+        return;
+    }
+    void SpawnDrawStage4() {
+        Stage4();
+        Debug.Log("Stage_4");
+        return;
+    }
+    void SpawnDrawStage5() {
+        Stage5();
+        Debug.Log("Stage_5");
+        return;
+    }
+    void SpawnDrawStage6() {
+        Stage6();
+        Debug.Log("Stage_6");
+        return;
+    }
+    void SpawnDrawStage7() {
+        Stage7();
+        Debug.Log("Stage_7");
+        return;
+    }
+    void SpawnDrawStage8() {
+        Stage8();
+        Debug.Log("Stage_8");
+        return;
+    }
+    void SpawnDrawStage9() {
+        Stage9();
+        Debug.Log("Stage_9");
+        return;
+    }
 }

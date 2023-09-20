@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    [SerializeField] public static float speed = PlaneA.speed;
+    [SerializeField] public static float speed = GameContoroller.speed;
 
     [SerializeField] float posx;
-    float Timer = PlaneA.Timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        Timer = 0.0f;
-        speed = PlaneA.speed + 12;
+        speed = GameContoroller.speed + 12;
     }
 
     // Update is called once per frame
@@ -31,4 +29,3 @@ public class Water : MonoBehaviour
         }
     }
 }
-//y=-1or2

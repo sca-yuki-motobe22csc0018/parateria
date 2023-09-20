@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] public static float speed = PlaneA.speed;
+    [SerializeField] public static float speed = GameContoroller.speed;
 
     [SerializeField] float posx;
-    float Timer = PlaneA.Timer;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-
-        Timer = 0.0f;
-        speed = PlaneA.speed;
+        speed = GameContoroller.speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed = PlaneA.speed;
+        speed = GameContoroller.speed;
 
         posx = transform.position.x;
         transform.position = new Vector3(posx - speed * Time.deltaTime, transform.position.y);

@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public float speed = PlaneA.speed;
+    [SerializeField] public float speed = GameContoroller.speed;
     [SerializeField] float posy;
     [SerializeField] float posx;
-    float Timer = PlaneA.Timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = PlaneA.speed + 6;
+        speed = GameContoroller.speed + 6;
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed = PlaneA.speed+6;
+        speed = GameContoroller.speed+6;
         posy = transform.position.y;
         posx = transform.position.x;
         posx= posx - (speed * Time.deltaTime);

@@ -29,7 +29,7 @@ public class CloudController : MonoBehaviour
         Cloud.transform.position = new Vector2(x,-0.4f);
         if(x <= -19.20f)
         {
-            x = 19.20f;
+            x = 19.199999f;
             Cloud.transform.position = new Vector2(x, -0.4f);
         }
     }
