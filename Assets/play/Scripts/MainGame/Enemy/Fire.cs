@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] public static float speed = GameContoroller.speed;
+    float speed = GameContoroller.speed;
     
-    [SerializeField] float posx;
+    float posx;
     
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = PlaneA.speed + 8;
+        speed = GameContoroller.speed + 8;
         
         posx = transform.position.x;
         transform.position = new Vector3(posx - speed * Time.deltaTime,transform.position.y);

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    [SerializeField] public static float speed = GameContoroller.speed;
+    float speed = GameContoroller.speed;
 
-    [SerializeField] float posx;
+    float posx;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class Water : MonoBehaviour
     void Update()
     {
         
-        speed = PlaneA.speed + 12;
+        speed = GameContoroller.speed + 12;
 
         posx = transform.position.x;
         transform.position = new Vector3(posx - speed * Time.deltaTime, transform.position.y);

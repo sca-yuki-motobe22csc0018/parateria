@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] public static float speed = GameContoroller.speed;
+    float speed = GameContoroller.speed;
 
-    [SerializeField] float posx;
+    float posx;
 
 
 

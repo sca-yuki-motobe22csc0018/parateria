@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NewPlaneA : MonoBehaviour
 {
-    GameObject Plane;
-    [SerializeField] public static float x;
-    [SerializeField] public static float BigDefaultX=34.5f;
-    [SerializeField] public static float SmallDefaultX=30.7f;
-    [SerializeField] public static float BigGenerateX=-3.84f;
+    [SerializeField] public GameObject Plane;
+    float x;
+    float BigDefaultX=34.5f-0.1f;
+    float SmallDefaultX=30.7f-0.1f;
+    [SerializeField] public float BigGenerateX=-3.84f;
     [SerializeField] public static float SmallGenerateX = 0.0f;
     [SerializeField] public static float speed = GameContoroller.speed;
 
@@ -18,15 +18,12 @@ public class NewPlaneA : MonoBehaviour
     void Start()
     {
         Plane=this.gameObject;
-        speed=GameContoroller.speed;
-        if (Plane = GameObject.FindGameObjectWithTag("GroundBig"))
-        {
-            x=BigDefaultX;
-        }
-        else if (Plane = GameObject.FindGameObjectWithTag("GroundSmall"))
-        {
-            x=SmallDefaultX;
-        }else if(Plane = GameObject.FindGameObjectWithTag("GroundStart")) {
+        speed = GameContoroller.speed;
+        if(Plane.tag == "GroundBig") {
+            x = BigDefaultX;
+        } else if(Plane.tag == "GroundSmall") {
+            x =SmallDefaultX;
+        }else if(Plane.tag == "GroundStart") {
             x=0;
         }
     }
@@ -37,9 +34,10 @@ public class NewPlaneA : MonoBehaviour
         speed=GameContoroller.speed;
         x -= speed * Time.deltaTime;
         Plane.transform.position = new Vector2(x, -1.8f);
-        if (x < -35.0f)
+        if (x <= -35.0f)
         {
-            Destroy(this.gameObject);
+            Debug.Log("Destroy"+this);
+           Destroy(this.gameObject);
         }
     }
 }

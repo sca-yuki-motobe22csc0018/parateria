@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public float speed = GameContoroller.speed;
-    [SerializeField] float posy;
-    [SerializeField] float posx;
+    float speed = GameContoroller.speed;
+    float posy;
+    float posx;
 
     // Start is called before the first frame update
     void Start()

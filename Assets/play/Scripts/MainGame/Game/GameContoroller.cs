@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameContoroller : MonoBehaviour
 {
+    float BigDefaultX = 34.5f-0.5f;
+    float SmallDefaultX = 30.7f-0.5f;
     int num = 0;
     int stagenum;
     public Text StartText;
@@ -22,6 +24,8 @@ public class GameContoroller : MonoBehaviour
     private float speedTimer = 0f;
     bool play;
     [SerializeField] public float speedmater=0;
+
+    float brinkSpeed=1.1f;
 
 
     // Start is called before the first frame update
@@ -75,7 +79,7 @@ public class GameContoroller : MonoBehaviour
                 speedTimer += Time.deltaTime;
                 if(speedTimer >= changeTime) {
                     speed += speedPlus;
-                    Player.xc = 2.0f + 1 / (maxSpeed - speed);
+                    Player.xc = 2.0f + 1 / (maxSpeed / speed);
                     if(speed > maxSpeed) {
                         speed = maxSpeed;
                         Player.xc = 3.0f;
@@ -199,7 +203,7 @@ public class GameContoroller : MonoBehaviour
 
     Color GetAlphaColor(Color color)
     {
-        textTime += Time.unscaledDeltaTime * 5.0f * speed;
+        textTime += Time.unscaledDeltaTime * 5.0f * brinkSpeed;
         color.a = Mathf.Sin(textTime);
         return color;
     }
@@ -209,9 +213,9 @@ public class GameContoroller : MonoBehaviour
         if (start)
         {
             string objName = other.gameObject.name;
-            if  (( objName == "Stage_1" || objName == "Stage_2" || objName == "Stage_3"
+            if  (( objName == "Stage_1" || objName == "Stage_2" || objName == "Stage_3" 
                 || objName == "Stage_4" || objName == "Stage_5" || objName == "Stage_6" 
-                || objName == "Stage_7" || objName == "Stage_8" || objName == "Collider")&& Time.timeScale >= 1)
+                || objName == "Stage_7" || objName == "Stage_8" || objName == "Stage_9") && Time.timeScale >= 1)
             {
                 Debug.Log(objName);
                 num = Random.Range(1, 101);// Å¶ 1Å`5ÇÃîÕàÕÇ≈ÉâÉìÉ_ÉÄÇ»êÆêîílÇ™ï‘ÇÈ
@@ -249,6 +253,7 @@ public class GameContoroller : MonoBehaviour
                     SpawnDraw8();
                 }
                 stagenum = Random.Range(1, 10);
+                Debug.Log(stagenum);
                 if(stagenum == 1) {
                     SpawnDrawStage1();
                 }
@@ -282,47 +287,47 @@ public class GameContoroller : MonoBehaviour
 
     private void Stage1() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_1");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage2() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_2");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage3() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_3");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage4() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_4");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage5() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_5");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage6() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_6");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage7() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_7");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(34.5f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage8() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_8");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     private void Stage9() {
         GameObject Stage_prefab = Resources.Load<GameObject>("Stage_9");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(30.7f, -1.8f, 0), Quaternion.identity);
+        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
         return;
     }
     void SpawnDrawStage1() {

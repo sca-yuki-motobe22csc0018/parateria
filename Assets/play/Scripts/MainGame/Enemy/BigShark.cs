@@ -6,7 +6,6 @@ using Spine;
 
 public class BigShark : MonoBehaviour
 {
-    [SerializeField] int Shark;
     float x, startX, endX;
     float moveTime;
     float nowTime;
