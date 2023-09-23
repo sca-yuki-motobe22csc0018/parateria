@@ -30,7 +30,7 @@ public class Back : MonoBehaviour
         back.transform.position = new Vector2(x, 3.0f);
         if (x < -28.8f)
         {
-            x = 28.7f;
+            x = 28.65f;
             back.transform.position = new Vector2(28.8f, 3.0f);
         }
     }
