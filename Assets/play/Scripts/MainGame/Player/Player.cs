@@ -148,26 +148,28 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameContoroller.start)
-        {
-            Transform myTransform = this.transform;
+        Transform myTransform = this.transform;
 
-            Vector3 pos = myTransform.position;
-            if (pos.x < -3 && Time.timeScale >= 1)
-            {
-                pos.x += 0.002f;
-                if (pos.x > -3)
-                {
-                    pos.x = -3;
-                }
-                myTransform.position = pos;
-            }
-            else
+        Vector3 pos = myTransform.position;
+        if (pos.x < -3 && Time.timeScale >= 1)
+        {
+            pos.x += 0.002f;
             if (pos.x > -3)
             {
                 pos.x = -3;
-                myTransform.position = pos;
             }
+            myTransform.position = pos;
+        }
+        else
+        if (pos.x > -3)
+        {
+            pos.x = -3;
+            myTransform.position = pos;
+        }
+
+        if (GameContoroller.start)
+        {
+            
 
 
             if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale >= 1 && jumpCount < 3)
@@ -248,7 +250,7 @@ public class Player : MonoBehaviour
             {
                 if (transform.position.y < -10 || lifePoint == 0 || transform.position.x < -12)
                 {
-                    PlaneA.speed = 8.0f;
+                    //GameContoroller.speed = 8.0f;
                     ScoreText.text = "";
                     timecount += Time.unscaledDeltaTime;
                     if (timecount > StopTime)
@@ -281,7 +283,7 @@ public class Player : MonoBehaviour
             if (Time.timeScale >= 1)
             {
                 count += Time.deltaTime;
-                walkDis += Time.deltaTime * PlaneA.speed;
+                walkDis += Time.deltaTime * GameContoroller.speed;
                 if (count > 1.0f / 60)
                 {
                     frameCount++;

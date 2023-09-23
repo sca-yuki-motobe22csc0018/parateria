@@ -16,11 +16,13 @@ public class CharaSpineMove : MonoBehaviour
 	[SerializeField]
 	private string charaDieAnimation;
 
+
 	[SerializeField]
-	private string charaTaikiAnimation;
+	private string charaWaitAnimation;
 
 	private int a;
 	private int b;
+	private int c;
 	private int timer=0;
 	bool set;
 
@@ -44,30 +46,43 @@ public class CharaSpineMove : MonoBehaviour
 
 		a =0;
 		b=1;
+		c=0;
 	}
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && Player.jumpCount < 4&&Player.lifePoint!=0)
-		{
-			PlayJumpAnimation();
-			b = 0;
-		}
-
-        if (Player.lifePoint == a)
+		if (GameContoroller.start)
         {
-			PlayDieAnimation();
-			a=1;
-			
+            if (c == 1)
+            {
+				PlayRunAnimation();
+				c =0;
+            }
+			if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1 && Player.jumpCount < 4 && Player.lifePoint != 0)
+			{
+				PlayJumpAnimation();
+				b = 0;
+			}
+
+			if (Player.lifePoint == a)
+			{
+				PlayDieAnimation();
+				a = 1;
+
+			}
+
+			// Aキーの入力でアニメーションを切り替えるテスト
+			if (Player.OnGround == true && b == 0 && Player.lifePoint != 0)
+			{
+				PlayRunAnimation();
+				b = 1;
+			}
         }
-
-		// Aキーの入力でアニメーションを切り替えるテスト
-		if (Player.OnGround==true&&b==0&&Player.lifePoint!=0)
-		{
-			PlayRunAnimation();
-			b=1;
-		}
-
+        else  if(c==0&&!GameContoroller.start)
+        {
+			PlayWaitAnimation();
+			c=1;
+        }
         //_skeletonAnimation.skeleton.R = Mathf.PerlinNoise(Time.time*4, 0);
         //_skeletonAnimation.skeleton.G = Mathf.PerlinNoise(Time.time * 4, 0);
         ///_skeletonAnimation.skeleton.B = Mathf.PerlinNoise(Time.time * 4, 0);
@@ -108,5 +123,10 @@ public class CharaSpineMove : MonoBehaviour
 	private void PlayDieAnimation()
 	{
 		spineAnimationState.SetAnimation(0, charaDieAnimation, false);
+	}
+
+	private void PlayWaitAnimation()
+	{
+		spineAnimationState.SetAnimation(0, charaWaitAnimation, true);
 	}
 }

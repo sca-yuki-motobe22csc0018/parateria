@@ -16,6 +16,7 @@ public class GameContoroller : MonoBehaviour
     private BigShark _SharkUp;
     private BigShark _SharkDown;
     private BigShark _Fox;
+    private bool spawn;
 
     [SerializeField] public static float speed = 7.0f;
     public static float speedPlus = 0.4f;
@@ -213,73 +214,92 @@ public class GameContoroller : MonoBehaviour
         if (start)
         {
             string objName = other.gameObject.name;
-            if  (( objName == "Stage_1" || objName == "Stage_2" || objName == "Stage_3" 
-                || objName == "Stage_4" || objName == "Stage_5" || objName == "Stage_6" 
-                || objName == "Stage_7" || objName == "Stage_8" || objName == "Stage_9") && Time.timeScale >= 1)
+            if (spawn == false)
             {
-                Debug.Log(objName);
-                num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
-                
-                if (num < 41)
+                if ((objName == "Stage_11" || objName == "Stage_21" || objName == "Stage_31"
+                    || objName == "Stage_41" || objName == "Stage_51" || objName == "Stage_61"
+                    || objName == "Stage_71" || objName == "Stage_81" || objName == "Stage_91") && Time.timeScale >= 1)
                 {
-                    SpawnDraw1();
+                    Debug.Log(objName);
+                    num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
+
+                    if (num < 41)
+                    {
+                        SpawnDraw1();
+                        spawn = true;
+                    }
+                    else if (num < 61)
+                    {
+                        SpawnDraw2();
+                        spawn = true;
+                    }
+                    else if (num < 76)
+                    {
+                        SpawnDraw3();
+                        spawn = true;
+                    }
+                    else if (num < 89)
+                    {
+                        SpawnDraw4();
+                        spawn = true;
+                    }
+                    else if (num < 90)
+                    {
+                        SpawnDraw5();
+                        spawn = true;
+                    }
+                    else if (num < 91)
+                    {
+                        SpawnDraw6();
+                        spawn = true;
+                    }
+                    else if (num < 96)
+                    {
+                        SpawnDraw7();
+                        spawn = true;
+                    }
+                    else if (num < 101)
+                    {
+                        SpawnDraw8();
+                        spawn = true;
+                    }
+                    //stagenum = Random.Range(1, 10);
+                    //Debug.Log(stagenum);
+                    //if(stagenum == 1) {
+                    //    SpawnDrawStage1();
+                    //}
+                    //if(stagenum == 2) {
+                    //    SpawnDrawStage2();
+                    //}
+                    //if(stagenum == 3) {
+                    //    SpawnDrawStage3();
+                    //}
+                    //if(stagenum == 4) {
+                    //    SpawnDrawStage4();
+                    //}
+                    //if(stagenum == 5) {
+                    //    SpawnDrawStage5();
+                    //}
+                    //if(stagenum == 6) {
+                    //    SpawnDrawStage6();
+                    //}
+                    //if(stagenum == 7) {
+                    //    SpawnDrawStage7();
+                    //}
+                    //if(stagenum == 8) {
+                    //    SpawnDrawStage1();
+                    //}
+                    //if(stagenum == 9) {
+                    //    SpawnDrawStage9();
+                    //}
                 }
-                else if (num < 61)
+            }else if (spawn == true)
+            {
+                if ((objName == "Stage_12" || objName == "Stage_22" || objName == "Stage_32"
+                    || objName == "Stage_42" || objName == "Stage_52" || objName == "Stage_62"
+                    || objName == "Stage_72" || objName == "Stage_82" || objName == "Stage_92") && Time.timeScale >= 1)
                 {
-                    SpawnDraw2();
-                }
-                else if (num < 76)
-                {
-                    SpawnDraw3();
-                }
-                else if (num < 89)
-                {
-                    SpawnDraw4();
-                }
-                else if (num < 90)
-                {
-                    SpawnDraw5();
-                }
-                else if (num < 91)
-                {
-                    SpawnDraw6();
-                }
-                else if (num < 96)
-                {
-                    SpawnDraw7();
-                }
-                else if (num < 101)
-                {
-                    SpawnDraw8();
-                }
-                stagenum = Random.Range(1, 10);
-                Debug.Log(stagenum);
-                if(stagenum == 1) {
-                    SpawnDrawStage1();
-                }
-                if(stagenum == 2) {
-                    SpawnDrawStage2();
-                }
-                if(stagenum == 3) {
-                    SpawnDrawStage3();
-                }
-                if(stagenum == 4) {
-                    SpawnDrawStage4();
-                }
-                if(stagenum == 5) {
-                    SpawnDrawStage5();
-                }
-                if(stagenum == 6) {
-                    SpawnDrawStage6();
-                }
-                if(stagenum == 7) {
-                    SpawnDrawStage7();
-                }
-                if(stagenum == 8) {
-                    SpawnDrawStage1();
-                }
-                if(stagenum == 9) {
-                    SpawnDrawStage9();
+                    spawn=false;
                 }
             }
         }

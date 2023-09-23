@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 5426528289897018421}
   - component: {fileID: 1346956421304453865}
   - component: {fileID: 2040493134691752472}
+  - component: {fileID: 2510963967915988486}
   m_Layer: 0
   m_Name: effect kyara1 (5)
   m_TagString: Untagged
@@ -449,6 +450,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &2510963967915988486
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564172640607362622}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &3018252342462076211
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +484,7 @@ GameObject:
   - component: {fileID: 142001194449512329}
   - component: {fileID: 9005681159980809422}
   - component: {fileID: 9075796335061223332}
+  - component: {fileID: 2772485351992378578}
   m_Layer: 0
   m_Name: effect kyara1 (3)
   m_TagString: Untagged
@@ -592,6 +615,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &2772485351992378578
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018252342462076211}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &4773458297264105506
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +853,7 @@ GameObject:
   - component: {fileID: 3761879021988487177}
   - component: {fileID: 2576138349490054036}
   - component: {fileID: 819265865405510039}
+  - component: {fileID: 2471389815025268236}
   m_Layer: 0
   m_Name: effect kyara1 (4)
   m_TagString: Untagged
@@ -939,6 +984,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &2471389815025268236
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855238232140209045}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &6190849420708576227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc424b1fdcb3a20419e84778105f520f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posx: 0
 --- !u!61 &1168203023806607941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1081,6 +1146,7 @@ GameObject:
   - component: {fileID: 8478094565726877909}
   - component: {fileID: 1946001719203303732}
   - component: {fileID: 2770828048444257355}
+  - component: {fileID: 6132034336773066127}
   m_Layer: 0
   m_Name: effect kyara1 (2)
   m_TagString: Untagged
@@ -1211,6 +1277,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &6132034336773066127
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675580782808152654}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &7903115166155311229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1311,7 @@ GameObject:
   - component: {fileID: 4003859786897111832}
   - component: {fileID: 7163356183596728050}
   - component: {fileID: 4241888041466051224}
+  - component: {fileID: 3263706206869140499}
   m_Layer: 0
   m_Name: effect kyara1 (1)
   m_TagString: Untagged
@@ -1354,6 +1442,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3263706206869140499
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903115166155311229}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &8354743539270395523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,6 +1476,7 @@ GameObject:
   - component: {fileID: 5057375673196144144}
   - component: {fileID: 5052289225729067063}
   - component: {fileID: 9222323397090617121}
+  - component: {fileID: 1092293954003531503}
   m_Layer: 0
   m_Name: effect kyara1
   m_TagString: Untagged
@@ -1497,6 +1607,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &1092293954003531503
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354743539270395523}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
 --- !u!1 &8645852289751945440
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ TagManager:
   - GroundBig
   - GroundSmall
   - GroundStart
+  - playerDown
+  - PlayerSide
   layers:
   - Default
   - TransparentFX

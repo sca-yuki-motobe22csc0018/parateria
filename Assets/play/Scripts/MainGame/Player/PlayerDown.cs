@@ -21,8 +21,11 @@ public class PlayerDown : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ground"))
         {
-            Player.jumpCount = 0;
-            jumpSet=false;
+            if (this.gameObject.tag == "playerDown")
+            {
+                Player.jumpCount = 0;
+                jumpSet = false;
+            }
         }
     }
 }

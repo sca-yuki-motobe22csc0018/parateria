@@ -6,7 +6,7 @@ public class CloudController : MonoBehaviour
 {
     public GameObject Cloud;
     float x;
-    private float speed=PlaneA.speed;
+    private float speed=7;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class CloudController : MonoBehaviour
         Cloud.transform.position = new Vector2(x,-0.4f);
         if(x <= -19.20f)
         {
-            x = 19.199999f;
+            x = 19.19f;
             Cloud.transform.position = new Vector2(x, -0.4f);
         }
     }

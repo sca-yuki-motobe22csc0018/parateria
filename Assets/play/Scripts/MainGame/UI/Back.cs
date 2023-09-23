@@ -6,7 +6,7 @@ public class Back : MonoBehaviour
 {
     public GameObject back;
     float x;
-    [SerializeField] float speed;
+    float speed=1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class Back : MonoBehaviour
         back.transform.position = new Vector2(x, 3.0f);
         if (x < -28.8f)
         {
-            x = 28.8f;
+            x = 28.7f;
             back.transform.position = new Vector2(28.8f, 3.0f);
         }
     }

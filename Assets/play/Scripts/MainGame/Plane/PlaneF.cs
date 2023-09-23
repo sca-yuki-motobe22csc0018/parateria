@@ -6,21 +6,21 @@ public class PlaneF : MonoBehaviour
 {
     public GameObject Plane;
     float x;
-    public static float speed = PlaneA.speed;
-    float space = -17.7792f;
+    public static float speed = GameContoroller.speed;
+    float space = PlaneA.space;
     float spawn = PlaneA.spawn;
     public static float Timer = PlaneA.Timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 68.98f;
+        x = 66f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed = PlaneA.speed;
+        speed = GameContoroller.speed;
         x -= speed * Time.deltaTime;
         Plane.transform.position = new Vector2(x, -1.3f);
         if (x < space)
