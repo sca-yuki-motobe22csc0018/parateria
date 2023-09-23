@@ -7,6 +7,7 @@ public class CloudController : MonoBehaviour
     public GameObject Cloud;
     float x;
     private float speed=7;
+    
 
     // Start is called before the first frame update
     void Start()

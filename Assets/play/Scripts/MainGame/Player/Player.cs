@@ -479,7 +479,6 @@ public class Player : MonoBehaviour
     private void Heal()
     {
         lifePoint++;
-        jumpCount--;
         lifeArray[lifePoint - 1].SetActive(true);
     }
 

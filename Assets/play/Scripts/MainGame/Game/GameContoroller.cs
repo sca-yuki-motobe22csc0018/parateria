@@ -216,9 +216,52 @@ public class GameContoroller : MonoBehaviour
             string objName = other.gameObject.name;
             if (spawn == false)
             {
-                if ((objName == "Stage_11" || objName == "Stage_21" || objName == "Stage_31"
-                    || objName == "Stage_41" || objName == "Stage_51" || objName == "Stage_61"
-                    || objName == "Stage_71" || objName == "Stage_81" || objName == "Stage_91") && Time.timeScale >= 1)
+                if (objName == "Stage_12")
+                {
+                    Debug.Log(objName);
+                    stagenum = Random.Range(1, 4);
+                    if (stagenum == 1)
+                    {
+                        SpawnDrawStage2();
+                    }
+                    if (stagenum == 2)
+                    {
+                        SpawnDrawStage4();
+                    }
+                    if (stagenum == 3)
+                    {
+                        SpawnDrawStage9();
+                    }
+                }
+                if (objName == "Stage_Small_Right")
+                {
+                    Debug.Log(objName);
+                    stagenum = Random.Range(1, 6);
+                    if (stagenum == 1)
+                    {
+                        SpawnDrawStage3();
+                    }
+                    if (stagenum == 2)
+                    {
+                        SpawnDrawStage5();
+                    }
+                    if (stagenum == 3)
+                    {
+                        SpawnDrawStage6();
+                    }
+                    if (stagenum == 4)
+                    {
+                        SpawnDrawStage7();
+                    }
+                    if (stagenum == 5)
+                    {
+                        //stage8
+                        //SpawnDrawStage8();
+                        SpawnDrawStage3();
+                    }
+                }
+                if ((objName == "Stage_11" || objName == "Stage_Small_Left"
+                    || objName == "Stage_Big_Left") && Time.timeScale >= 1)
                 {
                     Debug.Log(objName);
                     num = Random.Range(1, 101);// ¦ 1`5‚Ì”ÍˆÍ‚Åƒ‰ƒ“ƒ_ƒ€‚È®”’l‚ª•Ô‚é
@@ -263,45 +306,16 @@ public class GameContoroller : MonoBehaviour
                         SpawnDraw8();
                         spawn = true;
                     }
-                    //stagenum = Random.Range(1, 10);
-                    //Debug.Log(stagenum);
-                    //if(stagenum == 1) {
-                    //    SpawnDrawStage1();
-                    //}
-                    //if(stagenum == 2) {
-                    //    SpawnDrawStage2();
-                    //}
-                    //if(stagenum == 3) {
-                    //    SpawnDrawStage3();
-                    //}
-                    //if(stagenum == 4) {
-                    //    SpawnDrawStage4();
-                    //}
-                    //if(stagenum == 5) {
-                    //    SpawnDrawStage5();
-                    //}
-                    //if(stagenum == 6) {
-                    //    SpawnDrawStage6();
-                    //}
-                    //if(stagenum == 7) {
-                    //    SpawnDrawStage7();
-                    //}
-                    //if(stagenum == 8) {
-                    //    SpawnDrawStage1();
-                    //}
-                    //if(stagenum == 9) {
-                    //    SpawnDrawStage9();
-                    //}
                 }
-            }else if (spawn == true)
-            {
-                if ((objName == "Stage_12" || objName == "Stage_22" || objName == "Stage_32"
-                    || objName == "Stage_42" || objName == "Stage_52" || objName == "Stage_62"
-                    || objName == "Stage_72" || objName == "Stage_82" || objName == "Stage_92") && Time.timeScale >= 1)
-                {
-                    spawn=false;
-                }
-            }
+            }else 
+             if (spawn == true)
+             {
+                 if ((objName == "Stage_11" || objName == "Stage_Small_Left" 
+                    || objName == "Stage_Big_Left") && Time.timeScale >= 1)
+                 {
+                     spawn=false;
+                 }
+             }
         }
     }
 

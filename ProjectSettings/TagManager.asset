@@ -21,6 +21,7 @@ TagManager:
   - GroundStart
   - playerDown
   - PlayerSide
+  - Start
   layers:
   - Default
   - TransparentFX
