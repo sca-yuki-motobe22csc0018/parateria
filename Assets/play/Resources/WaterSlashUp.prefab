@@ -114,7 +114,6 @@ GameObject:
   - component: {fileID: 5879268374637917133}
   - component: {fileID: 5426528289897018421}
   - component: {fileID: 5651632581347484655}
-  - component: {fileID: 1560962661146686962}
   m_Layer: 0
   m_Name: effect kyara1 (5)
   m_TagString: Untagged
@@ -226,27 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &1560962661146686962
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2564172640607362622}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!1 &2855390062394641086
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +441,6 @@ GameObject:
   - component: {fileID: 5562022515774642778}
   - component: {fileID: 142001194449512329}
   - component: {fileID: 6584193058770710099}
-  - component: {fileID: 5502767277938811121}
   m_Layer: 0
   m_Name: effect kyara1 (3)
   m_TagString: Untagged
@@ -575,27 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &5502767277938811121
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3018252342462076211}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!1 &3296765202193532619
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +768,6 @@ GameObject:
   - component: {fileID: 8147286305883834494}
   - component: {fileID: 3761879021988487177}
   - component: {fileID: 8743955586361033838}
-  - component: {fileID: 567261390476964740}
   m_Layer: 0
   m_Name: effect kyara1 (4)
   m_TagString: Untagged
@@ -924,27 +879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &567261390476964740
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5855238232140209045}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!1 &6190849420708576227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1019,6 @@ GameObject:
   - component: {fileID: 7201938689710706030}
   - component: {fileID: 8478094565726877909}
   - component: {fileID: 2689769977196719200}
-  - component: {fileID: 2841100339975581257}
   m_Layer: 0
   m_Name: effect kyara1 (2)
   m_TagString: Untagged
@@ -1197,27 +1130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &2841100339975581257
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675580782808152654}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!1 &7895054454541675726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1244,6 @@ GameObject:
   - component: {fileID: 1869927200212762818}
   - component: {fileID: 4003859786897111832}
   - component: {fileID: 4667172250881937552}
-  - component: {fileID: 4441396307566698380}
   m_Layer: 0
   m_Name: effect kyara1 (1)
   m_TagString: Untagged
@@ -1444,27 +1355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &4441396307566698380
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7903115166155311229}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!1 &8354743539270395523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1367,6 @@ GameObject:
   - component: {fileID: 7002525381181362851}
   - component: {fileID: 5057375673196144144}
   - component: {fileID: 184286135529567738}
-  - component: {fileID: 814383351124848250}
   m_Layer: 0
   m_Name: effect kyara1
   m_TagString: Untagged
@@ -1589,24 +1478,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a95667ed296b944d9ca53055f6e4159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &814383351124848250
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8354743539270395523}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6

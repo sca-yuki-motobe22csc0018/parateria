@@ -23,7 +23,7 @@ public class Fire : MonoBehaviour
         posx = transform.position.x;
         transform.position = new Vector3(posx - speed * Time.deltaTime,transform.position.y);
 
-        if (posx <= -17)
+        if (posx <= -35)
         {
             Destroy(this.gameObject);
         }

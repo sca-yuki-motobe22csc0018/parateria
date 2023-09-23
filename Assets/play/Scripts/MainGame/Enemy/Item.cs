@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
         posx = transform.position.x;
         transform.position = new Vector3(posx - speed * Time.deltaTime, transform.position.y);
 
-        if (posx <= -10)
+        if (posx <= -35)
         {
             Destroy(this.gameObject);
         }

@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         posx = transform.position.x;
         posx= posx - (speed * Time.deltaTime);
 
-        if (posx <= -10)
+        if (posx <= -35)
         {
             Destroy(this.gameObject);
         }
