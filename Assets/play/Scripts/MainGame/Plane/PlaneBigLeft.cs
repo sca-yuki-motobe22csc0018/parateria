@@ -10,13 +10,14 @@ public class PlaneBigLeft : MonoBehaviour
     public float y;
     [SerializeField] public static float space = PlaneStartLeft.space;
     [SerializeField] public static float spawn = PlaneStartLeft.spawn;
+    float StartSet=PlaneStartLeft.StartSet;
     float speed;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 53.1f;
+        x = 53.1f+StartSet;
     }
 
     // Update is called once per frame

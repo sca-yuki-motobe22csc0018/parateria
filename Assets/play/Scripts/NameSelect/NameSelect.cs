@@ -14,6 +14,7 @@ public class NameSelect : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(Decision);
         _name = GameObject.Find("Name").GetComponent<Name>();
+        
     }
 
     void Decision()

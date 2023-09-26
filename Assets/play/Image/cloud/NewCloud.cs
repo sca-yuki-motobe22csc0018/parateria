@@ -21,7 +21,7 @@ public class NewCloud : MonoBehaviour
         this.transform.position = new Vector2(x, -0.4f);
         if (x <= -19.20f)
         {
-            x = 45.0f;
+            x = 40.0f;
             this.transform.position = new Vector2(x, -0.4f);
             num = Random.Range(3, 8);
             speed = num;

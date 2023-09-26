@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaneBigRight : MonoBehaviour
+public class Wall : MonoBehaviour
 {
     public GameObject Plane;
     float x;
@@ -10,14 +10,13 @@ public class PlaneBigRight : MonoBehaviour
     public float y;
     [SerializeField] public static float space = PlaneStartLeft.space;
     [SerializeField] public static float spawn = PlaneStartLeft.spawn;
-    float StartSet = PlaneStartLeft.StartSet;
     float speed;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 79.65f+StartSet;
+        x = 66.0f;
     }
 
     // Update is called once per frame
@@ -31,13 +30,7 @@ public class PlaneBigRight : MonoBehaviour
         {
             speed = 0;
         }
-
-        x -= speed * Time.deltaTime;
-        Plane.transform.position = new Vector2(x, y);
-        if (x < space)
-        {
-            x = spawn;
-            Plane.transform.position = new Vector2(x, y);
-        }
+        y = 0.03f * Mathf.Sin(Time.time * 5.0f);
+        Plane.transform.position += new Vector3(0, y, 0);
     }
 }

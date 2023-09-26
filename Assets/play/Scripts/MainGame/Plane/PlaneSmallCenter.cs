@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaneBigRight : MonoBehaviour
+public class PlaneSmallCenter : MonoBehaviour
 {
     public GameObject Plane;
     float x;
@@ -10,14 +10,13 @@ public class PlaneBigRight : MonoBehaviour
     public float y;
     [SerializeField] public static float space = PlaneStartLeft.space;
     [SerializeField] public static float spawn = PlaneStartLeft.spawn;
-    float StartSet = PlaneStartLeft.StartSet;
     float speed;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 79.65f+StartSet;
+        x = 26.5f;
     }
 
     // Update is called once per frame

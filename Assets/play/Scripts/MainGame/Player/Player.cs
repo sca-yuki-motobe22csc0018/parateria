@@ -378,11 +378,6 @@ public class Player : MonoBehaviour
             FiCount = true;
             MaCount = true;
             EnemyHit = false;
-            Ribbon.SetActive(false);
-            for (int i = 0; i < 4; ++i)
-            {
-                justJump[i].SetActive(false);
-            }
         }
     }
 
@@ -394,13 +389,28 @@ public class Player : MonoBehaviour
             if (other.gameObject.CompareTag("Item"))
             {
                 audioSource.PlayOneShot(itemGet);
+                if (CharaSelect.change == 2)
+                {
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                    HealScore();
+                }
+                else
+                {
+                    HealScore();
+                }
                 if (lifePoint < 6)
                 {
                     if (CharaSelect.change == 2)
                     {
                         Heal();
-                        HealScore();
-                        HealScore();
                         if (lifePoint < 6)
                         {
                             Heal();
@@ -409,7 +419,6 @@ public class Player : MonoBehaviour
                     else
                     {
                         Heal();
-                        HealScore();
                     }
                 }
             }
@@ -665,6 +674,62 @@ public class Player : MonoBehaviour
         Ribbon.SetActive(true);
         jumpScore.text = "+" + Mathf.Clamp(numScore, 0, 99999999).ToString();
         score += numScore;
+        StartCoroutine(MoveText());
+    }
+
+    private RectTransform myRect;
+    private Vector3 offset = new Vector3(3.25f, 1.25f, 0);//4‚Ü‚Å
+    float startY, startX;
+    float endY, endX;
+    float y, x;
+    float nowTime, moveTime;
+
+    IEnumerator MoveText()
+    {
+        myRect = Ribbon.GetComponent<RectTransform>();
+        offset = new Vector3(3.25f, 1.25f, 0);
+        Vector3 newPos = transform.position;
+        x = offset.x;
+        y = offset.y;
+        MoveStart(5.0f, 4.0f, 1.0f);
+        yield return null;
+        while (offset.y < 4.0f)
+        {
+            yield return null;
+            nowTime += Time.deltaTime;
+            if (nowTime > moveTime)
+            {
+                nowTime = moveTime;
+            }
+            offset.x = nowTime / moveTime * (endX - startX) + startX;
+            offset.y = nowTime / moveTime * (endY - startY) + startY;
+            offset = new Vector3(offset.x, offset.y, 0);
+            myRect.position = RectTransformUtility.WorldToScreenPoint(Camera.main, newPos + offset);
+        }
+        for (int i = 0; i < 4; ++i)
+        {
+            justJump[i].SetActive(false);
+        }
+        Ribbon.SetActive(false);
+    }
+
+    void MoveStart(float toX, float toY, float time)
+    {
+        if (time == 0.0f)
+        {
+            myRect.position = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position + offset);
+            return;
+        }
+        else
+        {
+            startX = x;
+            startY = y;
+            endX = toX;
+            endY = toY;
+        }
+        moveTime = time;
+        nowTime = 0.0f;
+        return;
     }
 
     IEnumerator ResultTime()

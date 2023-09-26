@@ -30,13 +30,8 @@ public class PlaneBigCenter : MonoBehaviour
         {
             speed = 0;
         }
+        y = 0.004f * Mathf.Sin(Time.time*2.5f);
 
-        x -= speed * Time.deltaTime;
-        Plane.transform.position = new Vector2(x, y);
-        if (x < space)
-        {
-            x = spawn;
-            Plane.transform.position = new Vector2(x, y);
-        }
+        Plane.transform.position+= new Vector3(0,y,0);
     }
 }

@@ -25,8 +25,9 @@ public class GameContoroller : MonoBehaviour
     private float speedTimer = 0f;
     bool play;
     [SerializeField] public float speedmater=0;
+    [SerializeField] public GameObject[] Stage = new GameObject[20];
 
-    float brinkSpeed=1.1f;
+    float brinkSpeed=1.5f;
 
 
     // Start is called before the first frame update
@@ -39,6 +40,16 @@ public class GameContoroller : MonoBehaviour
         _SharkDown = GameObject.Find("BigSharkDown").GetComponent<BigShark>();
         _Fox = GameObject.Find("BigFox").GetComponent<BigShark>();
         play = false;
+        Stage[0].SetActive(false);
+        Stage[1].SetActive(false);
+        Stage[2].SetActive(false);
+        Stage[3].SetActive(false);
+        Stage[4].SetActive(false);
+        Stage[5].SetActive(false);
+        Stage[6].SetActive(false);
+        Stage[7].SetActive(false);
+        Stage[8].SetActive(false);
+        Stage[9].SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,15 +61,16 @@ public class GameContoroller : MonoBehaviour
             speed = 0.0f;
             if (countTime > 0.0f)
             {
-                countTime -= Time.unscaledDeltaTime;
+                countTime -= Time.deltaTime;
                 if (countTime <= 0.0f)
                 {
                     countTime = 0.0f;
                     StartText.text = "";
                     start = true;
                 }
-                else if (countTime <= 0.9f)
+                else if (countTime <= 0.999f)
                 {
+                    StartText.fontSize=300;
                     StartText.text = "GO!!!";
                     StartText.color = GetAlphaColor(StartText.color);
 
@@ -204,8 +216,13 @@ public class GameContoroller : MonoBehaviour
 
     Color GetAlphaColor(Color color)
     {
-        textTime += Time.unscaledDeltaTime * 5.0f * brinkSpeed;
-        color.a = Mathf.Sin(textTime);
+        textTime += Time.deltaTime * brinkSpeed;
+        color.a = Mathf.Cos(textTime);
+        if (color.a<=0)
+        {
+            textTime=0.0f;
+            color.a = Mathf.Cos(textTime);
+        }
         return color;
     }
 
@@ -213,53 +230,53 @@ public class GameContoroller : MonoBehaviour
     {
         if (start)
         {
+
             string objName = other.gameObject.name;
+            if (objName == "Stage_12")
+            {
+                Debug.Log(objName);
+                stagenum = Random.Range(1, 4);
+                if (stagenum == 1)
+                {
+                    SpawnDrawStage2();
+                }
+                if (stagenum == 2)
+                {
+                    SpawnDrawStage4();
+                }
+                if (stagenum == 3)
+                {
+                    SpawnDrawStage9();
+                }
+            }
+            if (objName == "Stage_Small_Right")
+            {
+                Debug.Log(objName);
+                stagenum = Random.Range(1, 6);
+                if (stagenum == 1)
+                {
+                    SpawnDrawStage3();
+                }
+                if (stagenum == 2)
+                {
+                    SpawnDrawStage5();
+                }
+                if (stagenum == 3)
+                {
+                    SpawnDrawStage6();
+                }
+                if (stagenum == 4)
+                {
+                    SpawnDrawStage7();
+                }
+                if (stagenum == 5)
+                {
+                    SpawnDrawStage8();
+                }
+            }
             if (spawn == false)
             {
-                if (objName == "Stage_12")
-                {
-                    Debug.Log(objName);
-                    stagenum = Random.Range(1, 4);
-                    if (stagenum == 1)
-                    {
-                        SpawnDrawStage2();
-                    }
-                    if (stagenum == 2)
-                    {
-                        SpawnDrawStage4();
-                    }
-                    if (stagenum == 3)
-                    {
-                        SpawnDrawStage9();
-                    }
-                }
-                if (objName == "Stage_Small_Right")
-                {
-                    Debug.Log(objName);
-                    stagenum = Random.Range(1, 6);
-                    if (stagenum == 1)
-                    {
-                        SpawnDrawStage3();
-                    }
-                    if (stagenum == 2)
-                    {
-                        SpawnDrawStage5();
-                    }
-                    if (stagenum == 3)
-                    {
-                        SpawnDrawStage6();
-                    }
-                    if (stagenum == 4)
-                    {
-                        SpawnDrawStage7();
-                    }
-                    if (stagenum == 5)
-                    {
-                        //stage8
-                        //SpawnDrawStage8();
-                        SpawnDrawStage3();
-                    }
-                }
+                
                 if ((objName == "Stage_11" || objName == "Stage_Small_Left"
                     || objName == "Stage_Big_Left") && Time.timeScale >= 1)
                 {
@@ -310,8 +327,8 @@ public class GameContoroller : MonoBehaviour
             }else 
              if (spawn == true)
              {
-                 if ((objName == "Stage_11" || objName == "Stage_Small_Left" 
-                    || objName == "Stage_Big_Left") && Time.timeScale >= 1)
+                 if ((objName == "Stage_12" || objName == "Stage_Small_Right" 
+                    || objName == "Stage_Big_Right") && Time.timeScale >= 1)
                  {
                      spawn=false;
                  }
@@ -320,48 +337,74 @@ public class GameContoroller : MonoBehaviour
     }
 
     private void Stage1() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_1");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
+        //Stage[1].SetActive(true);
         return;
     }
     private void Stage2() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_2");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[0].SetActive(true);
+        Stage[1].SetActive(true);
+        Stage[2].SetActive(false);
+        Stage[3].SetActive(false);
         return;
     }
     private void Stage3() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_3");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[4].SetActive(true);
+        Stage[5].SetActive(true);
+        Stage[6].SetActive(false);
+        Stage[7].SetActive(false);
+        Stage[8].SetActive(false);
+        Stage[9].SetActive(false);
         return;
     }
     private void Stage4() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_4");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[0].SetActive(false);
+        Stage[1].SetActive(false);
+        Stage[2].SetActive(true);
+        Stage[3].SetActive(false);
         return;
     }
     private void Stage5() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_5");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[4].SetActive(false);
+        Stage[5].SetActive(false);
+        Stage[6].SetActive(true);
+        Stage[7].SetActive(false);
+        Stage[8].SetActive(false);
+        Stage[9].SetActive(false);
         return;
     }
     private void Stage6() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_6");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[4].SetActive(false);
+        Stage[5].SetActive(false);
+        Stage[6].SetActive(false);
+        Stage[7].SetActive(true);
+        Stage[8].SetActive(false);
+        Stage[9].SetActive(false);
         return;
     }
     private void Stage7() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_7");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[4].SetActive(false);
+        Stage[5].SetActive(false);
+        Stage[6].SetActive(false);
+        Stage[7].SetActive(false);
+        Stage[8].SetActive(true);
+        Stage[9].SetActive(false);
         return;
     }
     private void Stage8() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_8");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(BigDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[4].SetActive(false);
+        Stage[5].SetActive(false);
+        Stage[6].SetActive(false);
+        Stage[7].SetActive(false);
+        Stage[8].SetActive(false);
+        Stage[9].SetActive(true);
         return;
     }
     private void Stage9() {
-        GameObject Stage_prefab = Resources.Load<GameObject>("Stage_9");
-        GameObject Stage = Instantiate(Stage_prefab, new Vector3(SmallDefaultX, -1.8f, 0), Quaternion.identity);
+        Stage[0].SetActive(false);
+        Stage[1].SetActive(false);
+        Stage[2].SetActive(false);
+        Stage[3].SetActive(true);
+
         return;
     }
     void SpawnDrawStage1() {
@@ -390,12 +433,12 @@ public class GameContoroller : MonoBehaviour
         return;
     }
     void SpawnDrawStage6() {
-        Stage6();
+        Stage8();
         Debug.Log("Stage_6");
         return;
     }
     void SpawnDrawStage7() {
-        Stage7();
+        Stage8();
         Debug.Log("Stage_7");
         return;
     }
