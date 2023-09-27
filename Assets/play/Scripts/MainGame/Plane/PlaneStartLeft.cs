@@ -9,7 +9,7 @@ public class PlaneStartLeft : MonoBehaviour
     [SerializeField]
     public float y;
     [SerializeField] public static float space = -17.7f;
-    [SerializeField] public static float spawn = 97.3f;
+    [SerializeField] public static float spawn = 97.2f;
     public static float Timer = 0.0f;
     float speed;
     [SerializeField] public static float StartSet=4;
