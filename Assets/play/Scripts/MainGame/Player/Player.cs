@@ -360,7 +360,7 @@ public class Player : MonoBehaviour
         if(blink == true) 
         {
             blinktime+=1;
-            if(blinktime > 200) {
+            if(blinktime > 40) {
                 blink=false;
                 blinktime=0;
             }
@@ -449,8 +449,6 @@ public class Player : MonoBehaviour
 
         StartCoroutine(ColorBlinking());
         blink=true;
-        
-
     }
 
 
