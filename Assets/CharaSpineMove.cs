@@ -88,7 +88,7 @@ public class CharaSpineMove : MonoBehaviour
         ///_skeletonAnimation.skeleton.B = Mathf.PerlinNoise(Time.time * 4, 0);
         if(Player.blink == true) {
 			timer += 1;
-			if(timer > 20) {
+			if(timer > 1) {
 				if(set == true) {
 					_skeletonAnimation.skeleton.A = 0f;
 					set = false;
