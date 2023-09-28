@@ -28,6 +28,7 @@ public class CharaSelect : MonoBehaviour
     public void SetGame(int num)
     {
         change = num;
+        WindowAnim.move=false;
         if(change == 1)
         {
             cf1.gameObject.SetActive(true);

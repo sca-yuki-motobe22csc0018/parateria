@@ -9,13 +9,13 @@ public class TitleController : MonoBehaviour
 
     AudioSource audioSource;
 
-    public GameObject asobikata;
+    public GameObject Asobikata;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        asobikata.SetActive(false);
+        Asobikata.SetActive(false);
     }
 
     public void SE()
@@ -37,7 +37,8 @@ public class TitleController : MonoBehaviour
         }
         else if (num == 3)
         {
-            asobikata.SetActive(true);
+            Asobikata.SetActive(true);
+            asobikata.move=false;
         }
     }
 }

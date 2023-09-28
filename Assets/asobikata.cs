@@ -9,6 +9,8 @@ public class asobikata : MonoBehaviour
     [SerializeField] GameObject[] button = new GameObject[2];
     int change;
     private TitleController tc;
+    public static bool move=false;
+    private RectTransform _rT;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,61 @@ public class asobikata : MonoBehaviour
         }
         tc = GameObject.Find("TitleController").GetComponent<TitleController>();
     }
+
+    void Update()
+    {
+        if (!move)
+        {
+            StartCoroutine(WindowAnimation());
+        }
+    }
+
+    float startY, startX;
+    float endY, endX;
+    float y, x;
+    float nowTime, moveTime;
+    void MoveStart(float toX, float toY, float time)
+    {
+        if (time == 0.0f)
+        {
+            _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, x);
+            _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y);
+            return;
+        }
+        else
+        {
+            startX = x;
+            startY = y;
+            endX = toX;
+            endY = toY;
+        }
+        moveTime = time;
+        nowTime = 0.0f;
+        return;
+    }
+
+    IEnumerator WindowAnimation()
+    {
+        move = true;
+        x = 700;
+        y = 400;
+        _rT=window[change].GetComponent<RectTransform>();
+        MoveStart(1400, 800, 0.1f);
+        while (x < 1400.0f)
+        {
+            yield return null;
+            nowTime += Time.deltaTime;
+            if (nowTime > moveTime)
+            {
+                nowTime = moveTime;
+            }
+            x = nowTime / moveTime * (endX - startX) + startX;
+            y = nowTime / moveTime * (endY - startY) + startY;
+            _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, x);
+            _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y);
+        }
+    }
+
 
     public void Window(int num)
     {

@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   select: {fileID: 8300000, guid: e8fd33cb06f6dee44846ea53d03325c2, type: 3}
-  asobikata: {fileID: 1868505668}
+  Asobikata: {fileID: 1868505668}
 --- !u!4 &1718284996
 Transform:
   m_ObjectHideFlags: 0

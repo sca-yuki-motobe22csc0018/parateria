@@ -14,6 +14,7 @@ public class BackGroundController : MonoBehaviour
     Color Evening = new Color32(60, 110, 133, 1);
     Color Night = new Color32(26, 41, 59, 1);
     Camera backGround;
+    public static bool night=false;
     [SerializeField] float Change;
     void Start()
     {
@@ -22,6 +23,7 @@ public class BackGroundController : MonoBehaviour
         changeTime = 1;
         backGround = Camera.main;
         backGround.backgroundColor = Noon;
+        night=false;
     }
 
     void Update()
@@ -45,6 +47,7 @@ public class BackGroundController : MonoBehaviour
                     break;
                 case 3:
                     backGround.backgroundColor = Color.Lerp(Evening, Night, Mathf.PingPong(colorTime, 1));
+                    night=true;
                     break;
                 case 4:
                     backGround.backgroundColor = Color.Lerp(Night, Night, Mathf.PingPong(colorTime, 1));
@@ -54,6 +57,7 @@ public class BackGroundController : MonoBehaviour
                     break;
                 case 6:
                     backGround.backgroundColor = Color.Lerp(Night, Morning, Mathf.PingPong(colorTime, 1));
+                    night=false;
                     break;
             }
             if(nowTime >= Change)

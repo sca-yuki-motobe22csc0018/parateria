@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
     {
         xc = 2.0f;
         rb = GetComponent<Rigidbody2D>();
-        ScoreText.text = "";
+        ScoreText.text = "000000000";
         ResultScore.text = "";
         Distance.text = "";
         jumpScore.text = "";
@@ -391,20 +391,11 @@ public class Player : MonoBehaviour
                 audioSource.PlayOneShot(itemGet);
                 if (CharaSelect.change == 2)
                 {
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
-                    HealScore();
+                    HealScore(15);
                 }
                 else
                 {
-                    HealScore();
+                    HealScore(1);
                 }
                 if (lifePoint < 6)
                 {
@@ -489,23 +480,23 @@ public class Player : MonoBehaviour
         lifeArray[lifePoint - 1].SetActive(true);
     }
 
-    private void HealScore()
+    private void HealScore(int num)
     {
         if (Time.timeSinceLevelLoad >= 180)
         {
-            score += itemScore[3];
+            score += itemScore[3]*num;
         }
         else if (Time.timeSinceLevelLoad >= 120)
         {
-            score += itemScore[2];
+            score += itemScore[2] * num;
         }
         else if (Time.timeSinceLevelLoad >= 60)
         {
-            score += itemScore[1];
+            score += itemScore[1] * num;
         }
         else
         {
-            score += itemScore[0];
+            score += itemScore[0] * num;
         }
     }
 
@@ -689,7 +680,7 @@ public class Player : MonoBehaviour
         Vector3 newPos = transform.position;
         x = offset.x;
         y = offset.y;
-        MoveStart(5.0f, 4.0f, 1.0f);
+        MoveStart(5.0f, 5.0f, 0.5f);
         yield return null;
         while (offset.y < 4.0f)
         {
@@ -699,7 +690,7 @@ public class Player : MonoBehaviour
             {
                 nowTime = moveTime;
             }
-            offset.x = nowTime / moveTime * (endX - startX) + startX;
+            //offset.x = nowTime / moveTime * (endX - startX) + startX;
             offset.y = nowTime / moveTime * (endY - startY) + startY;
             offset = new Vector3(offset.x, offset.y, 0);
             myRect.position = RectTransformUtility.WorldToScreenPoint(Camera.main, newPos + offset);

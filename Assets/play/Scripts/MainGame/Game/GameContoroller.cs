@@ -17,6 +17,7 @@ public class GameContoroller : MonoBehaviour
     private BigShark _SharkDown;
     private BigShark _Fox;
     private bool spawn;
+    private bool spawn2;
 
     [SerializeField] public static float speed = 7.0f;
     public static float speedPlus = 0.4f;
@@ -28,6 +29,16 @@ public class GameContoroller : MonoBehaviour
     [SerializeField] public GameObject[] Stage = new GameObject[20];
 
     float brinkSpeed=1.5f;
+
+    public static bool stage1set;
+    public static bool stage2set;
+    public static bool stage3set;
+    public static bool stage4set;
+    public static bool stage5set;
+    public static bool stage6set;
+    public static bool stage7set;
+    public static bool stage8set;
+    public static bool stage9set;
 
 
     // Start is called before the first frame update
@@ -50,15 +61,24 @@ public class GameContoroller : MonoBehaviour
         Stage[7].SetActive(false);
         Stage[8].SetActive(false);
         Stage[9].SetActive(false);
+        stage1set = false;
+        stage2set = false;
+        stage3set = false;
+        stage4set = false;
+        stage5set = false;
+        stage6set = false;
+        stage7set = false;
+        stage8set = false;
+        stage9set = false;
+        speed = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         speedmater=speed;
-        if (!start)
+        if (!start||play)
         {
-            speed = 0.0f;
             if (countTime > 0.0f)
             {
                 countTime -= Time.deltaTime;
@@ -66,14 +86,17 @@ public class GameContoroller : MonoBehaviour
                 {
                     countTime = 0.0f;
                     StartText.text = "";
-                    start = true;
+                    play=false;
+                    
                 }
                 else if (countTime <= 0.999f)
                 {
                     StartText.fontSize=300;
                     StartText.text = "GO!!!";
                     StartText.color = GetAlphaColor(StartText.color);
-
+                    start = true;
+                    speed = 7.0f;
+                    play = true;
                 }
                 else
                 {
@@ -83,11 +106,6 @@ public class GameContoroller : MonoBehaviour
                 }
             }
         }else {
-            if(!play) {
-                speed = 7.0f;
-                play = true;
-            }
-
             if(speed < maxSpeed) {
                 speedTimer += Time.deltaTime;
                 if(speedTimer >= changeTime) {
@@ -251,6 +269,7 @@ public class GameContoroller : MonoBehaviour
             }
             if (objName == "Stage_Small_Right")
             {
+
                 Debug.Log(objName);
                 stagenum = Random.Range(1, 6);
                 if (stagenum == 1)
@@ -333,6 +352,67 @@ public class GameContoroller : MonoBehaviour
                      spawn=false;
                  }
              }
+
+            if (spawn2 == false)
+            {
+
+                if ((objName == "Stage_12" || objName == "Stage_Small_Right"
+                    || objName == "Stage_Big_Right") && Time.timeScale >= 1)
+                {
+                    Debug.Log(objName);
+                    num = Random.Range(1, 101);// ¦ 1`5‚Ì”ÍˆÍ‚Åƒ‰ƒ“ƒ_ƒ€‚È®”’l‚ª•Ô‚é
+
+                    if (num < 41)
+                    {
+                        SpawnDraw1();
+                        spawn2 = true;
+                    }
+                    else if (num < 61)
+                    {
+                        SpawnDraw2();
+                        spawn2 = true;
+                    }
+                    else if (num < 76)
+                    {
+                        SpawnDraw3();
+                        spawn2 = true;
+                    }
+                    else if (num < 89)
+                    {
+                        SpawnDraw4();
+                        spawn2 = true;
+                    }
+                    else if (num < 90)
+                    {
+                        SpawnDraw5();
+                        spawn2 = true;
+                    }
+                    else if (num < 91)
+                    {
+                        SpawnDraw6();
+                        spawn2 = true;
+                    }
+                    else if (num < 96)
+                    {
+                        SpawnDraw7();
+                        spawn2 = true;
+                    }
+                    else if (num < 101)
+                    {
+                        SpawnDraw8();
+                        spawn2 = true;
+                    }
+                }
+            }
+            else
+             if (spawn2 == true)
+            {
+                if ((objName == "Stage_11" || objName == "Stage_Small_Left"
+                    || objName == "Stage_Big_Left") && Time.timeScale >= 1)
+                {
+                    spawn2 = false;
+                }
+            }
         }
     }
 
