@@ -30,10 +30,10 @@ public class Back : MonoBehaviour
     {
         x -= speed * Time.deltaTime;
         back.transform.position = new Vector2(x, y);
-        if (x < -35.0f)
+        if (x <= -10.5f)
         {
-            x = 14.0f;
-            back.transform.position = new Vector2(24.5f, y);
+            x = 38.5f;
+            back.transform.position = new Vector2(38.5f, y);
         }
     }
 }
