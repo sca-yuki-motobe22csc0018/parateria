@@ -15,12 +15,13 @@ public class BackGroundController : MonoBehaviour
     Color Night = new Color32(26, 41, 59, 1);
     Camera backGround;
     public static bool night=false;
-    [SerializeField] float Change;
+    float Change=9;
     void Start()
     {
         colorTime = 0.0f;
         nowTime = 0.0f;
-        changeTime = 1;
+        changeTime = 2;
+        Change=9;
         backGround = Camera.main;
         backGround.backgroundColor = Noon;
         night=false;
@@ -43,28 +44,35 @@ public class BackGroundController : MonoBehaviour
                     backGround.backgroundColor = Color.Lerp(Morning, Noon,  Mathf.PingPong(colorTime, 1));
                     break;
                 case 2:
-                    backGround.backgroundColor = Color.Lerp(Noon, Evening, Mathf.PingPong(colorTime, 1));
+                    backGround.backgroundColor = Color.Lerp(Noon, Noon, Mathf.PingPong(colorTime, 1));
                     break;
                 case 3:
-                    backGround.backgroundColor = Color.Lerp(Evening, Night, Mathf.PingPong(colorTime, 1));
-                    night=true;
+                    backGround.backgroundColor = Color.Lerp(Noon, Evening, Mathf.PingPong(colorTime, 1));
                     break;
                 case 4:
-                    backGround.backgroundColor = Color.Lerp(Night, Night, Mathf.PingPong(colorTime, 1));
+                    backGround.backgroundColor = Color.Lerp(Evening, Night, Mathf.PingPong(colorTime, 1));
+                    night =true;
                     break;
                 case 5:
                     backGround.backgroundColor = Color.Lerp(Night, Night, Mathf.PingPong(colorTime, 1));
                     break;
                 case 6:
+                    backGround.backgroundColor = Color.Lerp(Night, Night, Mathf.PingPong(colorTime, 1));
+                    break;
+                case 7:
+                    backGround.backgroundColor = Color.Lerp(Night, Night, Mathf.PingPong(colorTime, 1));
+                    
+                    break;
+                case 8:
                     backGround.backgroundColor = Color.Lerp(Night, Morning, Mathf.PingPong(colorTime, 1));
-                    night=false;
+                    night = false;
                     break;
             }
             if(nowTime >= Change)
             {
                 nowTime = 0.0f;
                 ++changeTime;
-                if(changeTime == 7)
+                if(changeTime == 9)
                 {
                     changeTime = 1;
                 }

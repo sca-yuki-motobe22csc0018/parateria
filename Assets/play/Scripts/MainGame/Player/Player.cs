@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     bool FiCount;
     bool MaCount;
     bool EnemyHit;
-    public static bool blink=false;
-    int blinktime=0;
+    public static bool blink = false;
+    int blinktime = 0;
 
     public GameObject[] lifeArray = new GameObject[6];
     public GameObject[] selectCharacter = new GameObject[3];
@@ -91,6 +91,12 @@ public class Player : MonoBehaviour
     public static float xc;
     float ya = 0.75f;
 
+    int justCount = 0;
+    public static bool excellent = false;
+    int pScore;
+    int iScore;
+    int bScore;
+
     void Start()
     {
         xc = 2.0f;
@@ -105,8 +111,8 @@ public class Player : MonoBehaviour
         EnCount = true;
         FiCount = true;
         EnemyHit = false;
-        blink=false;
-        blinktime=0;
+        blink = false;
+        blinktime = 0;
         timecount = 0.0f;
         lifePoint = 5;
         lifeArray[lifePoint].SetActive(false);
@@ -119,7 +125,10 @@ public class Player : MonoBehaviour
         result.gameObject.SetActive(false);
         walkDis = 0.0f;
         audioSource = GetComponent<AudioSource>();
-
+        justCount = 0;
+        pScore = 1;
+        iScore = 1;
+        bScore = 1;
         for (int i = 0; i < 3; ++i)
         {
             selectCharacter[i].SetActive(false);
@@ -169,7 +178,7 @@ public class Player : MonoBehaviour
 
         if (GameContoroller.start)
         {
-            
+
 
 
             if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale >= 1 && jumpCount < 3)
@@ -357,12 +366,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if(blink == true) 
+        if (blink == true)
         {
-            blinktime+=1;
-            if(blinktime > 40) {
-                blink=false;
-                blinktime=0;
+            blinktime += 1;
+            if (blinktime > 40)
+            {
+                blink = false;
+                blinktime = 0;
             }
         }
     }
@@ -391,11 +401,11 @@ public class Player : MonoBehaviour
                 audioSource.PlayOneShot(itemGet);
                 if (CharaSelect.change == 2)
                 {
-                    HealScore(15);
+                    HealScore(15 * iScore);
                 }
                 else
                 {
-                    HealScore(1);
+                    HealScore(bScore);
                 }
                 if (lifePoint < 6)
                 {
@@ -434,12 +444,19 @@ public class Player : MonoBehaviour
 
     private void Damage()
     {
+        if (excellent && CharaSelect.change == 3)
+        {
+            return;
+        }
+        if (!excellent)
+        {
+            justCount = 0;
+        }
         audioSource.PlayOneShot(damage);
         lifeArray[lifePoint - 1].SetActive(false);
         lifePoint--;
-
         StartCoroutine(ColorBlinking());
-        blink=true;
+        blink = true;
     }
 
 
@@ -484,7 +501,7 @@ public class Player : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad >= 180)
         {
-            score += itemScore[3]*num;
+            score += itemScore[3] * num;
         }
         else if (Time.timeSinceLevelLoad >= 120)
         {
@@ -509,19 +526,30 @@ public class Player : MonoBehaviour
             if (transform.position.y - en.y <= ya &&
                 (transform.position.y - en.y >= -ya))
             {
-                Debug.Log("Hit");
-                if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 2 &&
+                if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 1.25f &&
             (en.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                 {
                     audioSource.PlayOneShot(giriJump);
                     justJump[0].SetActive(true);
+                    if (!excellent)
+                    {
+                        if (justCount < 7)
+                        {
+                            ++justCount;
+                            Debug.Log(justCount);
+                        }
+                        else
+                        {
+                            StartCoroutine(FeverTime());
+                        }
+                    }
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(2.5f);
+                        Matrix_Score(2.5f * pScore);
                     }
                     else
                     {
-                        Matrix_Score(1.0f);
+                        Matrix_Score(1.0f * bScore);
                     }
                 }
                 else
@@ -529,13 +557,17 @@ public class Player : MonoBehaviour
                     audioSource.PlayOneShot(itemGet);
                     justJump[0].SetActive(false);
                     justJump[CharaSelect.change].SetActive(true);
+                    if (!excellent)
+                    {
+                        justCount = 0;
+                    }
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(1.0f);
+                        Matrix_Score(1.0f * pScore);
                     }
                     else
                     {
-                        Matrix_Score(0.5f);
+                        Matrix_Score(0.5f * bScore);
                     }
                 }
                 EnCount = false;
@@ -550,19 +582,30 @@ public class Player : MonoBehaviour
             if (transform.position.y - ma.y <= 0.75f &&
                 (transform.position.y - ma.y >= -0.75f))
             {
-                Debug.Log("Hit");
-                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 2 &&
+                if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 1.25f &&
             (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                 {
                     audioSource.PlayOneShot(giriJump);
                     justJump[0].SetActive(true);
+                    if (!excellent)
+                    {
+                        if (justCount < 7)
+                        {
+                            ++justCount;
+                            Debug.Log(justCount);
+                        }
+                        else
+                        {
+                            StartCoroutine(FeverTime());
+                        }
+                    }
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(0.25f);
+                        Matrix_Score(0.25f * pScore);
                     }
                     else
                     {
-                        Matrix_Score(0.10f);
+                        Matrix_Score(0.10f * bScore);
                     }
                 }
                 else
@@ -570,13 +613,17 @@ public class Player : MonoBehaviour
                     justJump[0].SetActive(false);
                     audioSource.PlayOneShot(itemGet);
                     justJump[CharaSelect.change].SetActive(true);
+                    if (!excellent)
+                    {
+                        justCount = 0;
+                    }
                     if (CharaSelect.change == 1)
                     {
-                        Matrix_Score(0.1f);
+                        Matrix_Score(0.1f * pScore);
                     }
                     else
                     {
-                        Matrix_Score(0.05f);
+                        Matrix_Score(0.05f * bScore);
                     }
                 }
                 MaCount = false;
@@ -594,19 +641,33 @@ public class Player : MonoBehaviour
                 if (transform.position.y - fi.y <= 0.75f &&
                 (transform.position.y - fi.y >= -0.75f))
                 {
-                    audioSource.PlayOneShot(giriJump);
-                    Debug.Log("Hit");
-                    if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 2 &&
+                    if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 1.25f &&
                      (fi.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                     {
+                        audioSource.PlayOneShot(giriJump);
                         justJump[0].SetActive(true);
+                        if (excellent == false)
+                        {
+                            if (!excellent)
+                            {
+                                if (justCount < 7)
+                                {
+                                    ++justCount;
+                                    Debug.Log(justCount);
+                                }
+                                else
+                                {
+                                    StartCoroutine(FeverTime());
+                                }
+                            }
+                        }
                         if (CharaSelect.change == 1)
                         {
-                            Matrix_Score(2.5f);
+                            Matrix_Score(2.5f * pScore);
                         }
                         else
                         {
-                            Matrix_Score(1.0f);
+                            Matrix_Score(1.0f * bScore);
                         }
                     }
                     else
@@ -614,18 +675,63 @@ public class Player : MonoBehaviour
                         justJump[0].SetActive(false);
                         audioSource.PlayOneShot(itemGet);
                         justJump[CharaSelect.change].SetActive(true);
+                        if (!excellent)
+                        {
+                            justCount = 0;
+                        }
                         if (CharaSelect.change == 1)
                         {
-                            Matrix_Score(1.0f);
+                            Matrix_Score(1.0f * pScore);
                         }
                         else
                         {
-                            Matrix_Score(0.5f);
+                            Matrix_Score(0.5f * bScore);
                         }
                     }
                     FiCount = false;
                 }
             }
+        }
+    }
+
+    public static float fTime = 0.0f;
+    IEnumerator FeverTime()
+    {
+        Debug.Log("Fever!");
+        excellent = true;
+        justCount = 0;
+        if (CharaSelect.change == 1)
+        {
+            pScore = 5;
+        }
+        else if (CharaSelect.change == 2)
+        {
+            iScore = 3;
+        }
+        else if (CharaSelect.change == 3)
+        {
+            bScore = 20;
+        }
+
+        fTime = 0.0f;
+        while (fTime < 15.0f)
+        {
+            yield return null;
+            fTime += Time.deltaTime;
+            Debug.Log(fTime);
+        }
+        excellent = false;
+        if (CharaSelect.change == 1)
+        {
+            pScore = 1;
+        }
+        else if (CharaSelect.change == 2)
+        {
+            iScore = 1;
+        }
+        else if (CharaSelect.change == 3)
+        {
+            bScore = 1;
         }
     }
 

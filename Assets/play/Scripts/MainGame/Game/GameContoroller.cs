@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class GameContoroller : MonoBehaviour
 {
-    float BigDefaultX = 34.5f-0.5f;
-    float SmallDefaultX = 30.7f-0.5f;
+    float BigDefaultX = 34.5f - 0.5f;
+    float SmallDefaultX = 30.7f - 0.5f;
     int num = 0;
     int stagenum;
     public Text StartText;
@@ -25,10 +25,12 @@ public class GameContoroller : MonoBehaviour
     [SerializeField] float changeTime = 4.0f;
     private float speedTimer = 0f;
     bool play;
-    [SerializeField] public float speedmater=0;
+    [SerializeField] public float speedmater = 0;
     [SerializeField] public GameObject[] Stage = new GameObject[20];
 
-    float brinkSpeed=1.5f;
+    [SerializeField] public GameObject[] _stage = new GameObject[4];
+
+    float brinkSpeed = 1.5f;
 
     public static bool stage1set;
     public static bool stage2set;
@@ -40,9 +42,8 @@ public class GameContoroller : MonoBehaviour
     public static bool stage8set;
     public static bool stage9set;
 
-
     // Start is called before the first frame update
-    void Start() 
+    void Start()
     {
         start = false;
         StartText.text = "";
@@ -76,8 +77,8 @@ public class GameContoroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedmater=speed;
-        if (!start||play)
+        speedmater = speed;
+        if (!start || play)
         {
             if (countTime > 0.0f)
             {
@@ -86,12 +87,12 @@ public class GameContoroller : MonoBehaviour
                 {
                     countTime = 0.0f;
                     StartText.text = "";
-                    play=false;
-                    
+                    play = false;
+
                 }
                 else if (countTime <= 0.999f)
                 {
-                    StartText.fontSize=300;
+                    StartText.fontSize = 300;
                     StartText.text = "GO!!!";
                     StartText.color = GetAlphaColor(StartText.color);
                     start = true;
@@ -105,13 +106,18 @@ public class GameContoroller : MonoBehaviour
                     StartText.color = GetAlphaColor(StartText.color);
                 }
             }
-        }else {
-            if(speed < maxSpeed) {
+        }
+        else
+        {
+            if (speed < maxSpeed)
+            {
                 speedTimer += Time.deltaTime;
-                if(speedTimer >= changeTime) {
+                if (speedTimer >= changeTime)
+                {
                     speed += speedPlus;
                     Player.xc = 2.0f + 1 / (maxSpeed / speed);
-                    if(speed > maxSpeed) {
+                    if (speed > maxSpeed)
+                    {
                         speed = maxSpeed;
                         Player.xc = 3.0f;
                     }
@@ -126,6 +132,25 @@ public class GameContoroller : MonoBehaviour
         _Fox.cf();
         ObjectItem(17, 0);
         ObjectEnemy(25, -2.5f);
+        if (Player.excellent == true && CharaSelect.change == 2)
+        {
+            float x = 19;
+            float y = 0.2f;
+            for (int i = 1; i < 21; ++i)
+            {
+                if (i < 11)
+                {
+                    x += 0.5f;
+                    y += 0.1f;
+                }
+                else
+                {
+                    x += 0.5f;
+                    y -= 0.1f;
+                }
+                ObjectItem(x, y);
+            }
+        }
         Debug.Log("1");
         return;
     }
@@ -133,6 +158,25 @@ public class GameContoroller : MonoBehaviour
     void SpawnDraw2()
     {
         ObjectFire(25, 0);
+        if (Player.excellent == true && CharaSelect.change == 2)
+        {
+            float x = 19;
+            float y = 0.2f;
+            for (int i = 1; i < 21; ++i)
+            {
+                if (i < 11)
+                {
+                    x += 0.5f;
+                    y += 0.1f;
+                }
+                else
+                {
+                    x += 0.5f;
+                    y -= 0.1f;
+                }
+                ObjectItem(x, y);
+            }
+        }
         Debug.Log("2");
         return;
     }
@@ -142,6 +186,25 @@ public class GameContoroller : MonoBehaviour
         _Fox.cf();
         ObjectEnemy(25, -2.5f);
         ObjectItem(21, 0);
+        if (Player.excellent == true && CharaSelect.change == 2)
+        {
+            float x = 21;
+            float y = 0.5f;
+            for (int i = 1; i < 21; ++i)
+            {
+                if (i < 11)
+                {
+                    x += 0.5f;
+                    y += 0.1f;
+                }
+                else
+                {
+                    x += 0.5f;
+                    y -= 0.1f;
+                }
+                ObjectItem(x, y);
+            }
+        }
         ObjectTiger(17, -1.5f);
         Debug.Log("3");
         return;
@@ -152,6 +215,41 @@ public class GameContoroller : MonoBehaviour
         _Fox.cf();
         ObjectEnemy(17, -2.5f);
         ObjectItem(21, 0.5f);
+        if (Player.excellent == true && CharaSelect.change == 2)
+        {
+            float x = 21;
+            float y = 0.5f;
+            float xx = 21;
+            float yy = 0.5f;
+            for (int i = 1; i < 21; ++i)
+            {
+                if (i < 11)
+                {
+                    x += 0.5f;
+                    y += 0.1f;
+                }
+                else
+                {
+                    x += 0.5f;
+                    y -= 0.1f;
+                }
+                ObjectItem(x, y);
+            }
+            for (int i = 1; i < 21; ++i)
+            {
+                if (i < 11)
+                {
+                    xx += 0.5f;
+                    yy -= 0.1f;
+                }
+                else
+                {
+                    xx += 0.5f;
+                    yy += 0.1f;
+                }
+                ObjectItem(xx, yy);
+            }
+        }
         ObjectFire(25, 0);
         Debug.Log("4");
         return;
@@ -236,9 +334,9 @@ public class GameContoroller : MonoBehaviour
     {
         textTime += Time.deltaTime * brinkSpeed;
         color.a = Mathf.Cos(textTime);
-        if (color.a<=0)
+        if (color.a <= 0)
         {
-            textTime=0.0f;
+            textTime = 0.0f;
             color.a = Mathf.Cos(textTime);
         }
         return color;
@@ -248,186 +346,175 @@ public class GameContoroller : MonoBehaviour
     {
         if (start)
         {
-
             string objName = other.gameObject.name;
-            if (objName == "Stage_12")
+            Spawn(objName);
+        }
+    }
+
+    void Spawn(string objName)
+    {
+        if (objName == "Stage_12")
+        {
+            Debug.Log(objName);
+            stagenum = Random.Range(1, 4);
+            if (stagenum == 1)
+            {
+                SpawnDrawStage2();
+            }
+            if (stagenum == 2)
+            {
+                SpawnDrawStage4();
+            }
+            if (stagenum == 3)
+            {
+                SpawnDrawStage9();
+            }
+        }
+        if (objName == "Stage_Small_Right")
+        {
+
+            Debug.Log(objName);
+            stagenum = Random.Range(1, 6);
+            if (stagenum == 1)
+            {
+                SpawnDrawStage3();
+            }
+            if (stagenum == 2)
+            {
+                SpawnDrawStage5();
+            }
+            if (stagenum == 3)
+            {
+                SpawnDrawStage6();
+            }
+            if (stagenum == 4)
+            {
+                SpawnDrawStage7();
+            }
+            if (stagenum == 5)
+            {
+                SpawnDrawStage8();
+            }
+        }
+        if (spawn == false)
+        {
+
+            if ((objName == "Stage_11" || objName == "Stage_Small_Left"
+                || objName == "Stage_Big_Left") && Time.timeScale >= 1)
             {
                 Debug.Log(objName);
-                stagenum = Random.Range(1, 4);
-                if (stagenum == 1)
+                num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
+                if (Player.excellent == true)
                 {
-                    SpawnDrawStage2();
+                    if (CharaSelect.change == 1 || CharaSelect.change == 2)
+                    {
+                        Spawn_Fever(num);
+                    }
+                    else
+                    {
+                        NormalSpawn(num);
+                    }
                 }
-                if (stagenum == 2)
+                else
                 {
-                    SpawnDrawStage4();
-                }
-                if (stagenum == 3)
-                {
-                    SpawnDrawStage9();
-                }
-            }
-            if (objName == "Stage_Small_Right")
-            {
-
-                Debug.Log(objName);
-                stagenum = Random.Range(1, 6);
-                if (stagenum == 1)
-                {
-                    SpawnDrawStage3();
-                }
-                if (stagenum == 2)
-                {
-                    SpawnDrawStage5();
-                }
-                if (stagenum == 3)
-                {
-                    SpawnDrawStage6();
-                }
-                if (stagenum == 4)
-                {
-                    SpawnDrawStage7();
-                }
-                if (stagenum == 5)
-                {
-                    SpawnDrawStage8();
+                    NormalSpawn(num);
                 }
             }
-            if (spawn == false)
+        }
+        else
+         if (spawn == true)
+        {
+            if ((objName == "Stage_12" || objName == "Stage_Small_Right"
+               || objName == "Stage_Big_Right") && Time.timeScale >= 1)
             {
-                
-                if ((objName == "Stage_11" || objName == "Stage_Small_Left"
-                    || objName == "Stage_Big_Left") && Time.timeScale >= 1)
-                {
-                    Debug.Log(objName);
-                    num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
-
-                    if (num < 41)
-                    {
-                        SpawnDraw1();
-                        spawn = true;
-                    }
-                    else if (num < 61)
-                    {
-                        SpawnDraw2();
-                        spawn = true;
-                    }
-                    else if (num < 76)
-                    {
-                        SpawnDraw3();
-                        spawn = true;
-                    }
-                    else if (num < 89)
-                    {
-                        SpawnDraw4();
-                        spawn = true;
-                    }
-                    else if (num < 90)
-                    {
-                        SpawnDraw5();
-                        spawn = true;
-                    }
-                    else if (num < 91)
-                    {
-                        SpawnDraw6();
-                        spawn = true;
-                    }
-                    else if (num < 96)
-                    {
-                        SpawnDraw7();
-                        spawn = true;
-                    }
-                    else if (num < 101)
-                    {
-                        SpawnDraw8();
-                        spawn = true;
-                    }
-                }
-            }else 
-             if (spawn == true)
-             {
-                 if ((objName == "Stage_12" || objName == "Stage_Small_Right" 
-                    || objName == "Stage_Big_Right") && Time.timeScale >= 1)
-                 {
-                     spawn=false;
-                 }
-             }
-
-            if (spawn2 == false)
-            {
-
-                if ((objName == "Stage_12" || objName == "Stage_Small_Right"
-                    || objName == "Stage_Big_Right") && Time.timeScale >= 1)
-                {
-                    Debug.Log(objName);
-                    num = Random.Range(1, 101);// ※ 1～5の範囲でランダムな整数値が返る
-
-                    if (num < 41)
-                    {
-                        SpawnDraw1();
-                        spawn2 = true;
-                    }
-                    else if (num < 61)
-                    {
-                        SpawnDraw2();
-                        spawn2 = true;
-                    }
-                    else if (num < 76)
-                    {
-                        SpawnDraw3();
-                        spawn2 = true;
-                    }
-                    else if (num < 89)
-                    {
-                        SpawnDraw4();
-                        spawn2 = true;
-                    }
-                    else if (num < 90)
-                    {
-                        SpawnDraw5();
-                        spawn2 = true;
-                    }
-                    else if (num < 91)
-                    {
-                        SpawnDraw6();
-                        spawn2 = true;
-                    }
-                    else if (num < 96)
-                    {
-                        SpawnDraw7();
-                        spawn2 = true;
-                    }
-                    else if (num < 101)
-                    {
-                        SpawnDraw8();
-                        spawn2 = true;
-                    }
-                }
-            }
-            else
-             if (spawn2 == true)
-            {
-                if ((objName == "Stage_11" || objName == "Stage_Small_Left"
-                    || objName == "Stage_Big_Left") && Time.timeScale >= 1)
-                {
-                    spawn2 = false;
-                }
+                spawn = false;
             }
         }
     }
 
-    private void Stage1() {
+    void Spawn_Fever(int num)
+    {
+        if (num < 44)
+        {
+            SpawnDraw1();
+            spawn = true;
+        }
+        else if (num < 64)
+        {
+            SpawnDraw2();
+            spawn = true;
+        }
+        else if (num < 79)
+        {
+            SpawnDraw3();
+            spawn = true;
+        }
+        else if (num < 101)
+        {
+            SpawnDraw4();
+            spawn = true;
+        }
+    }
+
+    void NormalSpawn(int num)
+    {
+        if (num < 41)
+        {
+            SpawnDraw1();
+            spawn = true;
+        }
+        else if (num < 61)
+        {
+            SpawnDraw2();
+            spawn = true;
+        }
+        else if (num < 76)
+        {
+            SpawnDraw3();
+            spawn = true;
+        }
+        else if (num < 89)
+        {
+            SpawnDraw4();
+            spawn = true;
+        }
+        else if (num < 90)
+        {
+            SpawnDraw5();
+            spawn = true;
+        }
+        else if (num < 91)
+        {
+            SpawnDraw6();
+            spawn = true;
+        }
+        else if (num < 96)
+        {
+            SpawnDraw7();
+            spawn = true;
+        }
+        else if (num < 101)
+        {
+            SpawnDraw8();
+            spawn = true;
+        }
+    }
+
+    private void Stage1()
+    {
         //Stage[1].SetActive(true);
         return;
     }
-    private void Stage2() {
+    private void Stage2()
+    {
         Stage[0].SetActive(true);
         Stage[1].SetActive(true);
         Stage[2].SetActive(false);
         Stage[3].SetActive(false);
         return;
     }
-    private void Stage3() {
+    private void Stage3()
+    {
         Stage[4].SetActive(true);
         Stage[5].SetActive(true);
         Stage[6].SetActive(false);
@@ -436,14 +523,16 @@ public class GameContoroller : MonoBehaviour
         Stage[9].SetActive(false);
         return;
     }
-    private void Stage4() {
+    private void Stage4()
+    {
         Stage[0].SetActive(false);
         Stage[1].SetActive(false);
         Stage[2].SetActive(true);
         Stage[3].SetActive(false);
         return;
     }
-    private void Stage5() {
+    private void Stage5()
+    {
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(true);
@@ -452,7 +541,8 @@ public class GameContoroller : MonoBehaviour
         Stage[9].SetActive(false);
         return;
     }
-    private void Stage6() {
+    private void Stage6()
+    {
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(false);
@@ -461,7 +551,8 @@ public class GameContoroller : MonoBehaviour
         Stage[9].SetActive(false);
         return;
     }
-    private void Stage7() {
+    private void Stage7()
+    {
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(false);
@@ -470,7 +561,8 @@ public class GameContoroller : MonoBehaviour
         Stage[9].SetActive(false);
         return;
     }
-    private void Stage8() {
+    private void Stage8()
+    {
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(false);
@@ -479,7 +571,8 @@ public class GameContoroller : MonoBehaviour
         Stage[9].SetActive(true);
         return;
     }
-    private void Stage9() {
+    private void Stage9()
+    {
         Stage[0].SetActive(false);
         Stage[1].SetActive(false);
         Stage[2].SetActive(false);
@@ -487,47 +580,56 @@ public class GameContoroller : MonoBehaviour
 
         return;
     }
-    void SpawnDrawStage1() {
+    void SpawnDrawStage1()
+    {
         Stage1();
         Debug.Log("Stage_1");
         return;
     }
-    void SpawnDrawStage2() {
+    void SpawnDrawStage2()
+    {
         Stage2();
         Debug.Log("Stage_2");
         return;
     }
-    void SpawnDrawStage3() {
+    void SpawnDrawStage3()
+    {
         Stage3();
         Debug.Log("Stage_3");
         return;
     }
-    void SpawnDrawStage4() {
+    void SpawnDrawStage4()
+    {
         Stage4();
         Debug.Log("Stage_4");
         return;
     }
-    void SpawnDrawStage5() {
+    void SpawnDrawStage5()
+    {
         Stage5();
         Debug.Log("Stage_5");
         return;
     }
-    void SpawnDrawStage6() {
+    void SpawnDrawStage6()
+    {
         Stage8();
         Debug.Log("Stage_6");
         return;
     }
-    void SpawnDrawStage7() {
+    void SpawnDrawStage7()
+    {
         Stage8();
         Debug.Log("Stage_7");
         return;
     }
-    void SpawnDrawStage8() {
+    void SpawnDrawStage8()
+    {
         Stage8();
         Debug.Log("Stage_8");
         return;
     }
-    void SpawnDrawStage9() {
+    void SpawnDrawStage9()
+    {
         Stage9();
         Debug.Log("Stage_9");
         return;
