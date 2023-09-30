@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Spine.Unity;
-using Spine;
 
 
 public class Player : MonoBehaviour
@@ -26,9 +24,10 @@ public class Player : MonoBehaviour
     bool FiCount;
     bool MaCount;
     bool EnemyHit;
+    bool FireHit;
     public static bool blink = false;
     int blinktime = 0;
-
+    
     public GameObject[] lifeArray = new GameObject[6];
     public GameObject[] selectCharacter = new GameObject[3];
     public static int lifePoint;
@@ -83,7 +82,7 @@ public class Player : MonoBehaviour
     public AudioClip jump;
     public AudioClip giriJump;
     public AudioClip tyakuti;
-
+    public AudioClip[] MusicalScale = new AudioClip[8];
     AudioSource audioSource;
 
     float xa = 1.5f;
@@ -96,6 +95,13 @@ public class Player : MonoBehaviour
     int pScore;
     int iScore;
     int bScore;
+    int maxExcellent = 7;
+
+    public GameObject circle;
+
+    public static bool heal;
+    public static bool healcount;
+    public GameObject HealEffect;
 
     void Start()
     {
@@ -111,6 +117,7 @@ public class Player : MonoBehaviour
         EnCount = true;
         FiCount = true;
         EnemyHit = false;
+        FireHit = false;
         blink = false;
         blinktime = 0;
         timecount = 0.0f;
@@ -129,6 +136,10 @@ public class Player : MonoBehaviour
         pScore = 1;
         iScore = 1;
         bScore = 1;
+        heal=false;
+        healcount = false;
+        circle.SetActive(false);
+
         for (int i = 0; i < 3; ++i)
         {
             selectCharacter[i].SetActive(false);
@@ -162,7 +173,7 @@ public class Player : MonoBehaviour
         Vector3 pos = myTransform.position;
         if (pos.x < -3 && Time.timeScale >= 1)
         {
-            pos.x += 0.002f;
+            pos.x += 0.02f;
             if (pos.x > -3)
             {
                 pos.x = -3;
@@ -189,65 +200,74 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector3(0, jumpForce, 0);
 
                 PlayerDown.jumpSet = true;
-                if (m_enemy != null && EnCount)
+                if (CharaSelect.change == 1 && excellent && Circle.Excellent_Pikuru == true)
                 {
-                    Matrix_Enemy();
+                    Debug.Log("pikuru");
+                    Matrix_CF();
+                    Matrix_Score(2.5f * pScore);
                 }
-                if (m_fire != null && FiCount)
+                else
                 {
-                    Matrix_Fire();
-                }
-                if (m_mash_a != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_a.transform.position);
-                }
-                if (m_mash_b != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_b.transform.position);
-                }
-                if (m_mash_c != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_c.transform.position);
-                }
-                if (m_mash_d != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_d.transform.position);
-                }
-                if (m_mash_e != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_e.transform.position);
-                }
-                if (m_mash_f != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_f.transform.position);
-                }
-                if (m_mash_g != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_g.transform.position);
-                }
-                if (m_mash_h != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_h.transform.position);
-                }
-                if (m_mash_i != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_i.transform.position);
-                }
-                if (m_mash_j != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_j.transform.position);
-                }
-                if (m_mash_k != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_k.transform.position);
-                }
-                if (m_mash_l != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_l.transform.position);
-                }
-                if (m_mash_m != null && MaCount)
-                {
-                    Matrix_Mash(m_mash_m.transform.position);
+                    if (m_enemy != null && EnCount)
+                    {
+                        Matrix_Enemy();
+                    }
+                    if (m_fire != null && FiCount)
+                    {
+                        Matrix_Fire();
+                    }
+                    if (m_mash_a != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_a.transform.position);
+                    }
+                    if (m_mash_b != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_b.transform.position);
+                    }
+                    if (m_mash_c != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_c.transform.position);
+                    }
+                    if (m_mash_d != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_d.transform.position);
+                    }
+                    if (m_mash_e != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_e.transform.position);
+                    }
+                    if (m_mash_f != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_f.transform.position);
+                    }
+                    if (m_mash_g != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_g.transform.position);
+                    }
+                    if (m_mash_h != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_h.transform.position);
+                    }
+                    if (m_mash_i != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_i.transform.position);
+                    }
+                    if (m_mash_j != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_j.transform.position);
+                    }
+                    if (m_mash_k != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_k.transform.position);
+                    }
+                    if (m_mash_l != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_l.transform.position);
+                    }
+                    if (m_mash_m != null && MaCount)
+                    {
+                        Matrix_Mash(m_mash_m.transform.position);
+                    }
                 }
             }
             if (Input.GetKeyDown(KeyCode.Space))
@@ -388,6 +408,7 @@ public class Player : MonoBehaviour
             FiCount = true;
             MaCount = true;
             EnemyHit = false;
+            FireHit = false;
         }
     }
 
@@ -402,10 +423,18 @@ public class Player : MonoBehaviour
                 if (CharaSelect.change == 2)
                 {
                     HealScore(15 * iScore);
+                    HealEffect.SetActive(true);
+
+                    heal = true;
+                    healcount = true;
                 }
                 else
                 {
                     HealScore(bScore);
+                    HealEffect.SetActive(true);
+
+                    heal = true;
+                    healcount = true;
                 }
                 if (lifePoint < 6)
                 {
@@ -420,13 +449,15 @@ public class Player : MonoBehaviour
                     else
                     {
                         Heal();
+
                     }
                 }
             }
 
-            if (other.gameObject.CompareTag("Fire"))
+            if (other.gameObject.CompareTag("Fire") && !FireHit)
             {
                 Damage();
+                FireHit = true;
             }
 
             if (other.gameObject.CompareTag("Enemy") && !EnemyHit)
@@ -439,6 +470,23 @@ public class Player : MonoBehaviour
                 Damage();
                 EnemyHit = true;
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Fire") && EnemyHit)
+        {
+            FireHit = false;
+        }
+
+        if (other.gameObject.CompareTag("Enemy") && EnemyHit)
+        {
+            EnemyHit = false;
+        }
+        if (other.gameObject.CompareTag("mushroom") && EnemyHit)
+        {
+            EnemyHit = false;
         }
     }
 
@@ -493,6 +541,7 @@ public class Player : MonoBehaviour
 
     private void Heal()
     {
+
         lifePoint++;
         lifeArray[lifePoint - 1].SetActive(true);
     }
@@ -529,20 +578,7 @@ public class Player : MonoBehaviour
                 if ((en.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 1.25f &&
             (en.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                 {
-                    audioSource.PlayOneShot(giriJump);
-                    justJump[0].SetActive(true);
-                    if (!excellent)
-                    {
-                        if (justCount < 7)
-                        {
-                            ++justCount;
-                            Debug.Log(justCount);
-                        }
-                        else
-                        {
-                            StartCoroutine(FeverTime());
-                        }
-                    }
+                    Matrix_CF();
                     if (CharaSelect.change == 1)
                     {
                         Matrix_Score(2.5f * pScore);
@@ -557,10 +593,6 @@ public class Player : MonoBehaviour
                     audioSource.PlayOneShot(itemGet);
                     justJump[0].SetActive(false);
                     justJump[CharaSelect.change].SetActive(true);
-                    if (!excellent)
-                    {
-                        justCount = 0;
-                    }
                     if (CharaSelect.change == 1)
                     {
                         Matrix_Score(1.0f * pScore);
@@ -585,20 +617,7 @@ public class Player : MonoBehaviour
                 if ((ma.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 1.25f &&
             (ma.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                 {
-                    audioSource.PlayOneShot(giriJump);
-                    justJump[0].SetActive(true);
-                    if (!excellent)
-                    {
-                        if (justCount < 7)
-                        {
-                            ++justCount;
-                            Debug.Log(justCount);
-                        }
-                        else
-                        {
-                            StartCoroutine(FeverTime());
-                        }
-                    }
+                    Matrix_CF();
                     if (CharaSelect.change == 1)
                     {
                         Matrix_Score(0.25f * pScore);
@@ -613,10 +632,6 @@ public class Player : MonoBehaviour
                     justJump[0].SetActive(false);
                     audioSource.PlayOneShot(itemGet);
                     justJump[CharaSelect.change].SetActive(true);
-                    if (!excellent)
-                    {
-                        justCount = 0;
-                    }
                     if (CharaSelect.change == 1)
                     {
                         Matrix_Score(0.1f * pScore);
@@ -644,23 +659,7 @@ public class Player : MonoBehaviour
                     if ((fi.x - 1.5f) - (transform.position.x + 0.5f) <= xc / 1.25f &&
                      (fi.x - 1.5f) - (transform.position.x + 0.5f) >= 0.0f)
                     {
-                        audioSource.PlayOneShot(giriJump);
-                        justJump[0].SetActive(true);
-                        if (excellent == false)
-                        {
-                            if (!excellent)
-                            {
-                                if (justCount < 7)
-                                {
-                                    ++justCount;
-                                    Debug.Log(justCount);
-                                }
-                                else
-                                {
-                                    StartCoroutine(FeverTime());
-                                }
-                            }
-                        }
+                        Matrix_CF();
                         if (CharaSelect.change == 1)
                         {
                             Matrix_Score(2.5f * pScore);
@@ -675,10 +674,6 @@ public class Player : MonoBehaviour
                         justJump[0].SetActive(false);
                         audioSource.PlayOneShot(itemGet);
                         justJump[CharaSelect.change].SetActive(true);
-                        if (!excellent)
-                        {
-                            justCount = 0;
-                        }
                         if (CharaSelect.change == 1)
                         {
                             Matrix_Score(1.0f * pScore);
@@ -694,15 +689,38 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Matrix_CF()
+    {
+        audioSource.PlayOneShot(giriJump, 0.5f);
+        justJump[0].SetActive(true);
+        if (!excellent)
+        {
+            audioSource.PlayOneShot(MusicalScale[justCount]);
+            EnemyHit = true;
+            FireHit = true;
+            if (justCount < maxExcellent)
+            {
+                ++justCount;
+            }
+            else
+            {
+                StartCoroutine(FeverTime());
+            }
+        }
+        return;
+    }
+
     public static float fTime = 0.0f;
     IEnumerator FeverTime()
     {
         Debug.Log("Fever!");
         excellent = true;
+        Fever.stop = true;
         justCount = 0;
         if (CharaSelect.change == 1)
         {
             pScore = 5;
+            circle.SetActive(true);
         }
         else if (CharaSelect.change == 2)
         {
@@ -718,12 +736,12 @@ public class Player : MonoBehaviour
         {
             yield return null;
             fTime += Time.deltaTime;
-            Debug.Log(fTime);
         }
         excellent = false;
         if (CharaSelect.change == 1)
         {
             pScore = 1;
+            circle.SetActive(false);
         }
         else if (CharaSelect.change == 2)
         {

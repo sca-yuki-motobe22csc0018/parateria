@@ -63,8 +63,8 @@ public class asobikata : MonoBehaviour
         x = 700;
         y = 400;
         _rT=window[change].GetComponent<RectTransform>();
-        MoveStart(1400, 800, 0.1f);
-        while (x < 1400.0f)
+        MoveStart(1920, 1080, 0.1f);
+        while (x < 1920.0f)
         {
             yield return null;
             nowTime += Time.deltaTime;

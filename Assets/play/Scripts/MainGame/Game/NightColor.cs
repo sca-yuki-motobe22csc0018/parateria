@@ -24,7 +24,7 @@ public class NightColor : MonoBehaviour
         if (BackGroundController.night == true)
         {
             timer+=1;
-            if (timer > 15)
+            if (timer > 3)
             {
                 if (a < 220)
                 {
@@ -36,7 +36,7 @@ public class NightColor : MonoBehaviour
             if (BackGroundController.night == false)
         {
             timer += 1;
-            if (timer > 12)
+            if (timer > 2)
             {
                 if (a > 0)
                 {

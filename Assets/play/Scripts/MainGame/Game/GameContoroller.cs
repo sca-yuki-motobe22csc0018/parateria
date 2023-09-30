@@ -26,7 +26,7 @@ public class GameContoroller : MonoBehaviour
     private float speedTimer = 0f;
     bool play;
     [SerializeField] public float speedmater = 0;
-    [SerializeField] public GameObject[] Stage = new GameObject[20];
+    [SerializeField] public GameObject[] Stage = new GameObject[10];
 
     [SerializeField] public GameObject[] _stage = new GameObject[4];
 
@@ -52,16 +52,12 @@ public class GameContoroller : MonoBehaviour
         _SharkDown = GameObject.Find("BigSharkDown").GetComponent<BigShark>();
         _Fox = GameObject.Find("BigFox").GetComponent<BigShark>();
         play = false;
-        Stage[0].SetActive(false);
-        Stage[1].SetActive(false);
-        Stage[2].SetActive(false);
-        Stage[3].SetActive(false);
-        Stage[4].SetActive(false);
-        Stage[5].SetActive(false);
-        Stage[6].SetActive(false);
-        Stage[7].SetActive(false);
-        Stage[8].SetActive(false);
-        Stage[9].SetActive(false);
+
+        for (int i = 0; i < 10; ++i)
+        {
+            Stage[i].SetActive(false);
+        }
+         
         stage1set = false;
         stage2set = false;
         stage3set = false;
@@ -157,7 +153,7 @@ public class GameContoroller : MonoBehaviour
 
     void SpawnDraw2()
     {
-        ObjectFire(25, 0);
+        ObjectFire(25, 1);
         if (Player.excellent == true && CharaSelect.change == 2)
         {
             float x = 19;
@@ -250,7 +246,7 @@ public class GameContoroller : MonoBehaviour
                 ObjectItem(xx, yy);
             }
         }
-        ObjectFire(25, 0);
+        ObjectFire(25, 1);
         Debug.Log("4");
         return;
     }
@@ -502,11 +498,12 @@ public class GameContoroller : MonoBehaviour
 
     private void Stage1()
     {
-        //Stage[1].SetActive(true);
+        
         return;
     }
     private void Stage2()
     {
+
         Stage[0].SetActive(true);
         Stage[1].SetActive(true);
         Stage[2].SetActive(false);
@@ -515,6 +512,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage3()
     {
+
         Stage[4].SetActive(true);
         Stage[5].SetActive(true);
         Stage[6].SetActive(false);
@@ -525,6 +523,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage4()
     {
+
         Stage[0].SetActive(false);
         Stage[1].SetActive(false);
         Stage[2].SetActive(true);
@@ -533,6 +532,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage5()
     {
+
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(true);
@@ -543,6 +543,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage6()
     {
+
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(false);
@@ -553,6 +554,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage7()
     {
+
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(false);
@@ -563,6 +565,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage8()
     {
+
         Stage[4].SetActive(false);
         Stage[5].SetActive(false);
         Stage[6].SetActive(false);
@@ -573,6 +576,7 @@ public class GameContoroller : MonoBehaviour
     }
     private void Stage9()
     {
+
         Stage[0].SetActive(false);
         Stage[1].SetActive(false);
         Stage[2].SetActive(false);
@@ -612,13 +616,13 @@ public class GameContoroller : MonoBehaviour
     }
     void SpawnDrawStage6()
     {
-        Stage8();
+        Stage6();
         Debug.Log("Stage_6");
         return;
     }
     void SpawnDrawStage7()
     {
-        Stage8();
+        Stage7();
         Debug.Log("Stage_7");
         return;
     }
