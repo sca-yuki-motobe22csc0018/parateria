@@ -45,5 +45,9 @@ public class NightColor : MonoBehaviour
                 timer = 0;
             }
         }
+        if (Player.excellent==true)
+        {
+            a=0;
+        }
     }
 }

@@ -11,6 +11,9 @@ public class CharaSelect : MonoBehaviour
     public GameObject cf2;
     public GameObject cf3;
 
+    public RectTransform[] _window;
+    public RectTransform[] _button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,10 @@ public class CharaSelect : MonoBehaviour
         }
         else if(num == 2)
         {
+            _window[change - 1].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 960);
+            _window[change - 1].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 540);
+            _button[change - 1].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 960);
+            _button[change - 1].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 540);
             if (change == 1)
             {
                 cf1.gameObject.SetActive(false);

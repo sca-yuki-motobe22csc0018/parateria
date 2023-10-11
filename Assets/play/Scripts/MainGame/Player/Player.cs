@@ -139,6 +139,7 @@ public class Player : MonoBehaviour
         heal=false;
         healcount = false;
         circle.SetActive(false);
+        excellent=false;
 
         for (int i = 0; i < 3; ++i)
         {
@@ -756,11 +757,7 @@ public class Player : MonoBehaviour
     void Matrix_Score(float dif)
     {
         int numScore;
-        if (score >= 100000000)
-        {
-            numScore = (int)(50000000 * dif);
-        }
-        else if (score >= 10000000)
+        if (score >= 10000000)
         {
             numScore = (int)(5000000 * dif);
         }

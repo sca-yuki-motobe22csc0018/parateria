@@ -60,8 +60,8 @@ public class asobikata : MonoBehaviour
     IEnumerator WindowAnimation()
     {
         move = true;
-        x = 700;
-        y = 400;
+        x = 960;
+        y = 540;
         _rT=window[change].GetComponent<RectTransform>();
         MoveStart(1920, 1080, 0.1f);
         while (x < 1920.0f)
@@ -121,6 +121,8 @@ public class asobikata : MonoBehaviour
             {
                 window[i].enabled = false;
             }
+            _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 960);
+            _rT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 540);
             gameObject.SetActive(false);
         }
     }
