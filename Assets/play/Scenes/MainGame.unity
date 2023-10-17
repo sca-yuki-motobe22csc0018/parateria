@@ -24037,6 +24037,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: dacdc2812259adc4cbf65c7d2aa6aeac, type: 3}
   giriJump: {fileID: 8300000, guid: 88117e266c7006240962e3dd8515d8e6, type: 3}
   tyakuti: {fileID: 8300000, guid: f248ac50f952332428b5abf33bdc320d, type: 3}
+  healSound: {fileID: 8300000, guid: 270cc1c667b42cb4ba315c9fb533e5d5, type: 3}
   MusicalScale:
   - {fileID: 8300000, guid: 2e55365ec6637504c8117805ecc83ead, type: 3}
   - {fileID: 8300000, guid: 00d10fdd7e8b5a641bd05a85b817ca76, type: 3}

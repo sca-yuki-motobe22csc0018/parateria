@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
     public AudioClip jump;
     public AudioClip giriJump;
     public AudioClip tyakuti;
+    public AudioClip healSound;
     public AudioClip[] MusicalScale = new AudioClip[8];
     AudioSource audioSource;
 
@@ -420,7 +421,7 @@ public class Player : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Item"))
             {
-                audioSource.PlayOneShot(itemGet);
+                audioSource.PlayOneShot(healSound);
                 if (CharaSelect.change == 2)
                 {
                     HealScore(15 * iScore);
